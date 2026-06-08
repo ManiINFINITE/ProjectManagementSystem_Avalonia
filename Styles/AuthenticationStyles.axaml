@@ -1,0 +1,245 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+            <TextBlock Classes="ErrorTextBlock" Text="This username is already taken!"></TextBlock>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+    <!-- Grids -->
+    <Style Selector="Grid.SignInGrid">
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0%, 0%" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    <!-- Grids -->
+    
+    <!-- Circles -->
+    <Style Selector="Border.TopLeftCircle">
+        <Setter Property="Height" Value="250"></Setter>
+        <Setter Property="Width" Value="250"></Setter>
+        <Setter Property="Margin" Value="-100 -50 0 0"></Setter>
+        <Setter Property="CornerRadius" Value="500"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0%, 0%" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+                <GradientStop Offset="0.8" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <Style Selector="Border.BottomRightOuterCircle">
+        <Setter Property="Height" Value="450"></Setter>
+        <Setter Property="Width" Value="450"></Setter>
+        <Setter Property="Margin" Value="0 0 0 0"></Setter>
+        <Setter Property="CornerRadius" Value="500"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0.3" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <Style Selector="Border.BottomRightInnerCircle">
+        <Setter Property="Height" Value="250"></Setter>
+        <Setter Property="Width" Value="250"></Setter>
+        <Setter Property="Margin" Value="0 0 0 0"></Setter>
+        <Setter Property="CornerRadius" Value="500"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0.3" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <Style Selector="Border.MiddleLeftCircle">
+        <Setter Property="Height" Value="250"></Setter>
+        <Setter Property="Width" Value="250"></Setter>
+        <Setter Property="Margin" Value="0 0 -300 0"></Setter>
+        <Setter Property="CornerRadius" Value="500"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0.3" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <Style Selector="Border.MiddleTopCircle">
+        <Setter Property="Height" Value="150"></Setter>
+        <Setter Property="Width" Value="150"></Setter>
+        <Setter Property="Margin" Value="200 0 0 -200"></Setter>
+        <Setter Property="CornerRadius" Value="500"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0.3" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <!-- Circles -->
+    
+    <!-- Rects -->
+    <Style Selector="Border.BottomLeftRect">
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="Width" Value="5000"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 0%">
+                <GradientStop Offset="0" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="RenderTransform">
+            <RotateTransform Angle="-25"></RotateTransform>
+        </Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <Style Selector="Border.BottomLeftRect2">
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="Width" Value="5000"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 0%">
+                <GradientStop Offset="0" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="RenderTransform">
+            <RotateTransform Angle="-25"></RotateTransform>
+        </Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <Style Selector="Border.BottomLeftRect3">
+        <Setter Property="Height" Value="12.5"></Setter>
+        <Setter Property="Width" Value="5000"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 0%">
+                <GradientStop Offset="0" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="RenderTransform">
+            <RotateTransform Angle="-25"></RotateTransform>
+        </Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <!-- Rects -->
+    
+    <!-- Borders -->
+    <Style Selector="Border.MiddleBorder">
+        <Setter Property="CornerRadius" Value="25"></Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
+    </Style>
+    <Style Selector="Border.InnerLeftBorder">
+        <Setter Property="CornerRadius" Value="25 0 0 25"></Setter>
+        <Setter Property="ClipToBounds" Value="True"></Setter>
+    </Style>
+    <Style Selector="Border.InnerRightBorder">
+        <Setter Property="CornerRadius" Value="0 25 25 0"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="0%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColorInformation}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColorInformation}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    <!-- Borders -->
+    
+    <!-- Images -->
+    <Style Selector="Image.LandscapeImage">
+        <Setter Property="Stretch" Value="UniformToFill"></Setter>
+    </Style>
+    <!-- Images -->
+    
+    <!-- Text Blocks -->
+    <Style Selector="TextBlock.ImageText">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 70 0 0"></Setter>
+        <Setter Property="Opacity" Value="0.85"></Setter>
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ImageTextForeground}"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+    </Style>
+    <Style Selector="TextBlock.SignInText">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="40"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="Margin" Value="0 70 0 0"></Setter>
+    </Style>
+    <Style Selector="TextBlock.DontHaveAccountText">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Regular}"></Setter>
+    </Style>
+    <!-- Text Blocks -->
+    
+    <!-- Text Boxes -->
+    <Style Selector="TextBox.InfoTextBox">
+        <Setter Property="Width" Value="350"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="CornerRadius" Value="20"></Setter>
+        <Setter Property="Padding" Value="15 0 0 0"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+    </Style>
+    <Style Selector="TextBox.NameTextBox">
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="165"></Setter>
+        <Setter Property="CornerRadius" Value="50"></Setter>
+        <Setter Property="Padding" Value="15 0 0 0"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+    </Style>
+    <!-- Text Boxes -->
+    
+    <!-- Buttons -->
+    
+    <Style Selector="Button.SignInButton">
+        <Setter Property="Width" Value="350"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="CornerRadius" Value="20"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 0%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="0.7" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style Selector="Button.ChangeAuthButton">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentColor}"></Setter>
+    </Style>
+    <!-- Buttons -->
+    
+    <!-- On Mouse Over -->
+    <Style Selector="Button.SignInButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonHoverForeground}"></Setter>
+    </Style>
+    <Style Selector="Button.ChangeAuthButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    <Style Selector="Button.ChangeAuthButton:pointerover TextBlock">
+        <Setter Property="TextDecorations" Value="Underline"></Setter>
+    </Style>
+    <!-- On Mouse Over -->
+    
+</Styles>

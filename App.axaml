@@ -1,0 +1,42 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ProjectManagementSystem.App"
+             xmlns:local="using:ProjectManagementSystem"
+             RequestedThemeVariant="Light">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="Styles/AuthenticationStyles.axaml"></StyleInclude>
+    </Application.Styles>
+             
+    <Application.Resources>
+        <!-- Colors -->
+        <Color x:Key="PrimaryAccentColor">SlateBlue</Color>
+        <Color x:Key="SecondaryAccentColor">BlueViolet</Color>
+        <Color x:Key="PrimaryAccentColorInformation">#BDC2FF</Color>
+        <Color x:Key="SecondaryAccentColorInformation">#8D80FF</Color>
+        <Color x:Key="ButtonHoverBackground">#3E3E7C</Color>
+        
+        <!-- Solid Color Brush -->
+        <SolidColorBrush x:Key="ImageTextForeground">#9692FF</SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonForeground">#E2E3FF</SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonHoverForeground">White</SolidColorBrush>
+        
+        <!-- Box Shadows -->
+        <BoxShadows x:Key="AccentBoxShadow">0 0 60 0 #15152A</BoxShadows>
+        
+        <!-- Fonts -->
+        <FontFamily x:Key="Nunito-Bold">/Assets/Fonts/Nunito/Nunito-Bold.ttf#Nunito Bold</FontFamily>
+        <FontFamily x:Key="Nunito-Regular">/Assets/Fonts/Nunito/Nunito-Regular.ttf#Nunito Regular</FontFamily>
+        <FontFamily x:Key="Nunito-SemiBold">/Assets/Fonts/Nunito/Nunito-SemiBold.ttf#Nunito SemiBold</FontFamily>
+        <FontFamily x:Key="Phosphor">/Assets/Fonts/Phosphor/Phosphor.ttf#P</FontFamily>
+        <FontFamily x:Key="Phosphor-Bold">/Assets/Fonts/Phosphor/Phosphor-Bold.ttf#PB</FontFamily>
+        <FontFamily x:Key="Phosphor-Fill">/Assets/Fonts/Phosphor/Phosphor-Fill.ttf#PF</FontFamily>
+        
+    </Application.Resources>
+</Application>
