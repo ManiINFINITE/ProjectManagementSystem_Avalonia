@@ -35,26 +35,8 @@
                         <TextBlock Classes="ImageText" Text="{Binding ImageText}"></TextBlock>
                     </Grid>
                 </Border>
-                <Border Classes="InnerRightBorder" Grid.Column="1">
-                    <Grid RowDefinitions="Auto, *">
-                        <TextBlock Classes="SignInText" Grid.Row="0" Text="{Binding TitleText}"></TextBlock>
-                        <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="20" Margin="{Binding InfoStackPanelMargin}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" IsVisible="{Binding IsSignUpMode}">
-                                <TextBox Classes="NameTextBox" PlaceholderText="Firstname" Text="{Binding Firstname}"></TextBox>
-                                <TextBox Classes="NameTextBox" PlaceholderText="Lastname" Text="{Binding Lastname}"></TextBox>
-                            </StackPanel>
-                            <TextBox Classes="InfoTextBox" PlaceholderText="Username" Text="{Binding Username}"></TextBox>
-                            <TextBox Classes="InfoTextBox" PlaceholderText="Email" IsVisible="{Binding IsSignUpMode}" Text="{Binding Email}"></TextBox>
-                            <TextBox Classes="InfoTextBox" PlaceholderText="Password" PasswordChar="•" Text="{Binding Password}"></TextBox>
-                            <Button Classes="SignInButton" Content="{Binding TitleText}" Command="{Binding SubmitCommand}"></Button>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Classes="DontHaveAccountText" Text="{Binding ChangeAuthMessageText}"></TextBlock>
-                                <Button Classes="ChangeAuthButton" Command="{Binding ChangeAuthenticationCommand}">
-                                    <TextBlock Text="{Binding ChangeAuthButtonText}"></TextBlock>
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
+                <Border Grid.Column="1">
+                    <ContentControl Content="{Binding CurrentAuthViewModel}"></ContentControl>
                 </Border>
             </Grid>
         </Border>

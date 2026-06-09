@@ -1,0 +1,27 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ProjectManagementSystem.Views.SignInView"
+             x:DataType="vm:SignInViewModel">
+    
+    <Border Classes="InnerRightBorder">
+        <Grid RowDefinitions="Auto, *">
+            <TextBlock Classes="SignInText" Grid.Row="0" Text="Sign In"></TextBlock>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="20" Margin="0 60 0 0">
+                <TextBox Classes="InfoTextBox" PlaceholderText="Username" Text="{Binding Username}"></TextBox>
+                <TextBox Classes="InfoTextBox" PlaceholderText="Password" Text="{Binding Password}"></TextBox>
+                <Button Classes="SignInButton" Content="Sign In" Command="{Binding SignInCommand}"></Button>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Classes="DontHaveAccountText" Text="Don't have an account?"></TextBlock>
+                    <Button Classes="ChangeAuthButton" Command="{Binding ChangeToSignUpCommand}">
+                        <TextBlock Text="Create Account"></TextBlock>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+    
+</UserControl>

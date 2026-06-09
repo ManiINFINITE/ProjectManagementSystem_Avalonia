@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ProjectManagementSystem.Views.SignUpView"
+             x:DataType="vm:SignUpViewModel">
+    
+    <Border Classes="InnerRightBorder">
+        <Grid RowDefinitions="Auto, *">
+            <TextBlock Classes="SignInText" Grid.Row="0" Text="Create Account"></TextBlock>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="20" Margin="0 40 0 0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+                    <TextBox Classes="NameTextBox" PlaceholderText="Firstname" Text="{Binding Firstname}"></TextBox>
+                    <TextBox Classes="NameTextBox" PlaceholderText="Lastname" Text="{Binding Lastname}"></TextBox>
+                </StackPanel>
+                <TextBox Classes="InfoTextBox" PlaceholderText="Username" Text="{Binding Username}"></TextBox>
+                <TextBox Classes="InfoTextBox" PlaceholderText="Email" Text="{Binding Email}"></TextBox>
+                <TextBox Classes="InfoTextBox" PlaceholderText="Password" Text="{Binding Password}"></TextBox>
+                <Button Classes="SignInButton" Content="Create Account" Command="{Binding SignUpCommand}"></Button>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Classes="DontHaveAccountText" Text="Already have an account?"></TextBlock>
+                    <Button Classes="ChangeAuthButton" Command="{Binding ChangeToSignInCommand}">
+                        <TextBlock Text="Sign In"></TextBlock>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+    
+</UserControl>
