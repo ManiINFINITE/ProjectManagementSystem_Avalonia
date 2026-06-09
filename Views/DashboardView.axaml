@@ -7,10 +7,25 @@
              x:Class="ProjectManagementSystem.Views.DashboardView"
              x:DataType="vm:DashboardViewModel">
     
-    <TextBlock Text="Welcome!"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               FontSize="60"
-               FontFamily="{DynamicResource Nunito-Bold}"/>
+    <Grid ColumnDefinitions="*, Auto">
+        <TextBlock Grid.Column="0" Text="{Binding Greeting}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="60"
+                   FontFamily="{DynamicResource Nunito-Bold}"/>
+        
+        <Button Grid.Column="1" Content="Logout"
+                Background="red"
+                FontFamily="{DynamicResource Nunito-Bold}"
+                VerticalAlignment="Top"
+                Margin="0 20 20 0"
+                Width="100"
+                Height="40"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                FontSize="15"
+                Cursor="Hand"
+                Command="{Binding LogoutCommand}"></Button>
+    </Grid>
     
 </UserControl>
