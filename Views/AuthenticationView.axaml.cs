@@ -42,87 +42,79 @@ public partial class AuthenticationView : Window {
         // Always the center regardless of direction
         double midLeft  =  borderWidth / 2;
         double midRight = -borderWidth / 2;
+        
+        // ImageText
+        double controlExitPos = _moved ? borderWidth : -borderWidth;
+        double controlEnterPos = _moved ? -borderWidth : borderWidth;
 
         _moved = !_moved;
+        
+        // First half animations
+        var leftHalf1 = BuildAnimation(from, leftFrom, midLeft, leftTo, new CubicEaseIn());
+        var rightHalf1 = BuildAnimation(fromRightBorder, rightFrom, midRight, rightTo, new CubicEaseIn());
+        var textExit = BuildAnimation(0.0, controlExitPos, new CubicEaseIn());
+        var authContentExit = BuildAnimation(0.0, -controlExitPos, new CubicEaseIn());
 
-        // --- First half: borders slide to the middle ---
-        var leftHalf1 = new Animation {
-            Duration = TimeSpan.FromSeconds(0.25),
-            Easing = new CubicEaseIn(),
-            FillMode = FillMode.Both,
-            Children = {
-                new KeyFrame { Cue = new Cue(0), Setters = {
-                    new Setter(TranslateTransform.XProperty, from),
-                    new Setter(Border.CornerRadiusProperty, leftFrom)
-                }},
-                new KeyFrame { Cue = new Cue(1), Setters = {
-                    new Setter(TranslateTransform.XProperty, midLeft),
-                    new Setter(Border.CornerRadiusProperty, leftTo)
-                }}
-            }
-        };
+        await Task.WhenAll(leftHalf1.RunAsync(ImageBorder), rightHalf1.RunAsync(InfoBorder), textExit.RunAsync(ImageText), authContentExit.RunAsync(AuthContent));
 
-        var rightHalf1 = new Animation {
-            Duration = TimeSpan.FromSeconds(0.25),
-            Easing = new CubicEaseIn(),
-            FillMode = FillMode.Both,
-            Children = {
-                new KeyFrame { Cue = new Cue(0), Setters = {
-                    new Setter(TranslateTransform.XProperty, fromRightBorder),
-                    new Setter(Border.CornerRadiusProperty, rightFrom)
-                }},
-                new KeyFrame { Cue = new Cue(1), Setters = {
-                    new Setter(TranslateTransform.XProperty, midRight),
-                    new Setter(Border.CornerRadiusProperty, rightTo)
-                }}
-            }
-        };
-
-        await Task.WhenAll(leftHalf1.RunAsync(ImageBorder), rightHalf1.RunAsync(InfoBorder));
-
-        // --- Midpoint: swap the view ---
+        // --- Midpoint: swap the view and reposition text ---
         AuthenticationViewModel.Instance?.ChangeAuthMode();
+        ((TranslateTransform?)ImageText.RenderTransform)?.X = controlEnterPos;
+        ((TranslateTransform?)AuthContent.RenderTransform)?.X = -controlEnterPos;
+        
+        // Second half animations
+        var leftHalf2 = BuildAnimation(midLeft, leftTo, to, leftTo, new CubicEaseOut());
+        var rightHalf2 = BuildAnimation(midRight, rightTo, toRightBorder, rightTo, new CubicEaseOut());
+        var textEnter = BuildAnimation(controlEnterPos, 0.0, new CubicEaseOut());
+        var authContentEnter = BuildAnimation(-controlEnterPos, 0.0, new CubicEaseOut());
 
-        // --- Second half: borders slide to final position ---
-        var leftHalf2 = new Animation {
-            Duration = TimeSpan.FromSeconds(0.25),
-            Easing = new CubicEaseOut(),
-            FillMode = FillMode.Both,
-            Children = {
-                new KeyFrame { Cue = new Cue(0), Setters = {
-                    new Setter(TranslateTransform.XProperty, midLeft),
-                    new Setter(Border.CornerRadiusProperty, leftTo)
-                }},
-                new KeyFrame { Cue = new Cue(1), Setters = {
-                    new Setter(TranslateTransform.XProperty, to),
-                    new Setter(Border.CornerRadiusProperty, leftTo)
-                }}
-            }
-        };
-
-        var rightHalf2 = new Animation {
-            Duration = TimeSpan.FromSeconds(0.25),
-            Easing = new CubicEaseOut(),
-            FillMode = FillMode.Both,
-            Children = {
-                new KeyFrame { Cue = new Cue(0), Setters = {
-                    new Setter(TranslateTransform.XProperty, midRight),
-                    new Setter(Border.CornerRadiusProperty, rightTo)
-                }},
-                new KeyFrame { Cue = new Cue(1), Setters = {
-                    new Setter(TranslateTransform.XProperty, toRightBorder),
-                    new Setter(Border.CornerRadiusProperty, rightTo)
-                }}
-            }
-        };
-
-        await Task.WhenAll(leftHalf2.RunAsync(ImageBorder), rightHalf2.RunAsync(InfoBorder));
+        await Task.WhenAll(leftHalf2.RunAsync(ImageBorder), rightHalf2.RunAsync(InfoBorder), textEnter.RunAsync(ImageText), authContentEnter.RunAsync(AuthContent));
 
         await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() => {
-            ((TranslateTransform?)ImageBorder.RenderTransform)?.X  = to;
-            ImageBorder.CornerRadius                             = leftTo;
-            ((TranslateTransform?)InfoBorder.RenderTransform)?.X  = toRightBorder;
-            InfoBorder.CornerRadius                              = rightTo;
+            ((TranslateTransform?)ImageBorder.RenderTransform)?.X = to;
+            ImageBorder.CornerRadius = leftTo;
+            ((TranslateTransform?)InfoBorder.RenderTransform)?.X = toRightBorder;
+            InfoBorder.CornerRadius = rightTo;
+            ((TranslateTransform?)ImageText.RenderTransform)?.X = 0;
+            ((TranslateTransform?)AuthContent.RenderTransform)?.X = 0;
         });
+    }
+    
+    private Animation BuildAnimation(double fromX, double toX, Easing easing) {
+        var animation = new Animation {
+            Duration = TimeSpan.FromSeconds(0.25),
+            Easing = easing,
+            FillMode = FillMode.Both,
+            Children = {
+                new KeyFrame { Cue = new Cue(0), Setters = {
+                    new Setter(TranslateTransform.XProperty, fromX)
+                }},
+                new KeyFrame { Cue = new Cue(1), Setters = {
+                    new Setter(TranslateTransform.XProperty, toX)
+                }}
+            }
+        };
+        
+        return animation;
+    }
+
+    private Animation BuildAnimation(double fromX, CornerRadius fromCornerRadius, double toX, CornerRadius toCornerRadius, Easing easing) {
+        var animation = new Animation {
+            Duration = TimeSpan.FromSeconds(0.25),
+            Easing = easing,
+            FillMode = FillMode.Both,
+            Children = {
+                new KeyFrame { Cue = new Cue(0), Setters = {
+                    new Setter(TranslateTransform.XProperty, fromX),
+                    new Setter(Border.CornerRadiusProperty, fromCornerRadius)
+                }},
+                new KeyFrame { Cue = new Cue(1), Setters = {
+                    new Setter(TranslateTransform.XProperty, toX),
+                    new Setter(Border.CornerRadiusProperty, toCornerRadius)
+                }}
+            }
+        };
+        
+        return animation;
     }
 }

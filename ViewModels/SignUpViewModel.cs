@@ -29,17 +29,6 @@ public partial class SignUpViewModel : ViewModelBase {
             return;
         }
         
-        var rawPassword = Password;
-
-        var hash = BCrypt.Net.BCrypt.HashPassword(rawPassword);
-
-        Console.WriteLine($"SIGNUP RAW: '{rawPassword}'");
-        Console.WriteLine($"SIGNUP HASH: {hash}");
-
-        Console.WriteLine(
-            $"SELF VERIFY: {BCrypt.Net.BCrypt.Verify(rawPassword, hash)}"
-        );
-        
         var user = new User {
             FirstName = Firstname,
             LastName = Lastname,
@@ -57,6 +46,5 @@ public partial class SignUpViewModel : ViewModelBase {
     [RelayCommand]
     private void ChangeToSignIn() {
         SharedAnimationService.Instance.RequestToggle();
-        //AuthenticationViewModel.Instance?.ChangeAuthMode();
     }
 }

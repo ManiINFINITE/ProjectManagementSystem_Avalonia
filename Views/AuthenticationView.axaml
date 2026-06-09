@@ -35,14 +35,22 @@
                     </Border.RenderTransform>
                     <Grid>
                         <Image Classes="LandscapeImage" Source="../Assets/Images/landscape.jpg"></Image>
-                        <TextBlock Classes="ImageText" Text="{Binding ImageText}"></TextBlock>
+                        <TextBlock Name="ImageText" Classes="ImageText" Text="{Binding ImageText}">
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform X="0"/>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
                     </Grid>
                 </Border>
                 <Border Name="InfoBorder" Grid.Column="1" Classes="InnerRightBorder" RenderOptions.BitmapInterpolationMode="LowQuality">
                     <Border.RenderTransform>
                         <TranslateTransform/>
                     </Border.RenderTransform>
-                    <ContentControl Content="{Binding CurrentAuthViewModel}"></ContentControl>
+                    <ContentControl Name="AuthContent" Content="{Binding CurrentAuthViewModel}">
+                        <ContentControl.RenderTransform>
+                            <TranslateTransform X="0"/>
+                        </ContentControl.RenderTransform>
+                    </ContentControl>
                 </Border>
             </Grid>
         </Border>

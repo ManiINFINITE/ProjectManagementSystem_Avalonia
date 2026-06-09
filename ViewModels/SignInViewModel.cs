@@ -23,14 +23,6 @@ public partial class SignInViewModel : ViewModelBase {
             return;
         }
         
-        Console.WriteLine($"Username: '{Username}'");
-        Console.WriteLine($"Password: '{Password}'");
-        
-        Console.WriteLine($"'{Password}'");
-        Console.WriteLine(Password.Length);
-        
-        Console.WriteLine(typeof(BCrypt.Net.BCrypt).Assembly.FullName);
-        
         // Verify password
         bool passwordValid = BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash);
 
@@ -46,6 +38,5 @@ public partial class SignInViewModel : ViewModelBase {
     [RelayCommand]
     private void ChangeToSignUp() {
         SharedAnimationService.Instance.RequestToggle();
-        //AuthenticationViewModel.Instance?.ChangeAuthMode();
     }
 }
