@@ -33,6 +33,9 @@ public partial class SignInViewModel : ViewModelBase {
         
         // Success
         Console.WriteLine($"Welcome {user.Username}! Login successful!");
+        
+        // Go to user dashboard view
+        NavigationService.Instance?.NavigateTo(new DashboardViewModel());
     }
 
     [RelayCommand]

@@ -1,0 +1,21 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+        xmlns:views="clr-namespace:ProjectManagementSystem.Views"
+        mc:Ignorable="d" d:DesignWidth="1366" d:DesignHeight="766"
+        Width="1366" Height="768" CanResize="False" WindowStartupLocation="CenterScreen"
+        x:Class="ProjectManagementSystem.Views.MainWindowView"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Project Management">
+    
+        <ContentControl Content="{Binding CurrentView}">
+                <ContentControl.DataTemplates>
+                        <DataTemplate DataType="vm:AuthenticationViewModel">
+                                <views:AuthenticationView/>
+                        </DataTemplate>
+                </ContentControl.DataTemplates>
+        </ContentControl>
+        
+</Window>

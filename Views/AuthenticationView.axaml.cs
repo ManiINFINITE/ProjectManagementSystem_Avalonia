@@ -11,7 +11,7 @@ using ProjectManagementSystem.ViewModels;
 
 namespace ProjectManagementSystem.Views;
 
-public partial class AuthenticationView : Window {
+public partial class AuthenticationView : UserControl {
     
     private bool _moved;
     

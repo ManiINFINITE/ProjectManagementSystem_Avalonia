@@ -20,8 +20,8 @@ public partial class App : Application {
         db.Database.EnsureCreated();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
-            desktop.MainWindow = new AuthenticationView {
-                DataContext = new AuthenticationViewModel(),
+            desktop.MainWindow = new MainWindowView() {
+                DataContext = new MainWindowViewModel(),
             };
         }
 

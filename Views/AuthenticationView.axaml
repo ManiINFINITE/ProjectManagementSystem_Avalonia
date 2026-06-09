@@ -1,15 +1,11 @@
-<Window xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:ProjectManagementSystem.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1366" d:DesignHeight="768"
-        Width="1366" Height="768" CanResize="False"
         x:Class="ProjectManagementSystem.Views.AuthenticationView"
-        x:DataType="vm:AuthenticationViewModel"
-        Icon="/Assets/Icons/project_icon.png"
-        Title="ProjectManagementSystem"
-        WindowStartupLocation="CenterScreen">
+        x:DataType="vm:AuthenticationViewModel">
     
     <Design.DataContext>
         <vm:AuthenticationViewModel></vm:AuthenticationViewModel>
@@ -56,4 +52,4 @@
         </Border>
     </Grid>
 
-</Window>
+</UserControl>
