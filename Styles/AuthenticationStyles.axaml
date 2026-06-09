@@ -139,11 +139,13 @@
         <Setter Property="BoxShadow" Value="{DynamicResource AccentBoxShadow}"></Setter>
     </Style>
     <Style Selector="Border.InnerLeftBorder">
+        <Setter Property="ZIndex" Value="10"></Setter>
         <Setter Property="CornerRadius" Value="25 0 0 25"></Setter>
         <Setter Property="ClipToBounds" Value="True"></Setter>
     </Style>
     <Style Selector="Border.InnerRightBorder">
         <Setter Property="CornerRadius" Value="0 25 25 0"></Setter>
+        <Setter Property="ClipToBounds" Value="True"></Setter>
         <Setter Property="Background">
             <LinearGradientBrush StartPoint="0, 0" EndPoint="0%, 100%">
                 <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColorInformation}"></GradientStop>

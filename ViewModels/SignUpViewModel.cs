@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectManagementSystem.Models;
 using ProjectManagementSystem.Repositories;
+using ProjectManagementSystem.Services;
 
 namespace ProjectManagementSystem.ViewModels;
 
@@ -55,6 +56,7 @@ public partial class SignUpViewModel : ViewModelBase {
 
     [RelayCommand]
     private void ChangeToSignIn() {
+        SharedAnimationService.Instance.RequestToggle();
         AuthenticationViewModel.Instance?.ChangeAuthMode();
     }
 }

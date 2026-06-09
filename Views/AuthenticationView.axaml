@@ -27,15 +27,21 @@
             <Border Classes="BottomLeftRect2"></Border>
             <Border Classes="BottomLeftRect3"></Border>
         </StackPanel>
-        <Border Classes="MiddleBorder" Grid.Column="1" Grid.Row="1">
+        <Border Name="MiddleBorder" Classes="MiddleBorder" Grid.Column="1" Grid.Row="1">
             <Grid ColumnDefinitions="*, *">
-                <Border Grid.Column="0" Classes="InnerLeftBorder">
+                <Border Name="ImageBorder" Grid.Column="0" Classes="InnerLeftBorder">
+                    <Border.RenderTransform>
+                        <TranslateTransform/>
+                    </Border.RenderTransform>
                     <Grid>
                         <Image Classes="LandscapeImage" Source="../Assets/Images/landscape.jpg"></Image>
                         <TextBlock Classes="ImageText" Text="{Binding ImageText}"></TextBlock>
                     </Grid>
                 </Border>
-                <Border Grid.Column="1">
+                <Border Name="InfoBorder" Grid.Column="1" Classes="InnerRightBorder">
+                    <Border.RenderTransform>
+                        <TranslateTransform/>
+                    </Border.RenderTransform>
                     <ContentControl Content="{Binding CurrentAuthViewModel}"></ContentControl>
                 </Border>
             </Grid>
