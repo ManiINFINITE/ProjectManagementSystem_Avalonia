@@ -29,7 +29,7 @@
         </StackPanel>
         <Border Name="MiddleBorder" Classes="MiddleBorder" Grid.Column="1" Grid.Row="1">
             <Grid ColumnDefinitions="*, *">
-                <Border Name="ImageBorder" Grid.Column="0" Classes="InnerLeftBorder">
+                <Border Name="ImageBorder" Grid.Column="0" Classes="InnerLeftBorder" RenderOptions.BitmapInterpolationMode="LowQuality">
                     <Border.RenderTransform>
                         <TranslateTransform/>
                     </Border.RenderTransform>
@@ -38,7 +38,7 @@
                         <TextBlock Classes="ImageText" Text="{Binding ImageText}"></TextBlock>
                     </Grid>
                 </Border>
-                <Border Name="InfoBorder" Grid.Column="1" Classes="InnerRightBorder">
+                <Border Name="InfoBorder" Grid.Column="1" Classes="InnerRightBorder" RenderOptions.BitmapInterpolationMode="LowQuality">
                     <Border.RenderTransform>
                         <TranslateTransform/>
                     </Border.RenderTransform>

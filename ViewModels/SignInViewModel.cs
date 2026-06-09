@@ -46,6 +46,6 @@ public partial class SignInViewModel : ViewModelBase {
     [RelayCommand]
     private void ChangeToSignUp() {
         SharedAnimationService.Instance.RequestToggle();
-        AuthenticationViewModel.Instance?.ChangeAuthMode();
+        //AuthenticationViewModel.Instance?.ChangeAuthMode();
     }
 }
