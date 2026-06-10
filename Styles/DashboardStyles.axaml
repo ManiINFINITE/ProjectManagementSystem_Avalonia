@@ -4,16 +4,9 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
           
-            <Grid>
-                <Border Classes="Circle">
-                    <TextBlock Classes="LightBulb" Text="&#xE2DC;"></TextBlock>
-                </Border>
-                <Border Classes="Box">
-                    <StackPanel Orientation="Vertical">
-                            
-                    </StackPanel>
-                </Border>
-            </Grid>
+            <Button Classes="CollapseButton">
+                <TextBlock Classes="CollapseIcon" Text="&#xE128;"></TextBlock>
+            </Button>
           
           
         </Border>
@@ -43,12 +36,42 @@
         <Setter Property="FontSize" Value="20"></Setter>
     </Style>
     
+    <Style Selector="Button.CollapseButton">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Width" Value="30"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="50 0 0 0"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+    
     <Style Selector="TextBlock.CollapseIcon">
         <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
         <Setter Property="FontSize" Value="25"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="55 0 0 0"></Setter>
         <Setter Property="Opacity" Value="0.4"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"></TransformOperationsTransition>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.1"></DoubleTransition>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.CollapseButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CollapseButton:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CollapseButton:pointerover TextBlock.CollapseIcon">
+        <Setter Property="Opacity" Value="0.8"></Setter>
+        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
     </Style>
     
     <Style Selector="Border.LeftPanel">

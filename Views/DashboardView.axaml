@@ -13,7 +13,9 @@
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 -12.5 0 0">
                     <TextBlock Classes="ProjectIcon" Text="&#xEC08;"></TextBlock>
                     <TextBlock Classes="ProjectMText" Text="Project M." VerticalAlignment="Center"></TextBlock>
-                    <TextBlock Classes="CollapseIcon" Text="&#xE128;"></TextBlock>
+                    <Button Classes="CollapseButton">
+                        <TextBlock Classes="CollapseIcon" Text="&#xE128;"></TextBlock>
+                    </Button>
                 </StackPanel>
                 <Border Grid.Row="0" Classes="HLine1"></Border>
                 <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="5">
