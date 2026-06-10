@@ -8,7 +8,8 @@
         Width="1366" Height="768" CanResize="False" WindowStartupLocation="CenterScreen"
         x:Class="ProjectManagementSystem.Views.MainWindowView"
         x:DataType="vm:MainWindowViewModel"
-        Title="Project Management">
+        Title="Project Management"
+        Icon="/Assets/Icons/project_icon.png">
     
         <ContentControl Content="{Binding CurrentView}">
                 <ContentControl.DataTemplates>

@@ -1,0 +1,243 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+          
+            <Grid>
+                <Border Classes="Circle">
+                    <TextBlock Classes="LightBulb" Text="&#xE2DC;"></TextBlock>
+                </Border>
+                <Border Classes="Box">
+                    <StackPanel Orientation="Vertical">
+                            
+                    </StackPanel>
+                </Border>
+            </Grid>
+          
+          
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+    <Style Selector="Grid.Background">
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0%, 0%" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ProjectIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="FontSize" Value="40"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryAccentColor}"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ProjectMText">
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.CollapseIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="55 0 0 0"></Setter>
+        <Setter Property="Opacity" Value="0.4"></Setter>
+    </Style>
+    
+    <Style Selector="Border.LeftPanel">
+        <Setter Property="Width" Value="250"></Setter>
+        <Setter Property="Background" Value="WhiteSmoke"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="BoxShadow" Value="0 0 20 0 #3d3d3d"></Setter>
+        <Setter Property="Margin" Value="15 15 7.5 15"></Setter>
+        <Setter Property="Padding" Value="10"></Setter>
+    </Style>
+    
+    <Style Selector="Border.RightPanel">
+        <Setter Property="Width" Value="1071"></Setter>
+        <Setter Property="Background" Value="WhiteSmoke"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="BoxShadow" Value="0 0 20 0 #3d3d3d"></Setter>
+        <Setter Property="Margin" Value="7.5 15 15 15"></Setter>
+        <Setter Property="Padding" Value="10"></Setter>
+    </Style>
+    
+    <Style Selector="Border.HLine1">
+        <Setter Property="Height" Value="1.5"></Setter>
+        <Setter Property="Width" Value="220"></Setter>
+        <Setter Property="Background" Value="#D6D6D6"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Margin" Value="0 55 0 5"></Setter>
+    </Style>
+    
+    <Style Selector="Border.HLine2">
+        <Setter Property="Height" Value="1.5"></Setter>
+        <Setter Property="Width" Value="220"></Setter>
+        <Setter Property="Background" Value="#D6D6D6"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Margin" Value="0 225 0 5"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ButtonIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="#707070"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ButtonText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="20 0 0 0"></Setter>
+        <Setter Property="Foreground" Value="#707070"></Setter>
+        <Setter Property="FontSize" Value="17"></Setter>
+    </Style>
+    
+    <Style Selector="Button.LeftPanelButton">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="Button.LeftPanelButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#DDDDDD"></Setter>
+    </Style>
+    
+    <Style Selector="Button.LeftPanelButton:pointerover TextBlock.ButtonIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+    </Style>
+    
+    <Style Selector="Button.LeftPanelButton:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#CCCCCC"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.MyProjectsText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Foreground" Value="#888888"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AddProjectIconLeftPanel">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="Foreground" Value="#888888"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="RenderTransformOrigin" Value="50%, 50%"></Setter>
+        <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+        <Setter Property="FontSize" Value="17.5"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.AddProjectButtonLeftPanel">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Width" Value="30"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="100 0 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="Button.AddProjectButtonLeftPanel:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    
+    <Style Selector="Button.AddProjectButtonLeftPanel:pointerover TextBlock.AddProjectIconLeftPanel">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+    </Style>
+    
+    <Style Selector="StackPanel.ProjectLeftPanel">
+        
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Border.ProjectDotLeftPanel">
+        <Setter Property="Background" Value="BlueViolet"></Setter>
+        <Setter Property="Width" Value="10"></Setter>
+        <Setter Property="Height" Value="10"></Setter>
+        <Setter Property="CornerRadius" Value="50"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ProjectNameLeftPanel">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+        <Setter Property="Foreground" Value="#151515"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ProjectButtonLeftPanel">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Margin" Value="7 0 0 5"></Setter>
+        <Setter Property="ClipToBounds" Value="True"></Setter>
+        <Setter Property="Width" Value="185"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="Border.Circle">
+        <Setter Property="Background" Value="LightGray"></Setter>
+        <Setter Property="Width" Value="70"></Setter>
+        <Setter Property="Height" Value="100"></Setter>
+        <Setter Property="CornerRadius" Value="100"></Setter>
+        <Setter Property="Margin" Value="0 0 0 60 "></Setter>
+    </Style>
+    
+    <Style Selector="Border.Box">
+        <Setter Property="Background" Value="LightGray"></Setter>
+        <Setter Property="Width" Value="200"></Setter>
+        <Setter Property="Height" Value="170"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Margin" Value="0 100 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.LightBulb">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 -35 0 0"></Setter>
+        <Setter Property="Foreground" Value="#FFED14"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ThoughtsTitle">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="TextAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 10 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ThoughtsText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Regular}"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="TextAlignment" Value="Center"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="Margin" Value="5 10 5 5"></Setter>
+    </Style>
+    
+    <Style Selector="TextBox.ThoughtsTextBox">
+        <Setter Property="Width" Value="150"></Setter>
+        <Setter Property="Margin" Value="0 20 0 0"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Background" Value="#F3F3F3"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="TextBox.ThoughtsTextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>
+    
+</Styles>

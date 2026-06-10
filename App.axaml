@@ -1,5 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:svg="using:Avalonia.Svg"
              x:Class="ProjectManagementSystem.App"
              xmlns:local="using:ProjectManagementSystem"
              xmlns:views="clr-namespace:ProjectManagementSystem.Views"
@@ -23,6 +24,7 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="Styles/AuthenticationStyles.axaml"></StyleInclude>
+        <StyleInclude Source="Styles/DashboardStyles.axaml"></StyleInclude>
     </Application.Styles>
              
     <Application.Resources>
@@ -46,8 +48,8 @@
         <FontFamily x:Key="Nunito-Regular">/Assets/Fonts/Nunito/Nunito-Regular.ttf#Nunito Regular</FontFamily>
         <FontFamily x:Key="Nunito-SemiBold">/Assets/Fonts/Nunito/Nunito-SemiBold.ttf#Nunito SemiBold</FontFamily>
         <FontFamily x:Key="Phosphor">/Assets/Fonts/Phosphor/Phosphor.ttf#P</FontFamily>
-        <FontFamily x:Key="Phosphor-Bold">/Assets/Fonts/Phosphor/Phosphor-Bold.ttf#PB</FontFamily>
-        <FontFamily x:Key="Phosphor-Fill">/Assets/Fonts/Phosphor/Phosphor-Fill.ttf#PF</FontFamily>
+        <FontFamily x:Key="Phosphor-Bold">/Assets/Fonts/Phosphor/Phosphor-Bold.ttf#Phosphor-Bold</FontFamily>
+        <FontFamily x:Key="Phosphor-Fill">/Assets/Fonts/Phosphor/Phosphor-Fill.ttf#Phosphor-Fill</FontFamily>
         
     </Application.Resources>
 </Application>
