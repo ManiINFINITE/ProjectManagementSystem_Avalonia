@@ -1,0 +1,106 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+            
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+    <Style Selector="Border.TitleBorder">
+        <Setter Property="Padding" Value="15"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.TitleText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+        <Setter Property="Foreground" Value="#555555"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AccountBorder">
+        <Setter Property="Padding" Value="15"></Setter>
+        <Setter Property="Margin" Value="0 0 0 20"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AccountInnerBorder">
+        <Setter Property="Padding" Value="15 0"></Setter>
+    </Style>
+    
+    <Style Selector="StackPanel.AccountStackPanel">
+        <Setter Property="Margin" Value="0 -15 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="Grid.AccountHeader">
+        <Setter Property="Margin" Value="0 0 0 15"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AccountHeaderText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="Foreground" Value="#BBBBBB"></Setter>
+        <Setter Property="Margin" Value="0 0 15 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AccountHeaderLine">
+        <Setter Property="Height" Value="1"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Background" Value="#BBBBBB"></Setter>
+    </Style>
+    
+    <Style Selector="StackPanel.InfoStackPanel">
+        <Setter Property="Margin" Value="0 0 0 15"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.Label">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0"></Setter>
+        <Setter Property="Foreground" Value="#999999"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.Info">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Margin" Value="0 0 20 0"></Setter>
+        <Setter Property="FontSize" Value="17.5"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ChangePasswordButton">
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="CornerRadius" Value="5"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="200"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ChangePasswordButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonHoverForeground}"></Setter>
+    </Style>
+    
+    <Style Selector="Border.ProfilePicBorder">
+        <Setter Property="Background" Value="DodgerBlue"></Setter>
+        <Setter Property="Height" Value="150"></Setter>
+        <Setter Property="Width" Value="150"></Setter>
+        <Setter Property="CornerRadius" Value="75"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ProfilePicText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="50"></Setter>
+    </Style>
+    
+</Styles>

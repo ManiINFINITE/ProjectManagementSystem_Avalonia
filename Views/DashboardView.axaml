@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             xmlns:views="clr-namespace:ProjectManagementSystem.Views"
              mc:Ignorable="d" d:DesignWidth="1366" d:DesignHeight="768"
              x:Class="ProjectManagementSystem.Views.DashboardView"
              x:DataType="vm:DashboardViewModel">
@@ -24,31 +25,31 @@
                 </Grid>
                 <Border Name="HLine1" Grid.Row="0" Classes="HLine1"></Border>
                 <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="5">
-                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
+                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE2C2;"></TextBlock>
                             <TextBlock Name="HomeText" Classes="ButtonText" Text="Home"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
+                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch" Command="{Binding NavigateToMessagesCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE17A;"></TextBlock>
                             <TextBlock Name="MessagesText" Classes="ButtonText" Text="Messages"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
+                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch" Command="{Binding NavigateToTasksCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE186;"></TextBlock>
                             <TextBlock Name="TasksText" Classes="ButtonText" Text="Tasks"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
+                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch" Command="{Binding NavigateToMembersCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE68E;"></TextBlock>
                             <TextBlock Name="MembersText" Classes="ButtonText" Text="Members"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
+                    <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch" Command="{Binding NavigateToSettingsCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE272;"></TextBlock>
                             <TextBlock Name="SettingsText" Classes="ButtonText" Text="Settings"></TextBlock>
@@ -112,8 +113,27 @@
                 </Grid>
             </Grid>
         </Border>
+        
         <Border Classes="RightPanel" Grid.Column="1">
-            
+            <ContentControl Content="{Binding CurrentRightPanelView}">
+                <ContentControl.DataTemplates>
+                    <DataTemplate DataType="vm:HomeViewModel">
+                        <views:HomeView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="vm:MessagesViewModel">
+                        <views:MessagesView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="vm:TasksViewModel">
+                        <views:TasksView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="vm:MembersViewModel">
+                        <views:MembersView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="vm:SettingsViewModel">
+                        <views:SettingsView/>
+                    </DataTemplate>
+                </ContentControl.DataTemplates>
+            </ContentControl>
         </Border>
     </Grid>
     

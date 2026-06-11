@@ -25,6 +25,7 @@
         <FluentTheme />
         <StyleInclude Source="Styles/AuthenticationStyles.axaml"></StyleInclude>
         <StyleInclude Source="Styles/DashboardStyles.axaml"></StyleInclude>
+        <StyleInclude Source="Styles/SettingsStyles.axaml"></StyleInclude>
     </Application.Styles>
              
     <Application.Resources>
