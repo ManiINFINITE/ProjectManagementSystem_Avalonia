@@ -4,8 +4,11 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
           
-            <Button Classes="CollapseButton">
-                <TextBlock Classes="CollapseIcon" Text="&#xE128;"></TextBlock>
+            <Button Classes="LogoutButton">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Classes="LogoutIcon" Text="&#xE42A;"></TextBlock>
+                    <TextBlock Classes="LogoutText" Text="Logout"></TextBlock>
+                </StackPanel>
             </Button>
           
           
@@ -45,6 +48,7 @@
         <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="Margin" Value="50 0 0 0"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="RenderTransformOrigin" Value="50%, 50%"></Setter>
     </Style>
     
     <Style Selector="TextBlock.CollapseIcon">
@@ -53,12 +57,7 @@
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="Opacity" Value="0.4"></Setter>
         <Setter Property="Foreground" Value="Black"></Setter>
-        <Setter Property="Transitions">
-            <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"></TransformOperationsTransition>
-                <DoubleTransition Property="Opacity" Duration="0:0:0.1"></DoubleTransition>
-            </Transitions>
-        </Setter>
+        <Setter Property="RenderTransformOrigin" Value="50%, 50%"></Setter>
     </Style>
     
     <Style Selector="Button.CollapseButton:pointerover /template/ ContentPresenter">
@@ -84,7 +83,7 @@
     </Style>
     
     <Style Selector="Border.RightPanel">
-        <Setter Property="Width" Value="1071"></Setter>
+        <!--<Setter Property="Width" Value="1071"></Setter>-->
         <Setter Property="Background" Value="WhiteSmoke"></Setter>
         <Setter Property="CornerRadius" Value="10"></Setter>
         <Setter Property="BoxShadow" Value="0 0 20 0 #3d3d3d"></Setter>
@@ -106,6 +105,14 @@
         <Setter Property="Background" Value="#D6D6D6"></Setter>
         <Setter Property="CornerRadius" Value="10"></Setter>
         <Setter Property="Margin" Value="0 225 0 5"></Setter>
+    </Style>
+    
+    <Style Selector="Border.HLine3">
+        <Setter Property="Height" Value="1.5"></Setter>
+        <Setter Property="Width" Value="220"></Setter>
+        <Setter Property="Background" Value="#D6D6D6"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Margin" Value="0 360 0 5"></Setter>
     </Style>
     
     <Style Selector="TextBlock.ButtonIcon">
@@ -154,12 +161,7 @@
         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         <Setter Property="RenderTransformOrigin" Value="50%, 50%"></Setter>
         <Setter Property="RenderTransform" Value="scale(1)"></Setter>
-        <Setter Property="FontSize" Value="17.5"></Setter>
-        <Setter Property="Transitions">
-            <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"/>
-            </Transitions>
-        </Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
     </Style>
     
     <Style Selector="Button.AddProjectButtonLeftPanel">
@@ -169,6 +171,7 @@
         <Setter Property="Height" Value="30"></Setter>
         <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="Margin" Value="100 0 0 0"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
     </Style>
     
     <Style Selector="Button.AddProjectButtonLeftPanel:pointerover /template/ ContentPresenter">
@@ -204,9 +207,9 @@
     <Style Selector="Button.ProjectButtonLeftPanel">
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="Height" Value="30"></Setter>
-        <Setter Property="Margin" Value="7 0 0 5"></Setter>
+        <Setter Property="Margin" Value="7 0 7 5"></Setter>
         <Setter Property="ClipToBounds" Value="True"></Setter>
-        <Setter Property="Width" Value="185"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
     </Style>
     
@@ -261,6 +264,65 @@
     
     <Style Selector="TextBox.ThoughtsTextBox:focus /template/ Border#PART_BorderElement">
         <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="Button.LogoutButton">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.1"></BrushTransition>
+            </Transitions>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.LogoutIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="Red"></Setter>
+        <Setter Property="FontSize" Value="23"></Setter>
+        <Setter Property="RenderTransform">
+            <RotateTransform Angle="180"/>
+        </Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Foreground" Duration="0:0:0.1"></BrushTransition>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.LogoutText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="Foreground" Value="Red"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="20 0 0 0"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Foreground" Duration="0:0:0.1"></BrushTransition>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <!-- Tell the template to use the button's own background -->
+    <Style Selector="Button.LogoutButton /template/ ContentPresenter">
+        <Setter Property="Background" Value="{TemplateBinding Background}"/>
+    </Style>
+
+    <Style Selector="Button.LogoutButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{TemplateBinding Background}"/>
+    </Style>
+
+    <Style Selector="Button.LogoutButton:pointerover">
+        <Setter Property="Background" Value="Red"/>
+    </Style>
+
+    <Style Selector="Button.LogoutButton:pointerover TextBlock">
+        <Setter Property="Foreground" Value="White"/>
     </Style>
     
 </Styles>

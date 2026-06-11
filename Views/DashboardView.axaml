@@ -8,92 +8,107 @@
              x:DataType="vm:DashboardViewModel">
     
     <Grid Classes="Background" ColumnDefinitions="Auto, *">
-        <Border Classes="LeftPanel" Grid.Column="0">
+        <Border Name="LeftPanel" Classes="LeftPanel" Grid.Column="0">
             <Grid RowDefinitions="Auto, Auto, *, Auto">
-                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 -12.5 0 0">
-                    <TextBlock Classes="ProjectIcon" Text="&#xEC08;"></TextBlock>
-                    <TextBlock Classes="ProjectMText" Text="Project M." VerticalAlignment="Center"></TextBlock>
-                    <Button Classes="CollapseButton">
-                        <TextBlock Classes="CollapseIcon" Text="&#xE128;"></TextBlock>
+                <Grid Grid.Row="0" Margin="0 -12.5 0 0">
+                    <StackPanel Name="ExpandedLeftPanelHeader" Orientation="Horizontal">
+                        <TextBlock Classes="ProjectIcon" Text="&#xEC08;"></TextBlock>
+                        <TextBlock Name="ProjectMText" Classes="ProjectMText" Text="Project M." VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <Button Name="CollapseButton" Classes="CollapseButton" Click="CollapseButton_Click" HorizontalAlignment="Right">
+                        <Button.RenderTransform>
+                            <RotateTransform Angle="0"></RotateTransform>
+                        </Button.RenderTransform>
+                        <TextBlock Name="CollapseIcon" Classes="CollapseIcon" Text="&#xE128;"></TextBlock>
                     </Button>
-                </StackPanel>
-                <Border Grid.Row="0" Classes="HLine1"></Border>
+                </Grid>
+                <Border Name="HLine1" Grid.Row="0" Classes="HLine1"></Border>
                 <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="5">
                     <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE2C2;"></TextBlock>
-                            <TextBlock Classes="ButtonText" Text="Home"></TextBlock>
+                            <TextBlock Name="HomeText" Classes="ButtonText" Text="Home"></TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE17A;"></TextBlock>
-                            <TextBlock Classes="ButtonText" Text="Messages"></TextBlock>
+                            <TextBlock Name="MessagesText" Classes="ButtonText" Text="Messages"></TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE186;"></TextBlock>
-                            <TextBlock Classes="ButtonText" Text="Tasks"></TextBlock>
+                            <TextBlock Name="TasksText" Classes="ButtonText" Text="Tasks"></TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE68E;"></TextBlock>
-                            <TextBlock Classes="ButtonText" Text="Members"></TextBlock>
+                            <TextBlock Name="MembersText" Classes="ButtonText" Text="Members"></TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Classes="LeftPanelButton" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Classes="ButtonIcon" Text="&#xE272;"></TextBlock>
-                            <TextBlock Classes="ButtonText" Text="Settings"></TextBlock>
+                            <TextBlock Name="SettingsText" Classes="ButtonText" Text="Settings"></TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <Border Grid.Row="1" Classes="HLine2"></Border>
-                <StackPanel Grid.Row="2" Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal" Margin="10 5 0 15">
-                        <TextBlock Classes="MyProjectsText" Text="MY PROJECTS"></TextBlock>
-                        <Button Classes="AddProjectButtonLeftPanel">
+                <Border Name="HLine2" Grid.Row="1" Classes="HLine2"></Border>
+                <StackPanel Grid.Row="2" Orientation="Vertical" ClipToBounds="False">
+                    <Grid Margin="15 5 0 10" ClipToBounds="False">
+                        <TextBlock Name="MyProjectsText" Classes="MyProjectsText" Text="MY PROJECTS"></TextBlock>
+                        <Button Name="AddProjectButton" Classes="AddProjectButtonLeftPanel" Margin="185 0 0 0">
+                            <Button.RenderTransform>
+                                <TranslateTransform X="0"/>
+                            </Button.RenderTransform>
                             <TextBlock Classes="AddProjectIconLeftPanel" Text="&#xE3D6;"></TextBlock>
                         </Button>
-                    </StackPanel>
+                    </Grid>
                     <Button Classes="ProjectButtonLeftPanel">
                         <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
                             <Border Classes="ProjectDotLeftPanel"></Border>
-                            <TextBlock Classes="ProjectNameLeftPanel" Text="Mobile App"></TextBlock>
+                            <TextBlock Name="Project1" Classes="ProjectNameLeftPanel" Text="Mobile App"></TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Classes="ProjectButtonLeftPanel">
                         <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
                             <Border Classes="ProjectDotLeftPanel" Background="red"></Border>
-                            <TextBlock Classes="ProjectNameLeftPanel" Text="Website Redesign"></TextBlock>
+                            <TextBlock Name="Project2" Classes="ProjectNameLeftPanel" Text="Website Redesign"></TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Classes="ProjectButtonLeftPanel">
                         <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
                             <Border Classes="ProjectDotLeftPanel" Background="DodgerBlue"></Border>
-                            <TextBlock Classes="ProjectNameLeftPanel" Text="App Design"></TextBlock>
+                            <TextBlock Name="Project3" Classes="ProjectNameLeftPanel" Text="App Design"></TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Classes="ProjectButtonLeftPanel">
                         <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
                             <Border Classes="ProjectDotLeftPanel" Background="Green"></Border>
-                            <TextBlock Classes="ProjectNameLeftPanel" Text="Mobile App"></TextBlock>
+                            <TextBlock Name="Project4" Classes="ProjectNameLeftPanel" Text="Mobile App"></TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>
+                <Border Name="HLine3" Grid.Row="2" Classes="HLine3"></Border>
                 <Grid Grid.Row="3" Margin="0 0 0 5">
-                    <Border Classes="Circle">
-                        <TextBlock Classes="LightBulb" Text="&#xE2DC;"></TextBlock>
+                    <!--<Border Name="ThoughtsCircle" Classes="Circle">
+                        <TextBlock Classes="LightBulb" Text="&#xE2D;"></TextBlock>
                     </Border>
-                    <Border Classes="Box">
+                    <Border Name="ThoughtsBox" Classes="Box">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Classes="ThoughtsTitle" TextAlignment="Center" Text="Thoughts Time"></TextBlock>
                             <TextBlock Classes="ThoughtsText" Text="We don’t have any notice for you, till then you can share your thoughts with your peers."></TextBlock>
                             <TextBox PlaceholderText="Write a message" Classes="ThoughtsTextBox"></TextBox>
                         </StackPanel>
-                    </Border>
+                    </Border>-->
+                    <Button Classes="LogoutButton" Command="{Binding LogoutCommand}">
+                        <StackPanel Orientation="Horizontal" ClipToBounds="False">
+                            <TextBlock Classes="LogoutIcon" Text="&#xE42A;"></TextBlock>
+                            <TextBlock Name="LogoutText" Classes="LogoutText" Text="Logout"></TextBlock>
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </Grid>
         </Border>
