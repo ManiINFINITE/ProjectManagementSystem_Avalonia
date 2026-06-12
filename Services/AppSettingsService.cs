@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using Avalonia;
 using Avalonia.Controls;
@@ -107,28 +108,33 @@ public class AppSettingsService {
     private void Apply(AppSettings settings) {
         if (Application.Current == null) return;
 
-        Application.Current.Resources["PrimaryAccentColor"]   = Color.Parse(settings.PrimaryAccentColor);
-        Application.Current.Resources["SecondaryAccentColor"] = Color.Parse(settings.SecondaryAccentColor);
-        Application.Current.Resources["ImageTextForeground"] = Color.Parse(settings.ImageTextForeground);
-        Application.Current.Resources["ButtonHoverBackground"] = Color.Parse(settings.ButtonHoverBackground);
+        var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == settings.AccentColorName);
+        if (accent != null) {
+            ApplyAccentColor(accent);
+        } else {
+            Application.Current.Resources["PrimaryAccentColor"]   = Color.Parse(settings.PrimaryAccentColor);
+            Application.Current.Resources["SecondaryAccentColor"] = Color.Parse(settings.SecondaryAccentColor);
+            Application.Current.Resources["ImageTextForeground"] = Color.Parse(settings.ImageTextForeground);
+            Application.Current.Resources["ButtonHoverBackground"] = Color.Parse(settings.ButtonHoverBackground);
+
+            if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Light, out var lightDict)
+                && lightDict is ResourceDictionary light) {
+                light["PrimaryLoginPanelAccentColor"]   = Color.Parse(settings.PrimaryLoginPanelAccentColor_LIGHT);
+                light["SecondaryLoginPanelAccentColor"] = Color.Parse(settings.SecondaryLoginPanelAccentColor_LIGHT);
+            }
+
+            if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Dark, out var darkDict)
+                && darkDict is ResourceDictionary dark) {
+                dark["PrimaryLoginPanelAccentColor"]   = Color.Parse(settings.PrimaryLoginPanelAccentColor_DARK);
+                dark["SecondaryLoginPanelAccentColor"] = Color.Parse(settings.SecondaryLoginPanelAccentColor_DARK);
+            }
+        }
 
         Application.Current.RequestedThemeVariant = settings.Theme switch {
             "Light" => ThemeVariant.Light,
             "Dark"  => ThemeVariant.Dark,
             _       => ThemeVariant.Default
         };
-
-        if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Light, out var lightDict)
-            && lightDict is ResourceDictionary light) {
-            light["PrimaryLoginPanelAccentColor"]   = Color.Parse(settings.PrimaryLoginPanelAccentColor_LIGHT);
-            light["SecondaryLoginPanelAccentColor"] = Color.Parse(settings.SecondaryLoginPanelAccentColor_LIGHT);
-        }
-
-        if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Dark, out var darkDict)
-            && darkDict is ResourceDictionary dark) {
-            dark["PrimaryLoginPanelAccentColor"]   = Color.Parse(settings.PrimaryLoginPanelAccentColor_DARK);
-            dark["SecondaryLoginPanelAccentColor"] = Color.Parse(settings.SecondaryLoginPanelAccentColor_DARK);
-        }
     }
 
     private static string GetSettingsPath(int userId) => Path.Combine(
