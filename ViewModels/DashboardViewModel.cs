@@ -19,7 +19,7 @@ public partial class DashboardViewModel : ViewModelBase {
         }
         
         _currentUser = SessionService.Instance?.CurrentUser!;
-        _currentRightPanelView = new HomeViewModel();
+        _currentRightPanelView = new SettingsViewModel();
     }
     
     [RelayCommand]

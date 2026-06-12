@@ -4,6 +4,13 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
             
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Classes="Label" Text="Theme :"></TextBlock>
+                <RadioButton GroupName="Theme" Content="System"></RadioButton>
+                <RadioButton GroupName="Theme" Content="Light"></RadioButton>
+                <RadioButton GroupName="Theme" Content="Dark"></RadioButton>
+            </StackPanel>
+            
         </Border>
     </Design.PreviewWith>
 
@@ -16,7 +23,7 @@
     <Style Selector="TextBlock.TitleText">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
         <Setter Property="FontSize" Value="25"></Setter>
-        <Setter Property="Foreground" Value="#555555"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PageTitleForeground}"></Setter>
     </Style>
     
     <Style Selector="Border.AccountBorder">
@@ -38,14 +45,14 @@
     
     <Style Selector="TextBlock.AccountHeaderText">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
-        <Setter Property="Foreground" Value="#BBBBBB"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PageSectionHeader}"></Setter>
         <Setter Property="Margin" Value="0 0 15 0"></Setter>
     </Style>
     
     <Style Selector="Border.AccountHeaderLine">
         <Setter Property="Height" Value="1"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="Background" Value="#BBBBBB"></Setter>
+        <Setter Property="Background" Value="{DynamicResource PageSectionHeader}"></Setter>
     </Style>
     
     <Style Selector="StackPanel.InfoStackPanel">
@@ -101,6 +108,74 @@
         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="50"></Setter>
+    </Style>
+    
+    <Style Selector="RadioButton">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="10 0"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Name="PART_Border"
+                        Padding="15 8"
+                        CornerRadius="5"
+                        Background="Transparent"
+                        BorderBrush="#BBBBBB"
+                        BorderThickness="1">
+                    <TextBlock Name="PART_Text"
+                               Text="{TemplateBinding Content}"
+                               FontFamily="{DynamicResource Nunito-SemiBold}">
+                    </TextBlock>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    
+    <Style Selector="RadioButton:checked /template/ Border#PART_Border">
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryAccentColor}"></Setter>
+    </Style>
+    
+    <Style Selector="RadioButton:pointerover /template/ Border#PART_Border">
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"></Setter>
+    </Style>
+    
+    <Style Selector="RadioButton:pointerover /template/ TextBlock#PART_Text">
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+    
+    <Style Selector="ListBox.AccentColor">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    
+    <Style Selector="ListBox.AccentColors /template/ Border">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    
+    <Style Selector="ListBox.AccentColors ListBoxItem">
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="CornerRadius" Value="50"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+    
+    <Style Selector="ListBox.AccentColors ListBoxItem:selected">
+        <Setter Property="BorderBrush" Value="{DynamicResource ListBoxSelectedBorderColor}"/>
+    </Style>
+    
+    <Style Selector="ListBox.AccentColors ListBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    
+    <Style Selector="ListBox.AccentColors ListBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"/>
     </Style>
     
 </Styles>

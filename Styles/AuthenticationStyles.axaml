@@ -148,8 +148,8 @@
         <Setter Property="ClipToBounds" Value="True"></Setter>
         <Setter Property="Background">
             <LinearGradientBrush StartPoint="0, 0" EndPoint="0%, 100%">
-                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColorInformation}"></GradientStop>
-                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColorInformation}"></GradientStop>
+                <GradientStop Offset="0" Color="{DynamicResource LoginPanelGradient1}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource LoginPanelGradient2}"></GradientStop>
             </LinearGradientBrush>
         </Setter>
     </Style>
