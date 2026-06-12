@@ -8,3 +8,9 @@ obj/
 *.log
 *.tmp
 .DS_Store
+
+# Debug settings file
+settings.debug.json
+
+# Large image assets
+Assets/Images/
