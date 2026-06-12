@@ -38,8 +38,30 @@
                                 </StackPanel>
                                 <Button Classes="ChangePasswordButton" Content="Change Password"></Button>
                             </StackPanel>
-                            <Border Classes="ProfilePicBorder" Grid.Column="1">
-                                <TextBlock Classes="ProfilePicText" Text="MV"></TextBlock>
+                            <Border Grid.Column="1" Grid.Row="0"
+                                    Classes="ProfilePicBorder"
+                                    CornerRadius="999"
+                                    ClipToBounds="True"
+                                    Tapped="ProfilePicture_Tapped"
+                                    Cursor="Hand">
+
+                                <Panel ClipToBounds="True">
+
+                                    <TextBlock Classes="ProfilePicText"
+                                               Text="{Binding ProfileInitials}"
+                                               IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNull}}"/>
+
+                                    <!-- Wrap Image in its own clipping Border -->
+                                    <Border CornerRadius="999" ClipToBounds="True"
+                                            IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}">
+                                        <Image Source="{Binding ProfilePicture}" Stretch="UniformToFill"/>
+                                    </Border>
+
+                                    <Border Classes="ProfilePicOverlay" CornerRadius="999" ClipToBounds="True">
+                                        <TextBlock Classes="ProfilePicUploadIcon" Text="&#xE178;"/>
+                                    </Border>
+
+                                </Panel>
                             </Border>
                         </Grid>
                     </Border>

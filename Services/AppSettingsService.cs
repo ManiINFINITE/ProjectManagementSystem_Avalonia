@@ -14,6 +14,8 @@ public class AppSettingsService {
 
     public static AppSettingsService? Instance { get; } = new();
 
+    private string _currentSettingsPath = DefaultSettingsPath;
+
     private static readonly string SettingsPath = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
         "ProjectManagementSystem",
@@ -45,11 +47,11 @@ public class AppSettingsService {
 
     private void Save() {
         try {
-            Directory.CreateDirectory(Path.GetDirectoryName(SettingsPath)!);
+            Directory.CreateDirectory(Path.GetDirectoryName(_currentSettingsPath)!);
             var json = JsonSerializer.Serialize(CurrentSettings, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(SettingsPath, json);
+            File.WriteAllText(_currentSettingsPath, json);
 #if DEBUG
-            File.WriteAllText(DebugSettingsPath, json);   
+            File.WriteAllText(DebugSettingsPath, json);
 #endif
         } catch { /* handle silently */ }
     }
@@ -127,5 +129,49 @@ public class AppSettingsService {
             dark["PrimaryLoginPanelAccentColor"]   = Color.Parse(settings.PrimaryLoginPanelAccentColor_DARK);
             dark["SecondaryLoginPanelAccentColor"] = Color.Parse(settings.SecondaryLoginPanelAccentColor_DARK);
         }
+    }
+
+    private static string GetSettingsPath(int userId) => Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+        "ProjectManagementSystem",
+        $"settings.user.{userId}.json"
+        );
+    
+    // Keep a global fallback for pre-login (theme etc.)
+    private static readonly string DefaultSettingsPath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+        "ProjectManagementSystem",
+        "settings.json"
+    );
+
+    public void LoadForUser(int userId) {
+        _currentSettingsPath = GetSettingsPath(userId);
+
+        try {
+            if (File.Exists(_currentSettingsPath)) {
+                var json = File.ReadAllText(_currentSettingsPath);
+                CurrentSettings = JsonSerializer.Deserialize<AppSettings>(json) ??  new AppSettings();
+            } else {
+                CurrentSettings = new AppSettings();
+            }
+        } catch {
+            CurrentSettings = new AppSettings();
+        }
+        
+        Apply(CurrentSettings);
+    }
+
+    public void SaveLastUser(int userId) {
+        try {
+            // Read existing global settings, update LastUserId, write back
+            AppSettings global = new();
+            if (File.Exists(DefaultSettingsPath)) {
+                var existing = File.ReadAllText(DefaultSettingsPath);
+                global = JsonSerializer.Deserialize<AppSettings>(existing) ?? new AppSettings();
+            }
+            global.LastUserId = userId;
+            Directory.CreateDirectory(Path.GetDirectoryName(DefaultSettingsPath)!);
+            File.WriteAllText(DefaultSettingsPath, JsonSerializer.Serialize(global, new JsonSerializerOptions { WriteIndented = true }));
+        } catch { /**/ }
     }
 }

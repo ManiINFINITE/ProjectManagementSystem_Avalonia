@@ -13,4 +13,5 @@ public class AppSettings {
     public string ImagePath { get; set; } = "avares://ProjectManagementSystem/Assets/Images/slate-violet.jpg";
     public string ImageTextForeground { get; set; } = "#9692FF";
     public string ButtonHoverBackground { get; set; } = "#3E3E7C";
+    public int? LastUserId { get; set; }
 }

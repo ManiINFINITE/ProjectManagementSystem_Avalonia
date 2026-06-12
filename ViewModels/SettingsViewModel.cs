@@ -1,24 +1,32 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectManagementSystem.Models;
+using ProjectManagementSystem.Repositories;
 using ProjectManagementSystem.Services;
 
 namespace ProjectManagementSystem.ViewModels;
 
 public partial class SettingsViewModel : ViewModelBase {
-
+    
+    private readonly UserRepository _userRepository = new();
+    
     [ObservableProperty] private string _firstname;
     [ObservableProperty] private string _lastname;
     [ObservableProperty] private string _username;
     [ObservableProperty] private string _email;
     [ObservableProperty] private string _selectedTheme;
     [ObservableProperty] private AccentColorOption? _selectedAccentColor;
+    [ObservableProperty] private Avalonia.Media.Imaging.Bitmap? _profilePicture;
 
     [ObservableProperty] private ObservableCollection<AccentColorOption> _accentColors = AccentColorsBase.AccentColors;
     
@@ -35,11 +43,57 @@ public partial class SettingsViewModel : ViewModelBase {
         
         // Restore saved theme
         _selectedTheme = AppSettingsService.Instance!.CurrentSettings.Theme;
+        
+        // Profile Picture
+        if (user?.ProfilePicture != null) {
+            using var ms = new MemoryStream(user.ProfilePicture);
+            _profilePicture = new Bitmap(ms);
+        }
     }
 
     public bool IsSystemTheme => SelectedTheme == "System";
     public bool IsLightTheme => SelectedTheme == "Light";
     public bool IsDarkTheme => SelectedTheme == "Dark";
+    
+    public string ProfileInitials => 
+        $"{(string.IsNullOrEmpty(Firstname) ? "" : Firstname[0].ToString())}{(string.IsNullOrEmpty(Lastname) ? "" : Lastname[0].ToString())}".ToUpper();
+
+    [RelayCommand]
+    private async Task UploadProfilePicture() {
+        var topLevel = TopLevel.GetTopLevel(
+            (Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)
+            ?.MainWindow
+            );
+        
+        if (topLevel == null) return;
+
+        var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions {
+            Title = "Select Profile Picture",
+            AllowMultiple = false,
+            FileTypeFilter = new[] {
+                new FilePickerFileType("Images") {
+                    Patterns = new []{ "*.jpg", "*.jpeg", "*.png",  "*.bmp" }
+                }
+            }
+        });
+        
+        if (files.Count == 0) return;
+        
+        var file = files[0];
+        await using var stream = await file.OpenReadAsync();
+        
+        using var ms = new MemoryStream();
+        await stream.CopyToAsync(ms);
+        var imageBytes = ms.ToArray();
+
+        ms.Position = 0;
+        ProfilePicture = new Bitmap(ms);
+
+        var userId = SessionService.Instance.CurrentUser!.Id;
+        _userRepository.UpdateProfilePicture(userId, imageBytes);
+
+        SessionService.Instance.CurrentUser!.ProfilePicture = imageBytes;
+    }
     
     [RelayCommand]
     private void SelectTheme(string theme) {

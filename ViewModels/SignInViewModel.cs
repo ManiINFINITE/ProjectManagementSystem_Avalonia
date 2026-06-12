@@ -33,6 +33,8 @@ public partial class SignInViewModel : ViewModelBase {
         
         // Success
         SessionService.Instance?.Login(user);
+        AppSettingsService.Instance!.SaveLastUser(user.Id);
+        AppSettingsService.Instance!.LoadForUser(user.Id);
         NavigationService.Instance?.NavigateTo(new DashboardViewModel());
     }
 
