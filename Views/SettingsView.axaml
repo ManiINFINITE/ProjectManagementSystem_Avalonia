@@ -54,15 +54,15 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Classes="Label" Text="Theme :"></TextBlock>
                         <RadioButton GroupName="Theme" Content="System"
-                                     IsChecked="{Binding SelectedTheme, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                     IsChecked="{Binding IsSystemTheme}"
                                      Command="{Binding SelectThemeCommand}"
                                      CommandParameter="System"></RadioButton>
                         <RadioButton GroupName="Theme" Content="Light"
-                                     IsChecked="{Binding SelectedTheme, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                     IsChecked="{Binding IsLightTheme}"
                                      Command="{Binding SelectThemeCommand}"
                                      CommandParameter="Light"></RadioButton>
                         <RadioButton GroupName="Theme" Content="Dark"
-                                     IsChecked="{Binding SelectedTheme, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                     IsChecked="{Binding IsDarkTheme}"
                                      Command="{Binding SelectThemeCommand}"
                                      CommandParameter="Dark"></RadioButton>
                     </StackPanel>

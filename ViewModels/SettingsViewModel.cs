@@ -17,7 +17,7 @@ public partial class SettingsViewModel : ViewModelBase {
     [ObservableProperty] private string _lastname;
     [ObservableProperty] private string _username;
     [ObservableProperty] private string _email;
-    [ObservableProperty] private string _selectedTheme = "System";
+    [ObservableProperty] private string _selectedTheme;
     [ObservableProperty] private AccentColorOption? _selectedAccentColor;
 
     [ObservableProperty] private ObservableCollection<AccentColorOption> _accentColors = AccentColorsBase.AccentColors;
@@ -36,6 +36,10 @@ public partial class SettingsViewModel : ViewModelBase {
         // Restore saved theme
         _selectedTheme = AppSettingsService.Instance!.CurrentSettings.Theme;
     }
+
+    public bool IsSystemTheme => SelectedTheme == "System";
+    public bool IsLightTheme => SelectedTheme == "Light";
+    public bool IsDarkTheme => SelectedTheme == "Dark";
     
     [RelayCommand]
     private void SelectTheme(string theme) {
@@ -44,6 +48,10 @@ public partial class SettingsViewModel : ViewModelBase {
     
     partial void OnSelectedThemeChanged(string value) {
         if (Application.Current == null) return;
+        
+        OnPropertyChanged(nameof(IsSystemTheme));
+        OnPropertyChanged(nameof(IsLightTheme));
+        OnPropertyChanged(nameof(IsDarkTheme));
 
         AppSettingsService.Instance!.ApplyTheme(value);
     }

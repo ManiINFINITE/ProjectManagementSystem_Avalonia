@@ -148,6 +148,10 @@
         <Setter Property="Foreground" Value="White"></Setter>
     </Style>
     
+    <Style Selector="RadioButton:checked /template/ TextBlock#PART_Text">
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+    
     <Style Selector="ListBox.AccentColor">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
