@@ -12,13 +12,13 @@
             <TextBlock Classes="SignInText" Grid.Row="0" Text="Create Account"></TextBlock>
             <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="20" Margin="0 40 0 0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
-                    <TextBox Classes="NameTextBox" PlaceholderText="Firstname" Text="{Binding Firstname}"></TextBox>
-                    <TextBox Classes="NameTextBox" PlaceholderText="Lastname" Text="{Binding Lastname}"></TextBox>
+                    <TextBox Name="FirstnameTextBox" KeyDown="TextBox_KeyDown" Classes="NameTextBox" PlaceholderText="Firstname" Text="{Binding Firstname}"></TextBox>
+                    <TextBox Name="LastnameTextBox" KeyDown="TextBox_KeyDown" Classes="NameTextBox" PlaceholderText="Lastname" Text="{Binding Lastname}"></TextBox>
                 </StackPanel>
-                <TextBox Classes="InfoTextBox" PlaceholderText="Username" Text="{Binding Username}"></TextBox>
-                <TextBox Classes="InfoTextBox" PlaceholderText="Email" Text="{Binding Email}"></TextBox>
-                <TextBox Classes="InfoTextBox" PasswordChar="•" PlaceholderText="Password" Text="{Binding Password}"></TextBox>
-                <Button Classes="SignInButton" Content="Create Account" Command="{Binding SignUpCommand}"></Button>
+                <TextBox Name="UsernameTextBox" KeyDown="TextBox_KeyDown" Classes="InfoTextBox" PlaceholderText="Username" Text="{Binding Username}"></TextBox>
+                <TextBox Name="EmailTextBox" KeyDown="TextBox_KeyDown" Classes="InfoTextBox" PlaceholderText="Email" Text="{Binding Email}"></TextBox>
+                <TextBox Name="PasswordTextBox" KeyDown="TextBox_KeyDown" Classes="InfoTextBox" PasswordChar="•" PlaceholderText="Password" Text="{Binding Password}"></TextBox>
+                <Button Name="SignupButton" KeyDown="TextBox_KeyDown" Classes="SignInButton" Content="Create Account" Command="{Binding SignUpCommand}"></Button>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Classes="DontHaveAccountText" Text="Already have an account?"></TextBlock>
                     <Button Classes="ChangeAuthButton" Command="{Binding ChangeToSignInCommand}">

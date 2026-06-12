@@ -1,0 +1,13 @@
+{
+  "Theme": "Light",
+  "PrimaryAccentColor": "#ff4caf50",
+  "SecondaryAccentColor": "#ff1b5e20",
+  "PrimaryLoginPanelAccentColor_LIGHT": "#ffc8eec9",
+  "SecondaryLoginPanelAccentColor_LIGHT": "#ffa0dca2",
+  "PrimaryLoginPanelAccentColor_DARK": "#ff0a1f0b",
+  "SecondaryLoginPanelAccentColor_DARK": "#ff050f06",
+  "AccentColorName": "Emerald",
+  "ImagePath": "avares://ProjectManagementSystem/Assets/Images/emerald-dark.png",
+  "ImageTextForeground": "#ffedff8c",
+  "ButtonHoverBackground": "#ff174d1a"
+}

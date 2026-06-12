@@ -1,19 +1,32 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+using Avalonia.Styling;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ProjectManagementSystem.Enums;
-using ProjectManagementSystem.Views;
+using ProjectManagementSystem.Services;
 
 namespace ProjectManagementSystem.ViewModels;
 
 public partial class AuthenticationViewModel : ViewModelBase {
     
     // Singleton ------------------------------------------
-    public static AuthenticationViewModel? Instance { get; set; }
+    public static AuthenticationViewModel? Instance { get; private set; }
+    
+    [ObservableProperty] private Bitmap? _image;
+    [ObservableProperty] private string _imageText = "Continue Your Business";
 
     public AuthenticationViewModel() {
         Instance = this;
+        
+        var path = AppSettingsService.Instance?.CurrentSettings.ImagePath ?? "avares://ProjectManagementSystem/Assets/Images/slate-violet.jpg";
+        Avalonia.Threading.Dispatcher.UIThread.Post(() => {
+            LoadImage(path);
+        });
     }
-
-    [ObservableProperty] private string _imageText = "Continue Your Business";
     
     private ViewModelBase _currentAuthViewModel = new SignInViewModel();
     private AuthenticationMode CurrentAuthMode = AuthenticationMode.SignIn;
@@ -41,5 +54,16 @@ public partial class AuthenticationViewModel : ViewModelBase {
         CurrentAuthViewModel = new SignUpViewModel();
         ImageText = "Start Your Business";
         CurrentAuthMode = AuthenticationMode.SignUp;
+    }
+
+    public void UpdateImage(string imagePath) {
+        LoadImage(imagePath);
+        AppSettingsService.Instance!.CurrentSettings.ImagePath = imagePath;
+    }
+
+    private void LoadImage(string path) {
+        var uri = new Uri(path);
+        var asset = AssetLoader.Open(uri);
+        Image = new Bitmap(asset);
     }
 }

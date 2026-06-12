@@ -5,8 +5,8 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using Avalonia.Svg;
 using ProjectManagementSystem.Data;
+using ProjectManagementSystem.Services;
 using ProjectManagementSystem.ViewModels;
 using ProjectManagementSystem.Views;
 
@@ -20,6 +20,8 @@ public partial class App : Application {
     public override void OnFrameworkInitializationCompleted() {
         using var db = new AppDbContext();
         db.Database.EnsureCreated();
+        
+        AppSettingsService.Instance!.Load();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
             desktop.MainWindow = new MainWindowView() {

@@ -34,8 +34,8 @@
                 
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="DashboardPanelBackground">WhiteSmoke</Color>
-                    <Color x:Key="LoginPanelGradient1">#BDC2FF</Color>
-                    <Color x:Key="LoginPanelGradient2">#8D80FF</Color>
+                    <Color x:Key="PrimaryLoginPanelAccentColor">#BDC2FF</Color>
+                    <Color x:Key="SecondaryLoginPanelAccentColor">#8D80FF</Color>
                     <Color x:Key="NavButtonsHoverBackground">#DDDDDD</Color>
                     <Color x:Key="NavButtonsPressedBackground">#CCCCCC</Color>
                     
@@ -49,8 +49,8 @@
                 
                 <ResourceDictionary x:Key="Dark">
                     <Color x:Key="DashboardPanelBackground">#151515</Color>
-                    <Color x:Key="LoginPanelGradient1">#343469</Color>
-                    <Color x:Key="LoginPanelGradient2">#0E0E1F</Color>
+                    <Color x:Key="PrimaryLoginPanelAccentColor">#343469</Color>
+                    <Color x:Key="SecondaryLoginPanelAccentColor">#0E0E1F</Color>
                     <Color x:Key="NavButtonsHoverBackground">#5C5C5C</Color>
                     <Color x:Key="NavButtonsPressedBackground">#3C3C3C</Color>
                     
@@ -68,8 +68,6 @@
         <!-- Colors -->
         <Color x:Key="PrimaryAccentColor">SlateBlue</Color>
         <Color x:Key="SecondaryAccentColor">BlueViolet</Color>
-        <Color x:Key="PrimaryAccentColorInformation">#BDC2FF</Color>
-        <Color x:Key="SecondaryAccentColorInformation">#8D80FF</Color>
         <Color x:Key="ButtonHoverBackground">#3E3E7C</Color>
         
         <!-- Solid Color Brush -->

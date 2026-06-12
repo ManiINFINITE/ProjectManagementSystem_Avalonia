@@ -3,7 +3,7 @@
     <Design.PreviewWith>
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
-            <TextBlock Classes="ErrorTextBlock" Text="This username is already taken!"></TextBlock>
+            
         </Border>
     </Design.PreviewWith>
 
@@ -148,8 +148,8 @@
         <Setter Property="ClipToBounds" Value="True"></Setter>
         <Setter Property="Background">
             <LinearGradientBrush StartPoint="0, 0" EndPoint="0%, 100%">
-                <GradientStop Offset="0" Color="{DynamicResource LoginPanelGradient1}"></GradientStop>
-                <GradientStop Offset="1" Color="{DynamicResource LoginPanelGradient2}"></GradientStop>
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryLoginPanelAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryLoginPanelAccentColor}"></GradientStop>
             </LinearGradientBrush>
         </Setter>
     </Style>
@@ -191,7 +191,20 @@
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
         <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.1"/>
+            </Transitions>
+        </Setter>
     </Style>
+    
+    <Style Selector="TextBox.InfoTextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryAccentColor}"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+    </Style>
+    
     <Style Selector="TextBox.NameTextBox">
         <Setter Property="Height" Value="40"></Setter>
         <Setter Property="Width" Value="165"></Setter>
@@ -200,6 +213,18 @@
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
         <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.1"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBox.NameTextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryAccentColor}"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
     </Style>
     <!-- Text Boxes -->
     

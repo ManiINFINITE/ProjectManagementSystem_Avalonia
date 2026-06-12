@@ -30,7 +30,7 @@
                         <TranslateTransform/>
                     </Border.RenderTransform>
                     <Grid>
-                        <Image Classes="LandscapeImage" Source="../Assets/Images/landscape.jpg"></Image>
+                        <Image Classes="LandscapeImage" Source="{Binding Image}"></Image>
                         <TextBlock Name="ImageText" Classes="ImageText" Text="{Binding ImageText}">
                             <TextBlock.RenderTransform>
                                 <TranslateTransform X="0"/>

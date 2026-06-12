@@ -14,13 +14,19 @@ namespace ProjectManagementSystem.Views;
 public partial class AuthenticationView : UserControl {
     
     private bool _moved;
+    private Action? _animationHandler;
     
     public AuthenticationView() {
         InitializeComponent();
-        
-        // Listen to the shared animation service
-        SharedAnimationService.Instance.ToggleRequested += async () =>
-            await RunBorderAnimation();
+
+        _animationHandler = async () => await RunBorderAnimation();
+        SharedAnimationService.Instance.ToggleRequested += _animationHandler;
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e) {
+        base.OnDetachedFromVisualTree(e);
+        if (_animationHandler != null)
+            SharedAnimationService.Instance.ToggleRequested -= _animationHandler;
     }
 
     private async Task RunBorderAnimation() {
