@@ -213,11 +213,21 @@
     </Style>
 
     <Style Selector="TextBlock.ProfilePicUploadIcon">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"/>
         <Setter Property="FontSize" Value="35"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ProfilePicDeleteIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="35"/>
+        <Setter Property="Cursor" Value="Hand"></Setter>
     </Style>
     
 </Styles>

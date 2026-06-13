@@ -26,7 +26,7 @@ public partial class SettingsViewModel : ViewModelBase {
     [ObservableProperty] private string _email;
     [ObservableProperty] private string _selectedTheme;
     [ObservableProperty] private AccentColorOption? _selectedAccentColor;
-    [ObservableProperty] private Avalonia.Media.Imaging.Bitmap? _profilePicture;
+    [ObservableProperty] private Bitmap? _profilePicture;
 
     [ObservableProperty] private ObservableCollection<AccentColorOption> _accentColors = AccentColorsBase.AccentColors;
     
@@ -93,6 +93,17 @@ public partial class SettingsViewModel : ViewModelBase {
         _userRepository.UpdateProfilePicture(userId, imageBytes);
 
         SessionService.Instance.CurrentUser!.ProfilePicture = imageBytes;
+    }
+
+    [RelayCommand]
+    private void DeleteProfilePicture() {
+        if (SessionService.Instance.CurrentUser == null) return;
+        
+        var userId = SessionService.Instance.CurrentUser.Id;
+        _userRepository.DeleteProfilePicture(userId);
+
+        SessionService.Instance.CurrentUser.ProfilePicture = null;
+        ProfilePicture = null;
     }
     
     [RelayCommand]

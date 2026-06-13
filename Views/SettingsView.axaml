@@ -41,26 +41,22 @@
                             <Border Grid.Column="1" Grid.Row="0"
                                     Classes="ProfilePicBorder"
                                     CornerRadius="999"
-                                    ClipToBounds="True"
-                                    Tapped="ProfilePicture_Tapped"
-                                    Cursor="Hand">
-
+                                    ClipToBounds="True">
                                 <Panel ClipToBounds="True">
-
                                     <TextBlock Classes="ProfilePicText"
                                                Text="{Binding ProfileInitials}"
                                                IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNull}}"/>
-
                                     <!-- Wrap Image in its own clipping Border -->
                                     <Border CornerRadius="999" ClipToBounds="True"
                                             IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}">
                                         <Image Source="{Binding ProfilePicture}" Stretch="UniformToFill"/>
                                     </Border>
-
                                     <Border Classes="ProfilePicOverlay" CornerRadius="999" ClipToBounds="True">
-                                        <TextBlock Classes="ProfilePicUploadIcon" Text="&#xE178;"/>
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="15">
+                                            <TextBlock Classes="ProfilePicUploadIcon" Text="&#xE10E;" Tapped="ProfilePictureUpload_Tapped"/>
+                                            <TextBlock Classes="ProfilePicDeleteIcon" Text="&#xE4A6;" Tapped="ProfilePictureDelete_Tapped" IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                                        </StackPanel>
                                     </Border>
-
                                 </Panel>
                             </Border>
                         </Grid>

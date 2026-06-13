@@ -67,13 +67,13 @@ public class AppSettingsService {
         Application.Current.Resources["ButtonHoverBackground"] = option.ButtonHoverBackground;
         
         // Apply login panel colors to the correct theme dictionaries
-        if (Application.Current!.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Light, out var lightDict)
+        if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Light, out var lightDict)
             && lightDict is ResourceDictionary light) {
             light["PrimaryLoginPanelAccentColor"] = option.PrimaryLoginPanelAccentColor_LIGHT.Color;
             light["SecondaryLoginPanelAccentColor"] = option.SecondaryLoginPanelAccentColor_LIGHT.Color;
         }
 
-        if (Application.Current!.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Dark, out var darkDict)
+        if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Dark, out var darkDict)
             && darkDict is ResourceDictionary dark) {
             dark["PrimaryLoginPanelAccentColor"] = option.PrimaryLoginPanelAccentColor_DARK.Color;
             dark["SecondaryLoginPanelAccentColor"] = option.SecondaryLoginPanelAccentColor_DARK.Color;

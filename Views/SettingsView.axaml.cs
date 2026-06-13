@@ -13,9 +13,15 @@ public partial class SettingsView : UserControl {
         InitializeComponent();
     }
 
-    private void ProfilePicture_Tapped(object sender, TappedEventArgs e) {
+    private void ProfilePictureUpload_Tapped(object sender, TappedEventArgs e) {
         if (DataContext is SettingsViewModel vm) {
             vm.UploadProfilePictureCommand.Execute(null);
+        }
+    }
+
+    private void ProfilePictureDelete_Tapped(object sender, TappedEventArgs e) {
+        if (DataContext is SettingsViewModel vm) {
+            vm.DeleteProfilePictureCommand.Execute(null);
         }
     }
 }

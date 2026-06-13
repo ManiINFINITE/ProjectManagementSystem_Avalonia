@@ -7,7 +7,6 @@ public class AccentColorsBase {
     
     public static ObservableCollection<AccentColorOption> AccentColors { get; } = new() {
     
-        // Cool & Professional
         new AccentColorOption {
             Name = "Slate Violet",
             PrimaryColor = new SolidColorBrush(Color.Parse("SlateBlue")),
@@ -68,8 +67,6 @@ public class AccentColorsBase {
             ImageTextForeground = new SolidColorBrush(Color.Parse("#2cdafc")),
             ButtonHoverBackground = new SolidColorBrush(Color.Parse("#0D3D6E"))
         },
-
-        // Warm & Vibrant
         new AccentColorOption {
             Name = "Sunset Orange",
             PrimaryColor = new SolidColorBrush(Color.Parse("#FF6B35")),
@@ -130,8 +127,6 @@ public class AccentColorsBase {
             ImageTextForeground = new SolidColorBrush(Color.Parse("#1e1209")),
             ButtonHoverBackground = new SolidColorBrush(Color.Parse("#9C3800"))
         },
-
-        // Dark & Moody
         new AccentColorOption {
             Name = "Deep Purple",
             PrimaryColor = new SolidColorBrush(Color.Parse("#7B2FBE")),
@@ -180,8 +175,6 @@ public class AccentColorsBase {
             ImageTextForeground = new SolidColorBrush(Color.Parse("#ff0d00")),
             ButtonHoverBackground = new SolidColorBrush(Color.Parse("#8C1010"))
         },
-
-        // Unique & Stylish
         new AccentColorOption {
             Name = "Magenta Rose",
             PrimaryColor = new SolidColorBrush(Color.Parse("#EC407A")),
@@ -215,7 +208,7 @@ public class AccentColorsBase {
             PrimaryLoginPanelAccentColor_DARK    = new SolidColorBrush(Color.Parse("#0F200F")),
             SecondaryLoginPanelAccentColor_DARK  = new SolidColorBrush(Color.Parse("#071007")),
             ImagePath = "avares://ProjectManagementSystem/Assets/Images/lime-forest.jpg",
-            ImageTextForeground = new SolidColorBrush(Color.Parse("#dfffe7")),
+            ImageTextForeground = new SolidColorBrush(Color.Parse("#00FF00")),
             ButtonHoverBackground = new SolidColorBrush(Color.Parse("#1F5C22"))
         }
     };

@@ -35,4 +35,12 @@ public class UserRepository {
         user.ProfilePicture = pictureData;
         db.SaveChanges();
     }
+    
+    public void DeleteProfilePicture(int userId) {
+        using var db = new AppDbContext();
+        var user = db.Users.Find(userId);
+        if (user == null) return;
+        user.ProfilePicture = null;
+        db.SaveChanges();
+    }
 }
