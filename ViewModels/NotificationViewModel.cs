@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -9,52 +12,79 @@ using ProjectManagementSystem.Services;
 namespace ProjectManagementSystem.ViewModels;
 
 public partial class NotificationViewModel : ViewModelBase {
-    
-    [ObservableProperty] private string _title =  string.Empty;
-    [ObservableProperty] private string _message = string.Empty;
-    [ObservableProperty] private NotificationType _type;
-    [ObservableProperty] private bool _isVisible;
-    [ObservableProperty] private double _offsetY = 120;
-    [ObservableProperty] private double _opacity;
+
+    [ObservableProperty] private ObservableCollection<NotificationItemViewModel> _visibleNotifications = [];
+
+    private readonly Queue<Notification> _queue = new();
+    private bool _isProcessing;
+    private const int MAX_VISIBLE = 3;
 
     public NotificationViewModel() {
         NotificationService.Instance.NotificationRequested += OnNotificationRequested;
     }
 
-    private async void OnNotificationRequested(Notification notification) {
-        await Dispatcher.UIThread.InvokeAsync(async () => {
-            Title = notification.Title;
-            Message = notification.Message;
-            Type = notification.Type;
-
-            await SlideIn();
+    private void OnNotificationRequested(Notification notification) {
+        Dispatcher.UIThread.InvokeAsync(() => {
+            _queue.Enqueue(notification);
+            if (!_isProcessing) ProcessQueue();
         });
     }
 
-    private async Task SlideIn() {
-        IsVisible = true;
-        
-        // Animate in - slide up + fade in
-        for (int i = 0; i <= 10; i++) {
-            OffsetY = 120 - (i * 12);
-            Opacity = i / 10.0;
-            await Task.Delay(16); // ~60fps
-        }
+    private async void ProcessQueue() {
+        _isProcessing = true;
 
-        OffsetY = 0;
-        Opacity = 1;
+        while (_queue.Count > 0) {
+            // Wait if already at max visible
+            while (VisibleNotifications.Count >= MAX_VISIBLE)
+                await Task.Delay(200);
+            
+            var notification = _queue.Dequeue();
+            var item = new NotificationItemViewModel {
+                Title = notification.Title,
+                Message = notification.Message,
+                Type =  notification.Type
+            };
+            
+            VisibleNotifications.Insert(0, item); // newest on top
+            UpdateScales();
+            
+            // Slide in + auto dismiss after 10s
+            _ = Task.Run(async () => {
+                await Dispatcher.UIThread.InvokeAsync(async () => item.SlideIn());
+                await Task.Delay(10000);
+                if (!item.IsDismissed)
+                    await Dispatcher.UIThread.InvokeAsync(async () => await DismissSingle(item));
+            });
+
+            await Task.Delay(150);
+        }
+        
+        _isProcessing = false;
     }
 
     [RelayCommand]
-    private async Task Dismiss() {
-        for (int i = 10; i >= 0; i--) {
-            OffsetY = 120 - (i * 12);
-            Opacity = i / 10.0;
-            await Task.Delay(16);
-        }
+    private async Task DismissTop() {
+        if (VisibleNotifications.Count == 0) return;
+        await DismissSingle(VisibleNotifications[0]);
+    }
 
-        IsVisible = false;
-        OffsetY = 120;
-        Opacity = 0;
+    [RelayCommand]
+    private async Task DismissAll() {
+        foreach (var item in VisibleNotifications.ToList()) {
+            await DismissSingle(item);
+        }
+    }
+
+    private async Task DismissSingle(NotificationItemViewModel item) {
+        if (item.IsDismissed) return;
+        await item.SlideOut();
+        VisibleNotifications.Remove(item);
+        UpdateScales();
+    }
+
+    private void UpdateScales() {
+        for (int i = 0; i < VisibleNotifications.Count; i++) {
+            VisibleNotifications[i].Scale = 1 - (i * 0.04);
+        }
     }
 }

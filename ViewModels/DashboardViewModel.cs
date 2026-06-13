@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProjectManagementSystem.Enums;
 using ProjectManagementSystem.Models;
 using ProjectManagementSystem.Services;
 
@@ -39,6 +40,7 @@ public partial class DashboardViewModel : ViewModelBase {
 
     [RelayCommand]
     private void Logout() {
-        SessionService.Instance?.Logout();
+        SessionService.Instance.Logout();
+        NotificationService.Instance.Send("Logged Out!", "You've logged out successfully.", NotificationType.Success);
     }
 }

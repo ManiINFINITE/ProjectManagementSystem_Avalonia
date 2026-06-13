@@ -75,8 +75,11 @@ public partial class SettingsViewModel : ViewModelBase {
                 }
             ]
         });
-        
-        if (files.Count == 0) return;
+
+        if (files.Count == 0) {
+            NotificationService.Instance.Send("No File Selected!", NotificationType.Error);
+            return;
+        }
         
         var file = files[0];
         await using var stream = await file.OpenReadAsync();
@@ -92,6 +95,7 @@ public partial class SettingsViewModel : ViewModelBase {
         _userRepository.UpdateProfilePicture(userId, imageBytes);
 
         SessionService.Instance.CurrentUser!.ProfilePicture = imageBytes;
+        NotificationService.Instance.Send("Profile Picture Updated!", "Your profile picture is updated successfully", NotificationType.Success);
     }
 
     [RelayCommand]

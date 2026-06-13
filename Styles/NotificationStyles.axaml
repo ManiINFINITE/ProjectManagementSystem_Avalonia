@@ -15,17 +15,17 @@
     
     <Style Selector="Border.NotifBorder.success">
         <Setter Property="BorderBrush" Value="#4CAF50"/>
-        <Setter Property="BorderThickness" Value="0 0 0 3"/>
+        <Setter Property="BorderThickness" Value="1 1 1 5"/>
     </Style>
     
     <Style Selector="Border.NotifBorder.warning">
         <Setter Property="BorderBrush" Value="#FF8F00"/>
-        <Setter Property="BorderThickness" Value="0 0 0 3"/>
+        <Setter Property="BorderThickness" Value="1 1 1 5"/>
     </Style>
     
     <Style Selector="Border.NotifBorder.error">
         <Setter Property="BorderBrush" Value="#EF5350"/>
-        <Setter Property="BorderThickness" Value="0 0 0 3"/>
+        <Setter Property="BorderThickness" Value="1 1 1 5"/>
     </Style>
     
     <Style Selector="TextBlock.NotifTitle">

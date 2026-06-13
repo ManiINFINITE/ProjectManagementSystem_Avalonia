@@ -11,9 +11,15 @@ public partial class NotificationView : UserControl {
         InitializeComponent();
     }
 
-    private async void Dismiss_Tapped(object sender, RoutedEventArgs e) {
+    private async void DismissTop_Tapped(object sender, RoutedEventArgs e) {
         if (DataContext is NotificationViewModel vm) {
-            await vm.DismissCommand.ExecuteAsync(null);
+            await vm.DismissTopCommand.ExecuteAsync(null);
+        }
+    }
+    
+    private async void DismissAll_Tapped(object sender, RoutedEventArgs e) {
+        if (DataContext is NotificationViewModel vm) {
+            await vm.DismissAllCommand.ExecuteAsync(null);
         }
     } 
 }

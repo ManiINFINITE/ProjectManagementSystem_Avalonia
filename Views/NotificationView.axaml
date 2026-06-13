@@ -5,27 +5,52 @@
              xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
              xmlns:models="clr-namespace:ProjectManagementSystem.Enums"
              x:Class="ProjectManagementSystem.Views.NotificationView"
-             x:DataType="vm:NotificationViewModel"
-             Opacity="{Binding Opacity}">
+             x:DataType="vm:NotificationViewModel">
     
-    <UserControl.RenderTransform>
-        <TranslateTransform Y="{Binding OffsetY}"/>
-    </UserControl.RenderTransform>
-    
-    <Border Classes="NotifBorder" Classes.success="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Success}}"
-            Classes.warning="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Warning}}"
-            Classes.error="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Error}}"
-            Width="320" CornerRadius="10" Padding="16 12">
-        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto">
-            <!-- Title -->
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Title}" Classes="NotifTitle"/>
-            
-            <!-- Dismiss Button -->
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="&#xE4F6;" Classes="NotifCloseIcon" Tapped="Dismiss_Tapped"/>
-            
-            <!-- Message -->
-            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Message}" Classes="NotifMessage" TextWrapping="Wrap"/>
-        </Grid>
-    </Border>
+    <ItemsControl ItemsSource="{Binding VisibleNotifications}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Spacing="8" VerticalAlignment="Bottom"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:NotificationItemViewModel">
+                <Border Classes="NotifBorder"
+                        Classes.success="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Success}}"
+                        Classes.warning="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Warning}}"
+                        Classes.error="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Error}}"
+                        Width="320" CornerRadius="10" Padding="16 12"
+                        Opacity="{Binding Opacity}">
+                    <Border.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform Y="{Binding OffsetY}"/>
+                            <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
+                        </TransformGroup>
+                    </Border.RenderTransform>
+                    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto, Auto">
+                        <!-- Title -->
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="{Binding Title}"
+                                   Classes="NotifTitle"/>
+                        <!-- Minus: dismiss only top -->
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Text="&#xE32A;"
+                                   Classes="NotifCloseIcon"
+                                   Tapped="DismissTop_Tapped"/>
+                        <!-- Cross: dismiss all -->
+                        <TextBlock Grid.Row="0" Grid.Column="2"
+                                   Text="&#xE4F6;"
+                                   Classes="NotifCloseIcon"
+                                   Tapped="DismissAll_Tapped"/>
+                        <!-- Message -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                                   Text="{Binding Message}"
+                                   Classes="NotifMessage"
+                                   TextWrapping="Wrap"/>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
     
 </UserControl>

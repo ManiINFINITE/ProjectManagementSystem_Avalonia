@@ -17,4 +17,11 @@ public class NotificationService {
             Type = type
         });
     }
+
+    public void Send(string title, NotificationType type) {
+        NotificationRequested?.Invoke(new Notification {
+            Title = title,
+            Type = type
+        });
+    }
 }
