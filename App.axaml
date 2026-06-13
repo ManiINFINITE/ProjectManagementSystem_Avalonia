@@ -25,6 +25,7 @@
         <StyleInclude Source="Styles/AuthenticationStyles.axaml"></StyleInclude>
         <StyleInclude Source="Styles/DashboardStyles.axaml"></StyleInclude>
         <StyleInclude Source="Styles/SettingsStyles.axaml"></StyleInclude>
+        <StyleInclude Source="Styles/NotificationStyles.axaml"></StyleInclude>
     </Application.Styles>
              
     <Application.Resources>

@@ -6,6 +6,8 @@ public partial class MainWindowViewModel : ViewModelBase {
     
     public static MainWindowViewModel? Instance { get; private set; }
 
+    [ObservableProperty] private NotificationViewModel _notificationViewModel = new();
+
     [ObservableProperty] private ViewModelBase _currentView;
 
     public MainWindowViewModel() {

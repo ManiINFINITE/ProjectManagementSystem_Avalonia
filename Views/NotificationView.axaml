@@ -1,0 +1,31 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             xmlns:models="clr-namespace:ProjectManagementSystem.Enums"
+             x:Class="ProjectManagementSystem.Views.NotificationView"
+             x:DataType="vm:NotificationViewModel"
+             Opacity="{Binding Opacity}">
+    
+    <UserControl.RenderTransform>
+        <TranslateTransform Y="{Binding OffsetY}"/>
+    </UserControl.RenderTransform>
+    
+    <Border Classes="NotifBorder" Classes.success="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Success}}"
+            Classes.warning="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Warning}}"
+            Classes.error="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Error}}"
+            Width="320" CornerRadius="10" Padding="16 12">
+        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto">
+            <!-- Title -->
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Title}" Classes="NotifTitle"/>
+            
+            <!-- Dismiss Button -->
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="&#xE4F6;" Classes="NotifCloseIcon" Tapped="Dismiss_Tapped"/>
+            
+            <!-- Message -->
+            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Message}" Classes="NotifMessage" TextWrapping="Wrap"/>
+        </Grid>
+    </Border>
+    
+</UserControl>

@@ -1,6 +1,7 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProjectManagementSystem.Enums;
 using ProjectManagementSystem.Repositories;
 using ProjectManagementSystem.Services;
 
@@ -19,7 +20,7 @@ public partial class SignInViewModel : ViewModelBase {
         var user = repository.GetByUsername(Username);
 
         if (user == null) {
-            Console.WriteLine("User not found!");
+            NotificationService.Instance.Send("User Not Found!", "The Username you entered was not found! Please try again!",  NotificationType.Error);
             return;
         }
         
@@ -27,15 +28,16 @@ public partial class SignInViewModel : ViewModelBase {
         bool passwordValid = BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash);
 
         if (!passwordValid) {
-            Console.WriteLine("Invalid password!");
+            NotificationService.Instance.Send("Invalid Password!", "Password is incorrect. Please try again!", NotificationType.Error);
             return;
         }
         
         // Success
-        SessionService.Instance?.Login(user);
+        SessionService.Instance.Login(user);
+        NotificationService.Instance.Send("Signed In", $"Welcome {user.FirstName}! Let's Get to work. There are a lot of projects and tasks waiting for you!", NotificationType.Success);
         AppSettingsService.Instance!.SaveLastUser(user.Id);
-        AppSettingsService.Instance!.LoadForUser(user.Id);
-        NavigationService.Instance?.NavigateTo(new DashboardViewModel());
+        AppSettingsService.Instance.LoadForUser(user.Id);
+        NavigationService.Instance.NavigateTo(new DashboardViewModel());
     }
 
     [RelayCommand]

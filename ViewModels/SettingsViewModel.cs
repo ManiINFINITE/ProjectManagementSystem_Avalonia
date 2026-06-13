@@ -4,12 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
-using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProjectManagementSystem.Enums;
 using ProjectManagementSystem.Models;
 using ProjectManagementSystem.Repositories;
 using ProjectManagementSystem.Services;
@@ -42,7 +41,7 @@ public partial class SettingsViewModel : ViewModelBase {
         _selectedAccentColor = AccentColors.FirstOrDefault(c => c.Name == savedName) ?? AccentColors.First();
         
         // Restore saved theme
-        _selectedTheme = AppSettingsService.Instance!.CurrentSettings.Theme;
+        _selectedTheme = AppSettingsService.Instance.CurrentSettings.Theme;
         
         // Profile Picture
         if (user?.ProfilePicture != null) {
@@ -70,11 +69,11 @@ public partial class SettingsViewModel : ViewModelBase {
         var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions {
             Title = "Select Profile Picture",
             AllowMultiple = false,
-            FileTypeFilter = new[] {
+            FileTypeFilter = [
                 new FilePickerFileType("Images") {
-                    Patterns = new []{ "*.jpg", "*.jpeg", "*.png",  "*.bmp" }
+                    Patterns = [ "*.jpg", "*.jpeg", "*.png",  "*.bmp" ]
                 }
-            }
+            ]
         });
         
         if (files.Count == 0) return;
@@ -119,6 +118,9 @@ public partial class SettingsViewModel : ViewModelBase {
         OnPropertyChanged(nameof(IsDarkTheme));
 
         AppSettingsService.Instance!.ApplyTheme(value);
+        
+        // Change theme Notif
+        NotificationService.Instance.Send("Theme Changed", $"Theme changed successfully to {value}", NotificationType.Success);
     }
 
     partial void OnSelectedAccentColorChanged(AccentColorOption? value) {

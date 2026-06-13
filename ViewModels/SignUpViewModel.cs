@@ -1,6 +1,8 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProjectManagementSystem.Enums;
+using ProjectManagementSystem.Helpers;
 using ProjectManagementSystem.Models;
 using ProjectManagementSystem.Repositories;
 using ProjectManagementSystem.Services;
@@ -21,11 +23,23 @@ public partial class SignUpViewModel : ViewModelBase {
 
         // Check if user already exists
         if (repository.GetByUsername(Username) != null) {
-            Console.WriteLine("This Username already exists!");
+            NotificationService.Instance.Send("Username Already Exists!", "Try signing in or pick another username.", NotificationType.Error);
             return;
         }
+        // Check if Email already exists
         if (repository.GetByEmail(Email) != null) {
-            Console.WriteLine("This Email is already registered!");
+            NotificationService.Instance.Send("Email Already Exists!", "This email is already registered.\nTry signing in.",  NotificationType.Error);
+            return;
+        }
+        // Validate the email
+        if (!UserValidator.ValidateEmail(Email)) {
+            NotificationService.Instance.Send("Invalid Email Format!", "Please enter a valid email address:\n*******@gmail.com.",  NotificationType.Error);
+            return;
+        }
+        // Validate the password
+        string passwordValidateResult = UserValidator.ValidatePassword(Password) ?? string.Empty;
+        if (passwordValidateResult != string.Empty) {
+            NotificationService.Instance.Send("Weak Password!", passwordValidateResult, NotificationType.Error);
             return;
         }
         
@@ -37,9 +51,9 @@ public partial class SignUpViewModel : ViewModelBase {
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(Password)
         };
         
+        // Success
         repository.Add(user);
-        
-        // Go to sign in page after registration
+        NotificationService.Instance.Send("Signed Up", $"{user.FirstName + " " +  user.LastName} successfully signed up!", NotificationType.Success);
         ChangeToSignIn();
     }
 

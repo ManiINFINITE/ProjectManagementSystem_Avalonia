@@ -213,8 +213,8 @@
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
         <Setter Property="FontSize" Value="15"></Setter>
-        <Setter Property="BorderBrush" Value="Transparent"></Setter>
-        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentColor}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
         <Setter Property="Transitions">
             <Transitions>
                 <BrushTransition Property="BorderBrush" Duration="0:0:0.1"/>

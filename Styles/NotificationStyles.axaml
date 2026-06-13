@@ -1,0 +1,51 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+    <Style Selector="Border.NotifBorder">
+        <Setter Property="Background" Value="#2D2D2D"/>
+        <Setter Property="BoxShadow" Value="0 8 24 0 #66000000"/>
+    </Style>
+    
+    <Style Selector="Border.NotifBorder.success">
+        <Setter Property="BorderBrush" Value="#4CAF50"/>
+        <Setter Property="BorderThickness" Value="0 0 0 3"/>
+    </Style>
+    
+    <Style Selector="Border.NotifBorder.warning">
+        <Setter Property="BorderBrush" Value="#FF8F00"/>
+        <Setter Property="BorderThickness" Value="0 0 0 3"/>
+    </Style>
+    
+    <Style Selector="Border.NotifBorder.error">
+        <Setter Property="BorderBrush" Value="#EF5350"/>
+        <Setter Property="BorderThickness" Value="0 0 0 3"/>
+    </Style>
+    
+    <Style Selector="TextBlock.NotifTitle">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    
+    <Style Selector="TextBlock.NotifMessage">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="#BBBBBB"/>
+        <Setter Property="Margin" Value="0 6 0 0"/>
+    </Style>
+    
+    <Style Selector="TextBlock.NotifCloseIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="#888888"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="8 0 0 0"/>
+    </Style>
+    
+</Styles>

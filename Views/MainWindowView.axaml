@@ -10,13 +10,23 @@
         x:DataType="vm:MainWindowViewModel"
         Title="Project Management"
         Icon="/Assets/Icons/project_icon.png">
-    
-        <ContentControl Content="{Binding CurrentView}">
-                <ContentControl.DataTemplates>
-                        <DataTemplate DataType="vm:AuthenticationViewModel">
-                                <views:AuthenticationView/>
-                        </DataTemplate>
-                </ContentControl.DataTemplates>
-        </ContentControl>
+
+        <Panel>
+                <!-- Content Switcher -->
+                <ContentControl Content="{Binding CurrentView}">
+                        <ContentControl.DataTemplates>
+                                <DataTemplate DataType="vm:AuthenticationViewModel">
+                                        <views:AuthenticationView />
+                                </DataTemplate>
+                        </ContentControl.DataTemplates>
+                </ContentControl>
+                
+                <!-- Notification overlay - always on top -->
+                <views:NotificationView DataContext="{Binding NotificationViewModel}"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Margin="0 0 24 24"
+                                        ZIndex="999"/>
+        </Panel>
         
 </Window>
