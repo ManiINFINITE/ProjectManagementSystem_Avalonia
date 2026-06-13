@@ -84,7 +84,7 @@
                                      Command="{Binding SelectThemeCommand}"
                                      CommandParameter="Dark"></RadioButton>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                    <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
                         <TextBlock Classes="Label" Text="Accent Color :" VerticalAlignment="Center"></TextBlock>
                         <ListBox Classes="AccentColors" ItemsSource="{Binding AccentColors}" SelectedItem="{Binding SelectedAccentColor}">
                             <ListBox.ItemsPanel>
@@ -105,6 +105,18 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border Classes="AccountBorder" Grid.Row="3">
+                <StackPanel Classes="AccountStackPanel" Orientation="Vertical">
+                    <Grid Classes="AccountHeader" ColumnDefinitions="Auto, *">
+                        <TextBlock Classes="AccountHeaderText" Grid.Column="0" Text="Notifications"></TextBlock>
+                        <Border Classes="AccountHeaderLine" Grid.Column="1" VerticalAlignment="Center"></Border>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Classes="Label" Text="Notifications Enabled :"/>
+                        <ToggleSwitch Classes="NotifToggle" IsChecked="{Binding NotificationsEnabled}" OnContent="" OffContent=""/>
                     </StackPanel>
                 </StackPanel>
             </Border>

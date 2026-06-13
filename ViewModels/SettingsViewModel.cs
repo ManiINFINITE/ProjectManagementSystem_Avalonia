@@ -26,6 +26,7 @@ public partial class SettingsViewModel : ViewModelBase {
     [ObservableProperty] private string _selectedTheme;
     [ObservableProperty] private AccentColorOption? _selectedAccentColor;
     [ObservableProperty] private Bitmap? _profilePicture;
+    [ObservableProperty] private bool _notificationsEnabled = true;
 
     [ObservableProperty] private ObservableCollection<AccentColorOption> _accentColors = AccentColorsBase.AccentColors;
     
@@ -48,6 +49,9 @@ public partial class SettingsViewModel : ViewModelBase {
             using var ms = new MemoryStream(user.ProfilePicture);
             _profilePicture = new Bitmap(ms);
         }
+        
+        // Notifications enabled
+        _notificationsEnabled = AppSettingsService.Instance.CurrentSettings.NotificationsEnabled;
     }
 
     public bool IsSystemTheme => SelectedTheme == "System";
@@ -133,5 +137,23 @@ public partial class SettingsViewModel : ViewModelBase {
         AppSettingsService.Instance!.ApplyAccentColor(
             value
             );
+        
+        NotificationService.Instance.Send("Accent Color Changed!", $"Accent color changed to {value.Name} successfully.", NotificationType.Success);
+    }
+
+    partial void OnNotificationsEnabledChanged(bool value) {
+        AppSettingsService.Instance!.CurrentSettings.NotificationsEnabled = value;
+        AppSettingsService.Instance.Save();
+        
+        string notifTitle;
+        string notifMessage;
+        if (value) {
+            notifTitle = "Notifications Enabled!";
+            notifMessage = "Notifications enabled successfully!";
+        } else {
+            notifTitle = "Notifications Disabled!";
+            notifMessage = "Notifications disabled successfully!";
+        }
+        NotificationService.Instance.Send(notifTitle, notifMessage, NotificationType.Success);
     }
 }

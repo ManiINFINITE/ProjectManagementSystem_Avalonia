@@ -14,4 +14,5 @@ public class AppSettings {
     public string ImageTextForeground { get; set; } = "#9692FF";
     public string ButtonHoverBackground { get; set; } = "#3E3E7C";
     public int? LastUserId { get; set; }
+    public bool NotificationsEnabled { get; set; } = true;
 }

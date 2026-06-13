@@ -4,14 +4,7 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
             
-            <Grid Grid.Column="1" RowDefinitions="Auto, *">
-                <Border Grid.Row="0" Classes="ProfilePicBorder">
-                    <TextBlock Classes="ProfilePicText" Text="MV"></TextBlock>
-                </Border>
-                <Button Classes="ChangeProfColor" Grid.Row="1">
-                    <TextBlock Text="Change Profile Color"/>
-                </Button>
-            </Grid>
+            <ToggleSwitch Classes="NotifToggle" OnContent="" OffContent=""></ToggleSwitch>
             
         </Border>
     </Design.PreviewWith>
@@ -228,6 +221,55 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="35"/>
         <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="ToggleSwitch.NotifToggle">
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="ToggleSwitch.NotifToggle /template/ Border#OuterBorder">
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="Width" Value="50"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="Background" Value="WhiteSmoke"></Setter>
+        <Setter Property="BorderBrush">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="ToggleSwitch.NotifToggle /template/ Border#SwitchKnobBounds">
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="Width" Value="50"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <!-- OFF: knob on left -->
+    <Style Selector="ToggleSwitch.NotifToggle /template/ Ellipse#SwitchKnobOff">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="5 0 0 0"/>
+        <Setter Property="Fill">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+
+    <!-- ON: knob on right -->
+    <Style Selector="ToggleSwitch.NotifToggle:checked /template/ Ellipse#SwitchKnobOn">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="15 0 0 0"/>
     </Style>
     
 </Styles>

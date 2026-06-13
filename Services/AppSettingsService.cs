@@ -46,7 +46,7 @@ public class AppSettingsService {
         Apply(CurrentSettings);
     }
 
-    private void Save() {
+    public void Save() {
         try {
             Directory.CreateDirectory(Path.GetDirectoryName(_currentSettingsPath)!);
             var json = JsonSerializer.Serialize(CurrentSettings, new JsonSerializerOptions { WriteIndented = true });

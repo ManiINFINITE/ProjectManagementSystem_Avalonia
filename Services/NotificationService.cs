@@ -11,6 +11,7 @@ public class NotificationService {
     public event Action<Notification>? NotificationRequested;
 
     public void Send(string title, string message, NotificationType type) {
+        if (!AppSettingsService.Instance!.CurrentSettings.NotificationsEnabled) return;
         NotificationRequested?.Invoke(new Notification {
             Title = title,
             Message = message,
@@ -19,6 +20,7 @@ public class NotificationService {
     }
 
     public void Send(string title, NotificationType type) {
+        if (!AppSettingsService.Instance!.CurrentSettings.NotificationsEnabled) return;
         NotificationRequested?.Invoke(new Notification {
             Title = title,
             Type = type
