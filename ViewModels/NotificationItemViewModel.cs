@@ -12,6 +12,8 @@ public partial class NotificationItemViewModel : ViewModelBase {
     [ObservableProperty] private double _offsetY = 120;
     [ObservableProperty] private double _opacity;
     [ObservableProperty] private double _scale = 1;
+    [ObservableProperty] private double _stackOffsetY;
+    [ObservableProperty] private int _zIndex;
     
     public bool IsDismissed { get; private set; }
 

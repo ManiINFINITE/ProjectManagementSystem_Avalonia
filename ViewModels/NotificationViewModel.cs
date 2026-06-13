@@ -45,7 +45,7 @@ public partial class NotificationViewModel : ViewModelBase {
                 Type =  notification.Type
             };
             
-            VisibleNotifications.Insert(0, item); // newest on top
+            VisibleNotifications.Add(item); // newest on top
             UpdateScales();
             
             // Slide in + auto dismiss after 10s
@@ -65,12 +65,14 @@ public partial class NotificationViewModel : ViewModelBase {
     [RelayCommand]
     private async Task DismissTop() {
         if (VisibleNotifications.Count == 0) return;
-        await DismissSingle(VisibleNotifications[0]);
+        await DismissSingle(VisibleNotifications[^1]); // last = newest = top
     }
 
     [RelayCommand]
     private async Task DismissAll() {
-        foreach (var item in VisibleNotifications.ToList()) {
+        var list = VisibleNotifications.ToList();
+        list.Reverse();
+        foreach (var item in list) {
             await DismissSingle(item);
         }
     }
@@ -83,8 +85,13 @@ public partial class NotificationViewModel : ViewModelBase {
     }
 
     private void UpdateScales() {
-        for (int i = 0; i < VisibleNotifications.Count; i++) {
-            VisibleNotifications[i].Scale = 1 - (i * 0.04);
+        int count = VisibleNotifications.Count;
+        for (int i = 0; i < count; i++) {
+            var item = VisibleNotifications[i];
+            int depthFromTop = (count - 1) - i; // 0 = top, 1 = behind, 2 = furthest behind
+            item.Scale = 1 - (depthFromTop * 0.05);
+            item.StackOffsetY = -(depthFromTop * 12);
+            item.ZIndex = i; // last in collection = highest ZIndex
         }
     }
 }

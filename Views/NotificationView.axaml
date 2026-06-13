@@ -5,12 +5,13 @@
              xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
              xmlns:models="clr-namespace:ProjectManagementSystem.Enums"
              x:Class="ProjectManagementSystem.Views.NotificationView"
-             x:DataType="vm:NotificationViewModel">
+             x:DataType="vm:NotificationViewModel"
+             ClipToBounds="False">
     
-    <ItemsControl ItemsSource="{Binding VisibleNotifications}">
+    <ItemsControl ItemsSource="{Binding VisibleNotifications}" ClipToBounds="False">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <StackPanel Spacing="8" VerticalAlignment="Bottom"/>
+                <Panel ClipToBounds="False"/>
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
@@ -20,10 +21,13 @@
                         Classes.warning="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Warning}}"
                         Classes.error="{Binding Type, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static models:NotificationType.Error}}"
                         Width="320" CornerRadius="10" Padding="16 12"
-                        Opacity="{Binding Opacity}">
+                        Opacity="{Binding Opacity}"
+                        ZIndex="{Binding ZIndex}"
+                        ClipToBounds="False">
                     <Border.RenderTransform>
                         <TransformGroup>
                             <TranslateTransform Y="{Binding OffsetY}"/>
+                            <TranslateTransform Y="{Binding StackOffsetY}"/>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
                         </TransformGroup>
                     </Border.RenderTransform>
