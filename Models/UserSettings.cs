@@ -1,6 +1,6 @@
 ﻿namespace ProjectManagementSystem.Models;
 
-public class AppSettings {
+public class UserSettings {
 
     public string Theme { get; set; } = "System";
     public string PrimaryAccentColor { get; set; } = "SlateBlue";
@@ -13,6 +13,5 @@ public class AppSettings {
     public string ImagePath { get; set; } = "avares://ProjectManagementSystem/Assets/Images/slate-violet.jpg";
     public string ImageTextForeground { get; set; } = "#9692FF";
     public string ButtonHoverBackground { get; set; } = "#3E3E7C";
-    public int? LastUserId { get; set; }
     public bool NotificationsEnabled { get; set; } = true;
 }

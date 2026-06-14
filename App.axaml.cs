@@ -22,11 +22,6 @@ public partial class App : Application {
         db.Database.EnsureCreated();
         
         AppSettingsService.Instance!.Load();
-
-        var lastUserId = AppSettingsService.Instance.CurrentSettings.LastUserId;
-        if (lastUserId.HasValue) {
-            AppSettingsService.Instance.LoadForUser(lastUserId.Value);
-        }
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
             desktop.MainWindow = new MainWindowView() {
