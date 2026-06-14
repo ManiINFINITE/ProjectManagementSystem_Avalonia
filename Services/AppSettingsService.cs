@@ -19,31 +19,21 @@ public class AppSettingsService {
         "ProjectManagementSystem",
         "settings.json"
     );
+    
+    private static readonly string DefaultSettingsPath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+        "ProjectManagementSystem",
+        "settings.json"
+    );
+    
+    public GlobalSettings GlobalSettings { get; private set; } = new();
+    public UserSettings CurrentSettings { get; private set; } = new();
 
     private static string GetUserSettingsPath(int userId) => Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
         "ProjectManagementSystem",
         $"settings.user.{userId}.json"
     );
-
-    private string _currentSettingsPath = DefaultSettingsPath;
-
-    private static readonly string SettingsPath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "ProjectManagementSystem",
-        "settings.json"
-        );
-
-#if DEBUG
-    private static readonly string DebugSettingsPath = Path.Combine(
-        AppContext.BaseDirectory,
-        "..", "..", "..",
-        "settings.debug.json"
-        );
-#endif
-
-    public GlobalSettings GlobalSettings { get; private set; } = new();
-    public UserSettings CurrentSettings { get; private set; } = new();
 
     public void Load() {
         try {
@@ -138,13 +128,6 @@ public class AppSettingsService {
         $"settings.user.{userId}.json"
         );
     
-    // Keep a global fallback for pre-login (theme etc.)
-    private static readonly string DefaultSettingsPath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "ProjectManagementSystem",
-        "settings.json"
-    );
-
     public void LoadForUser(int userId) {
         var path = GetUserSettingsPath(userId);
         try {

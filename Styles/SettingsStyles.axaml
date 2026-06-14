@@ -4,7 +4,7 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
             
-            <ToggleSwitch Classes="NotifToggle" OnContent="" OffContent=""></ToggleSwitch>
+                <ToggleSwitch Classes="NotifToggle"></ToggleSwitch>
             
         </Border>
     </Design.PreviewWith>
@@ -231,7 +231,8 @@
         <Setter Property="Height" Value="25"></Setter>
         <Setter Property="Width" Value="50"></Setter>
         <Setter Property="CornerRadius" Value="999"></Setter>
-        <Setter Property="Background" Value="WhiteSmoke"></Setter>
+        <Setter Property="Background" Value="{DynamicResource ElementGeneralBackground}"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
         <Setter Property="BorderBrush">
             <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
                 <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
@@ -270,6 +271,62 @@
         <Setter Property="Width" Value="20"/>
         <Setter Property="Height" Value="20"/>
         <Setter Property="Margin" Value="15 0 0 0"/>
+    </Style>
+    
+    <Style Selector="ComboBox.AutoDismiss">
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.AutoDismiss /template/ Border#Background">
+        <Setter Property="Background" Value="{DynamicResource ElementGeneralBackground}"></Setter>
+        <Setter Property="BorderThickness" Value="1.5"></Setter>
+        <Setter Property="BorderBrush">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.AutoDismiss:pointerover /template/ Border#Background">
+        <Setter Property="Background" Value="{DynamicResource ElementGeneralBackground}"></Setter>
+        <Setter Property="BorderThickness" Value="2.5"></Setter>
+        <Setter Property="BorderBrush">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.AutoDismiss /template/ Border#PopupBorder">
+        <Setter Property="Background" Value="{DynamicResource ElementGeneralBackground}"></Setter>
+        <Setter Property="BorderThickness" Value="1.5"></Setter>
+        <Setter Property="BorderBrush">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.AutoDismiss ComboBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"/>
+    </Style>
+    
+    <Style Selector="ComboBox.AutoDismiss ComboBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.AutoDismiss ComboBoxItem:selected:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"></Setter>
     </Style>
     
 </Styles>

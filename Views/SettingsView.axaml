@@ -109,14 +109,24 @@
                 </StackPanel>
             </Border>
             <Border Classes="AccountBorder" Grid.Row="3">
-                <StackPanel Classes="AccountStackPanel" Orientation="Vertical">
+                <StackPanel Classes="AccountStackPanel" Orientation="Vertical" Spacing="25">
                     <Grid Classes="AccountHeader" ColumnDefinitions="Auto, *">
                         <TextBlock Classes="AccountHeaderText" Grid.Column="0" Text="Notifications"></TextBlock>
                         <Border Classes="AccountHeaderLine" Grid.Column="1" VerticalAlignment="Center"></Border>
                     </Grid>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="0 -15 0 0">
                         <TextBlock Classes="Label" Text="Notifications Enabled :"/>
                         <ToggleSwitch Classes="NotifToggle" IsChecked="{Binding NotificationsEnabled}" OnContent="" OffContent=""/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Classes="Label" Text="Notification Auto-Dismiss Duration :"></TextBlock>
+                        <ComboBox Classes="AutoDismiss" SelectedIndex="{Binding SelectedAutoDismissIndex}">
+                            <ComboBoxItem>3 seconds</ComboBoxItem>
+                            <ComboBoxItem>5 seconds</ComboBoxItem>
+                            <ComboBoxItem>10 seconds</ComboBoxItem>
+                            <ComboBoxItem>20 seconds</ComboBoxItem>
+                            <ComboBoxItem>Never</ComboBoxItem>
+                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
             </Border>

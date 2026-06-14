@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,9 +18,11 @@ public partial class NotificationViewModel : ViewModelBase {
     private readonly Queue<Notification> _queue = new();
     private bool _isProcessing;
     private const int MAX_VISIBLE = 3;
+    private int _autoDismissDuration;
 
     public NotificationViewModel() {
         NotificationService.Instance.NotificationRequested += OnNotificationRequested;
+        _autoDismissDuration = AppSettingsService.Instance!.CurrentSettings.NotificationAutoDismissDuration;
     }
 
     private void OnNotificationRequested(Notification notification) {
@@ -50,7 +53,8 @@ public partial class NotificationViewModel : ViewModelBase {
             // Slide in + auto dismiss after 10s
             _ = Task.Run(async () => {
                 await Dispatcher.UIThread.InvokeAsync(async () => item.SlideIn());
-                await Task.Delay(10000);
+                if (_autoDismissDuration == -1) return;
+                await Task.Delay(_autoDismissDuration);
                 if (!item.IsDismissed)
                     await Dispatcher.UIThread.InvokeAsync(async () => await DismissSingle(item));
             });
@@ -92,5 +96,9 @@ public partial class NotificationViewModel : ViewModelBase {
             item.StackOffsetY = -(depthFromTop * 12);
             item.ZIndex = i; // last in collection = highest ZIndex
         }
+    }
+
+    public void SetAutoDismissDuration(int milliseconds) {
+        _autoDismissDuration = milliseconds;
     }
 }

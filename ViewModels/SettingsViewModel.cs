@@ -27,6 +27,7 @@ public partial class SettingsViewModel : ViewModelBase {
     [ObservableProperty] private AccentColorOption? _selectedAccentColor;
     [ObservableProperty] private Bitmap? _profilePicture;
     [ObservableProperty] private bool _notificationsEnabled = true;
+    [ObservableProperty] private int _selectedAutoDismissIndex;
 
     [ObservableProperty] private ObservableCollection<AccentColorOption> _accentColors = AccentColorsBase.AccentColors;
     
@@ -52,6 +53,15 @@ public partial class SettingsViewModel : ViewModelBase {
         
         // Notifications enabled
         _notificationsEnabled = AppSettingsService.Instance.CurrentSettings.NotificationsEnabled;
+
+        _selectedAutoDismissIndex = AppSettingsService.Instance.CurrentSettings.NotificationAutoDismissDuration switch {
+            3000 => 0,
+            5000 => 1,
+            10000 => 2,
+            20000 => 3,
+            -1 => 4, // Never
+            _ => 2 // Default 10
+        };
     }
 
     public bool IsSystemTheme => SelectedTheme == "System";
@@ -152,5 +162,21 @@ public partial class SettingsViewModel : ViewModelBase {
         AppSettingsService.Instance.Save();
         
         if (value) NotificationService.Instance.Send(notifTitle, notifMessage, NotificationType.Success);
+    }
+
+    partial void OnSelectedAutoDismissIndexChanged(int value) {
+        int duration = value switch {
+            0 => 3000,
+            1 => 5000,
+            2 => 10000,
+            3 => 20000,
+            4 => -1, // Neveer
+            _ => 10000
+        };
+        AppSettingsService.Instance!.CurrentSettings.NotificationAutoDismissDuration = duration;
+        AppSettingsService.Instance.Save();
+        
+        // Update NotificationViewModel
+        MainWindowViewModel.Instance?.NotificationViewModel.SetAutoDismissDuration(duration);
     }
 }
