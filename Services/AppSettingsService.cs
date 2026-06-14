@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text.Json;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Media;
 using Avalonia.Styling;
 using ProjectManagementSystem.Models;
 using ProjectManagementSystem.ViewModels;
@@ -95,16 +94,7 @@ public class AppSettingsService {
             dark["SecondaryLoginPanelAccentColor"] = option.SecondaryLoginPanelAccentColor_DARK.Color;
         }
 
-        CurrentSettings.PrimaryAccentColor = option.PrimaryColor.Color.ToString();
-        CurrentSettings.SecondaryAccentColor = option.SecondaryColor.Color.ToString();
         CurrentSettings.AccentColorName = option.Name;
-        CurrentSettings.ImagePath = option.ImagePath;
-        CurrentSettings.ImageTextForeground = option.ImageTextForeground.ToString();
-        CurrentSettings.PrimaryLoginPanelAccentColor_LIGHT   = option.PrimaryLoginPanelAccentColor_LIGHT.Color.ToString();
-        CurrentSettings.SecondaryLoginPanelAccentColor_LIGHT = option.SecondaryLoginPanelAccentColor_LIGHT.Color.ToString();
-        CurrentSettings.PrimaryLoginPanelAccentColor_DARK    = option.PrimaryLoginPanelAccentColor_DARK.Color.ToString();
-        CurrentSettings.SecondaryLoginPanelAccentColor_DARK  = option.SecondaryLoginPanelAccentColor_DARK.Color.ToString();
-        CurrentSettings.ButtonHoverBackground = option.ButtonHoverBackground.ToString();
         Save();
     }
 
@@ -124,27 +114,16 @@ public class AppSettingsService {
     private void Apply(UserSettings settings) {
         if (Application.Current == null) return;
 
-        var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == settings.AccentColorName);
-        if (accent != null) {
-            ApplyAccentColor(accent);
-        } else {
-            Application.Current.Resources["PrimaryAccentColor"]   = Color.Parse(settings.PrimaryAccentColor);
-            Application.Current.Resources["SecondaryAccentColor"] = Color.Parse(settings.SecondaryAccentColor);
-            Application.Current.Resources["ImageTextForeground"] = Color.Parse(settings.ImageTextForeground);
-            Application.Current.Resources["ButtonHoverBackground"] = Color.Parse(settings.ButtonHoverBackground);
+        var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == settings.AccentColorName)
+                     ?? AccentColorsBase.AccentColors.First();
+        
+        ApplyAccentColor(accent);
 
-            if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Light, out var lightDict)
-                && lightDict is ResourceDictionary light) {
-                light["PrimaryLoginPanelAccentColor"]   = Color.Parse(settings.PrimaryLoginPanelAccentColor_LIGHT);
-                light["SecondaryLoginPanelAccentColor"] = Color.Parse(settings.SecondaryLoginPanelAccentColor_LIGHT);
-            }
-
-            if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Dark, out var darkDict)
-                && darkDict is ResourceDictionary dark) {
-                dark["PrimaryLoginPanelAccentColor"]   = Color.Parse(settings.PrimaryLoginPanelAccentColor_DARK);
-                dark["SecondaryLoginPanelAccentColor"] = Color.Parse(settings.SecondaryLoginPanelAccentColor_DARK);
-            }
-        }
+        Application.Current.RequestedThemeVariant = settings.Theme switch {
+            "Light" => ThemeVariant.Light,
+            "Dark" => ThemeVariant.Dark,
+            _ => ThemeVariant.Default
+        };
 
         Application.Current.RequestedThemeVariant = settings.Theme switch {
             "Light" => ThemeVariant.Light,

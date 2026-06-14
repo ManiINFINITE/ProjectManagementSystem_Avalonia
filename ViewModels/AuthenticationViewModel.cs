@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
@@ -7,6 +8,7 @@ using Avalonia.Platform;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProjectManagementSystem.Enums;
+using ProjectManagementSystem.Models;
 using ProjectManagementSystem.Services;
 
 namespace ProjectManagementSystem.ViewModels;
@@ -21,10 +23,13 @@ public partial class AuthenticationViewModel : ViewModelBase {
 
     public AuthenticationViewModel() {
         Instance = this;
+
+        var accentName = AppSettingsService.Instance?.CurrentSettings.AccentColorName ?? "Slate Violet";
+        var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == accentName)
+                     ?? AccentColorsBase.AccentColors.First();
         
-        var path = AppSettingsService.Instance?.CurrentSettings.ImagePath ?? "avares://ProjectManagementSystem/Assets/Images/slate-violet.jpg";
         Avalonia.Threading.Dispatcher.UIThread.Post(() => {
-            LoadImage(path);
+            LoadImage(accent.ImagePath);
         });
     }
     
@@ -58,7 +63,6 @@ public partial class AuthenticationViewModel : ViewModelBase {
 
     public void UpdateImage(string imagePath) {
         LoadImage(imagePath);
-        AppSettingsService.Instance!.CurrentSettings.ImagePath = imagePath;
     }
 
     private void LoadImage(string path) {
