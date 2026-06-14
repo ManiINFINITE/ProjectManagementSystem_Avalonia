@@ -134,3 +134,11 @@ The SQLite database (`project_management.db`) is created automatically on first 
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+**ManiINFINITE** — Designed and developed independently as a portfolio project.
+
+[![GitHub](https://img.shields.io/badge/GitHub-ManiINFINITE-181717?style=flat&logo=github)](https://github.com/ManiINFINITE)
