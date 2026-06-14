@@ -142,18 +142,15 @@ public partial class SettingsViewModel : ViewModelBase {
     }
 
     partial void OnNotificationsEnabledChanged(bool value) {
+        
+        string notifTitle = value ? "Notifications Enabled!" : "Notifications Disabled!";
+        string notifMessage = value ? "Notifications enabled successfully!" : "Notifications disabled successfully!";
+        
+        if (!value) NotificationService.Instance.Send(notifTitle, notifMessage, NotificationType.Success);
+        
         AppSettingsService.Instance!.CurrentSettings.NotificationsEnabled = value;
         AppSettingsService.Instance.Save();
         
-        string notifTitle;
-        string notifMessage;
-        if (value) {
-            notifTitle = "Notifications Enabled!";
-            notifMessage = "Notifications enabled successfully!";
-        } else {
-            notifTitle = "Notifications Disabled!";
-            notifMessage = "Notifications disabled successfully!";
-        }
-        NotificationService.Instance.Send(notifTitle, notifMessage, NotificationType.Success);
+        if (value) NotificationService.Instance.Send(notifTitle, notifMessage, NotificationType.Success);
     }
 }
