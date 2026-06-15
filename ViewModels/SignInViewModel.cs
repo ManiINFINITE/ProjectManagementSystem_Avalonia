@@ -12,6 +12,8 @@ public partial class SignInViewModel : ViewModelBase {
     [ObservableProperty] private string _username =  string.Empty;
     [ObservableProperty] private string _password =  string.Empty;
 
+    public PasswordFieldViewModel PasswordField { get; } = new();
+
     [RelayCommand]
     private async Task SignIn() {
         var repository = new UserRepository();

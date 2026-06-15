@@ -1,5 +1,16 @@
-﻿namespace ProjectManagementSystem.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
-public class PasswordFieldViewModel {
+namespace ProjectManagementSystem.ViewModels;
+
+public partial class PasswordFieldViewModel : ViewModelBase {
+
+    [ObservableProperty] private bool _passwordVisible;
+    [ObservableProperty] private string _passwordChar = "•";
     
+    [RelayCommand]
+    private void ToggleVisibility() {
+        PasswordChar = (!PasswordVisible) ? "" : "•";
+        PasswordVisible = !PasswordVisible;
+    }
 }

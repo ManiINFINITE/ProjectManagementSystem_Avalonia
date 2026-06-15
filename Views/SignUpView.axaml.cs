@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using ProjectManagementSystem.ViewModels;
 
 namespace ProjectManagementSystem.Views;
@@ -61,6 +62,12 @@ public partial class SignUpView : UserControl {
                 vm.SignUpCommand.Execute(null);
             }
             e.Handled = true;
+        }
+    }
+    
+    private void ChangePasswordVisibility_Click(object sender, RoutedEventArgs e) {
+        if (DataContext is SignUpViewModel vm) {
+            vm.PasswordField.ToggleVisibilityCommand.Execute(null);
         }
     }
 }

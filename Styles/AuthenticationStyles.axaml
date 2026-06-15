@@ -4,6 +4,26 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
             
+            <Border Classes="InnerRightBorder">
+                <Grid RowDefinitions="Auto, *">
+                    <TextBlock Classes="SignInText" Grid.Row="0" Text="Sign In"></TextBlock>
+                    <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="20" Margin="0 60 0 0">
+                        <TextBox Name="UsernameTextBox" Classes="InfoTextBox" PlaceholderText="Username"></TextBox>
+                        <Panel>
+                            <TextBox Name="PasswordTextBox" Classes="InfoTextBox" PasswordChar="•" PlaceholderText="Password"></TextBox>
+                            <TextBlock Classes="PassVisibleIcon" Text="&#xE220;"/>
+                        </Panel>
+                        <Button Name="SignInButton" Classes="SignInButton" Content="Sign In"></Button>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Classes="DontHaveAccountText" Text="Don't have an account?"></TextBlock>
+                            <Button Classes="ChangeAuthButton">
+                                <TextBlock Text="Create Account"></TextBlock>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
         </Border>
     </Design.PreviewWith>
 
@@ -268,5 +288,35 @@
         <Setter Property="TextDecorations" Value="Underline"></Setter>
     </Style>
     <!-- On Mouse Over -->
+    
+    <Style Selector="TextBlock.PassVisibleIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 80 0"></Setter>
+        <Setter Property="FontSize" Value="23"></Setter>
+        <Setter Property="Foreground">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.PassVisibleIconSignUp">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="385 0 0 0"></Setter>
+        <Setter Property="FontSize" Value="23"></Setter>
+        <Setter Property="Foreground">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
     
 </Styles>

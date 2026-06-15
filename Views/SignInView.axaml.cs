@@ -40,4 +40,10 @@ public partial class SignInView : UserControl {
             e.Handled = true;
         }
     }
+    
+    private void ChangePasswordVisibility_Click(object? sender, RoutedEventArgs e) {
+        if (DataContext is SignInViewModel vm) {
+            vm.PasswordField.ToggleVisibilityCommand.Execute(null);
+        }
+    }
 }

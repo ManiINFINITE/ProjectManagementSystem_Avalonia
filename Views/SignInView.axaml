@@ -12,7 +12,11 @@
             <TextBlock Classes="SignInText" Grid.Row="0" Text="Sign In"></TextBlock>
             <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="20" Margin="0 60 0 0">
                 <TextBox Name="UsernameTextBox" KeyDown="TextBox_KeyDown" Classes="InfoTextBox" PlaceholderText="Username" Text="{Binding Username}"></TextBox>
-                <TextBox Name="PasswordTextBox" KeyDown="TextBox_KeyDown" Classes="InfoTextBox" PasswordChar="•" PlaceholderText="Password" Text="{Binding Password}"></TextBox>
+                <Panel>
+                    <TextBox Name="PasswordTextBox" KeyDown="TextBox_KeyDown" Classes="InfoTextBox" PasswordChar="{Binding PasswordField.PasswordChar}" PlaceholderText="Password" Text="{Binding Password}"></TextBox>
+                    <TextBlock Tapped="ChangePasswordVisibility_Click"  Classes="PassVisibleIcon" Text="&#xE220;" IsVisible="{Binding PasswordField.PasswordVisible, Converter={x:Static BoolConverters.Not}}"/>
+                    <TextBlock Tapped="ChangePasswordVisibility_Click" Classes="PassVisibleIcon" Text="&#xE224;" IsVisible="{Binding PasswordField.PasswordVisible}"/>
+                </Panel>
                 <Button Name="SignInButton" Classes="SignInButton" Content="Sign In" Command="{Binding SignInCommand}"></Button>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Classes="DontHaveAccountText" Text="Don't have an account?"></TextBlock>
