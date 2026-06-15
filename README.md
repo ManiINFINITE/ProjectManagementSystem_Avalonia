@@ -13,6 +13,7 @@
 
 ### 🔐 Authentication
 - User registration with input validation (email format, password strength)
+- Password visibility toggle feature
 - Secure login with **BCrypt** password hashing
 - Smooth Animated sign-in / sign-up transition
 - Session management via a singleton `SessionService`
