@@ -26,7 +26,7 @@ public partial class SettingsViewModel : ViewModelBase {
     [ObservableProperty] private string _selectedTheme;
     [ObservableProperty] private AccentColorOption? _selectedAccentColor;
     [ObservableProperty] private Bitmap? _profilePicture;
-    [ObservableProperty] private bool _notificationsEnabled = true;
+    [ObservableProperty] private bool _notificationsEnabled;
     [ObservableProperty] private int _selectedAutoDismissIndex;
 
     [ObservableProperty] private ObservableCollection<AccentColorOption> _accentColors = AccentColorsBase.AccentColors;
@@ -106,18 +106,18 @@ public partial class SettingsViewModel : ViewModelBase {
         ProfilePicture = new Bitmap(ms);
 
         var userId = SessionService.Instance.CurrentUser!.Id;
-        _userRepository.UpdateProfilePicture(userId, imageBytes);
+        await _userRepository.UpdateProfilePictureAsync(userId, imageBytes);
 
         SessionService.Instance.CurrentUser!.ProfilePicture = imageBytes;
         NotificationService.Instance.Send("Profile Picture Updated!", "Your profile picture is updated successfully", NotificationType.Success);
     }
 
     [RelayCommand]
-    private void DeleteProfilePicture() {
+    private async Task DeleteProfilePicture() {
         if (SessionService.Instance.CurrentUser == null) return;
         
         var userId = SessionService.Instance.CurrentUser.Id;
-        _userRepository.DeleteProfilePicture(userId);
+        await _userRepository.DeleteProfilePictureAsync(userId);
 
         SessionService.Instance.CurrentUser.ProfilePicture = null;
         ProfilePicture = null;
@@ -170,7 +170,7 @@ public partial class SettingsViewModel : ViewModelBase {
             1 => 5000,
             2 => 10000,
             3 => 20000,
-            4 => -1, // Neveer
+            4 => -1, // Never
             _ => 10000
         };
         AppSettingsService.Instance!.CurrentSettings.NotificationAutoDismissDuration = duration;

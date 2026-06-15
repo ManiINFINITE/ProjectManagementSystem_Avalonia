@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ProjectManagementSystem.Data;
 using ProjectManagementSystem.Models;
 
@@ -6,41 +7,48 @@ namespace ProjectManagementSystem.Repositories;
 
 public class UserRepository {
 
-    public void Add(User user) {
-        using var db = new AppDbContext();
-        db.Users.Add(user);
-        db.SaveChanges();
+    public async Task AddAsync(User user) {
+        await using var db = new AppDbContext();
+        
+        await db.Users.AddAsync(user);
+        await db.SaveChangesAsync();
     }
 
-    public User? GetById(int id) {
-        using var db = new AppDbContext();
-        return db.Users.Find(id);
+    public async Task<User?> GetByIdAsync(int id) {
+        await using var db = new AppDbContext();
+        
+        return await db.Users.FindAsync(id);
     }
 
-    public User? GetByUsername(string username) {
-        using var db = new AppDbContext();
-        return db.Users.FirstOrDefault(u => u.Username == username);
+    public async Task<User?> GetByUsernameAsync(string username) {
+        await using var db = new AppDbContext();
+        
+        return await db.Users.FirstOrDefaultAsync(u => u.Username == username);
     }
 
-    public User? GetByEmail(string email) {
-        using var db = new AppDbContext();
-        return db.Users.FirstOrDefault(u => u.Email == email);
+    public async Task<User?> GetByEmailAsync(string email) {
+        await using var db = new AppDbContext();
+        
+        return await db.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
 
-    public void UpdateProfilePicture(int userId, byte[] pictureData) {
-        using var db = new AppDbContext();
+    public async Task<bool> UpdateProfilePictureAsync(int userId, byte[] pictureData) {
+        await using var db = new AppDbContext();
 
-        var user = db.Users.Find(userId);
-        if (user == null) return;
+        var user = await db.Users.FindAsync(userId);
+        if (user == null) return false;
         user.ProfilePicture = pictureData;
-        db.SaveChanges();
+        await db.SaveChangesAsync();
+        return true;
     }
     
-    public void DeleteProfilePicture(int userId) {
-        using var db = new AppDbContext();
-        var user = db.Users.Find(userId);
-        if (user == null) return;
+    public async Task<bool> DeleteProfilePictureAsync(int userId) {
+        await using var db = new AppDbContext();
+        
+        var user = await db.Users.FindAsync(userId);
+        if (user == null) return false;
         user.ProfilePicture = null;
-        db.SaveChanges();
+        await db.SaveChangesAsync();
+        return true;
     }
 }

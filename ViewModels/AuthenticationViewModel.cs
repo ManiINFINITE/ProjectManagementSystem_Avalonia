@@ -28,9 +28,7 @@ public partial class AuthenticationViewModel : ViewModelBase {
         var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == accentName)
                      ?? AccentColorsBase.AccentColors.First();
         
-        Avalonia.Threading.Dispatcher.UIThread.Post(() => {
-            LoadImage(accent.ImagePath);
-        });
+        LoadImage(accent.ImagePath);
     }
     
     private ViewModelBase _currentAuthViewModel = new SignInViewModel();

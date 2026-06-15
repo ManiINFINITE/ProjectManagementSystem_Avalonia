@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectManagementSystem.Enums;
@@ -18,16 +18,19 @@ public partial class SignUpViewModel : ViewModelBase {
     [ObservableProperty] private string _password = string.Empty;
 
     [RelayCommand]
-    private void SignUp() {
+    private async Task SignUp() {
         var repository = new UserRepository();
 
+        var existingUsername = await repository.GetByUsernameAsync(Username);
+        var existingEmail = await repository.GetByEmailAsync(Email);
+
         // Check if user already exists
-        if (repository.GetByUsername(Username) != null) {
+        if (existingUsername != null) {
             NotificationService.Instance.Send("Username Already Exists!", "Try signing in or pick another username.", NotificationType.Error);
             return;
         }
         // Check if Email already exists
-        if (repository.GetByEmail(Email) != null) {
+        if (existingEmail != null) {
             NotificationService.Instance.Send("Email Already Exists!", "This email is already registered.\nTry signing in.",  NotificationType.Error);
             return;
         }
@@ -52,7 +55,7 @@ public partial class SignUpViewModel : ViewModelBase {
         };
         
         // Success
-        repository.Add(user);
+        await repository.AddAsync(user);
         NotificationService.Instance.Send("Signed Up", $"{user.FirstName + " " +  user.LastName} successfully signed up!", NotificationType.Success);
         ChangeToSignIn();
     }
