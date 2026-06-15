@@ -125,25 +125,7 @@
             </Border>
 
             <Border Classes="RightPanel" Grid.Column="1">
-                <ContentControl Content="{Binding CurrentRightPanelView}">
-                    <ContentControl.DataTemplates>
-                        <DataTemplate DataType="vm:HomeViewModel">
-                            <views:HomeView />
-                        </DataTemplate>
-                        <DataTemplate DataType="vm:MessagesViewModel">
-                            <views:MessagesView />
-                        </DataTemplate>
-                        <DataTemplate DataType="vm:TasksViewModel">
-                            <views:TasksView />
-                        </DataTemplate>
-                        <DataTemplate DataType="vm:MembersViewModel">
-                            <views:MembersView />
-                        </DataTemplate>
-                        <DataTemplate DataType="vm:SettingsViewModel">
-                            <views:SettingsView />
-                        </DataTemplate>
-                    </ContentControl.DataTemplates>
-                </ContentControl>
+                <ContentControl Content="{Binding CurrentRightPanelView}"/>
             </Border>
         </Grid>
         

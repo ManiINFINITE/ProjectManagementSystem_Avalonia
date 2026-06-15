@@ -13,13 +13,7 @@
 
         <Panel>
                 <!-- Content Switcher -->
-                <ContentControl Content="{Binding CurrentView}">
-                        <ContentControl.DataTemplates>
-                                <DataTemplate DataType="vm:AuthenticationViewModel">
-                                        <views:AuthenticationView />
-                                </DataTemplate>
-                        </ContentControl.DataTemplates>
-                </ContentControl>
+                <ContentControl Content="{Binding CurrentView}"/>
                 
                 <!-- Notification overlay - always on top -->
                 <views:NotificationView DataContext="{Binding NotificationViewModel}"
