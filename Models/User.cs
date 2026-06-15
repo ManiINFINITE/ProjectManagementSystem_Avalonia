@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectManagementSystem.Models;
 
+[Table("Users")]
 public class User {
     
     [Key]
