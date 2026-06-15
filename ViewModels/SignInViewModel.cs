@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectManagementSystem.Enums;
@@ -13,11 +13,11 @@ public partial class SignInViewModel : ViewModelBase {
     [ObservableProperty] private string _password =  string.Empty;
 
     [RelayCommand]
-    private void SignIn() {
+    private async Task SignIn() {
         var repository = new UserRepository();
 
         // Find username
-        var user = repository.GetByUsername(Username);
+        var user = await repository.GetByUsernameAsync(Username);
 
         if (user == null) {
             NotificationService.Instance.Send("User Not Found!", "The Username you entered was not found! Please try again!",  NotificationType.Error);
