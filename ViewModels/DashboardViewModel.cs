@@ -9,11 +9,17 @@ namespace ProjectManagementSystem.ViewModels;
 
 public partial class DashboardViewModel : ViewModelBase {
 
+    public static DashboardViewModel? Instance { get; private set; }
+
     private readonly User? _currentUser;
+    public ProjectCreationViewModel ProjectCreationViewModel { get; } = new();
 
     [ObservableProperty] private ViewModelBase _currentRightPanelView;
+    [ObservableProperty] private bool _isCreateProjectOpen;
 
     public DashboardViewModel() {
+        Instance = this;
+        
         if (Design.IsDesignMode) {
             _currentRightPanelView = new SettingsViewModel();
             return;
@@ -37,6 +43,14 @@ public partial class DashboardViewModel : ViewModelBase {
     
     [RelayCommand]
     private void NavigateToSettings() => CurrentRightPanelView = new SettingsViewModel();
+
+    public void OpenCreateProject() {
+        IsCreateProjectOpen = true;
+    }
+
+    public void CloseCreateProject() {
+        IsCreateProjectOpen = false;
+    }
 
     [RelayCommand]
     private void Logout() {

@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Styling;
+using ProjectManagementSystem.ViewModels;
 
 namespace ProjectManagementSystem.Views;
 
@@ -265,4 +266,9 @@ public partial class DashboardView : UserControl {
         ((TranslateTransform?)AddProjectButton.RenderTransform)?.X = 0;
     }
 
+    private void AddProjectButton_Click(object? sender, RoutedEventArgs e) {
+        if (DataContext is DashboardViewModel vm) {
+            vm.OpenCreateProject();
+        }
+    }
 }

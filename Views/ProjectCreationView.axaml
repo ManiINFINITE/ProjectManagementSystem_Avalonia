@@ -1,0 +1,15 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             x:Class="ProjectManagementSystem.Views.ProjectCreationView"
+             x:DataType="vm:ProjectCreationViewModel">
+    
+    <Border Background="{DynamicResource ElementGeneralBackground}"
+            CornerRadius="16"
+            Width="600"
+            Height="400"
+            Padding="32">
+        <TextBlock Text="TEST" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Border>
+    
+</UserControl>
