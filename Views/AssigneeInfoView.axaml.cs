@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
@@ -16,6 +17,17 @@ public partial class AssigneeInfoView : UserControl {
         if (sender is TextBlock { DataContext: AssigneeEntry entry } &&
             DataContext is ProjectCreationViewModel vm) {
             vm.RemoveAssigneeCommand.Execute(entry);
+        }
+    }
+
+    private void ClearUserSearch() {
+        UserSearchBox.Text = string.Empty;
+    }
+
+    protected override void OnDataContextChanged(EventArgs e) {
+        base.OnDataContextChanged(e);
+        if (DataContext is ProjectCreationViewModel vm) {
+            vm.Assignees.CollectionChanged += (_, _) => ClearUserSearch();
         }
     }
 }

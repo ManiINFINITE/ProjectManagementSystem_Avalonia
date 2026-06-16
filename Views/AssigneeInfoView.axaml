@@ -17,7 +17,8 @@
             <!-- search for user -->
             <Grid Classes="ItemGrid" Grid.Row="0" RowDefinitions="Auto, Auto">
                 <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Search For User To Assign"/>
-                <AutoCompleteBox Grid.Row="1"
+                <AutoCompleteBox x:Name="UserSearchBox"
+                                 Grid.Row="1"
                                  Classes="UserSearchBox"
                                  PlaceholderText="Search User"
                                  ItemsSource="{Binding AllUsers}"
