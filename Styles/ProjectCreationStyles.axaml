@@ -1,12 +1,38 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
-        <Border Padding="20">
+        <Border Classes="ReadOnlyBorder" Padding="20"  Width="370" Height="60">
             <!-- Add Controls for Previewer Here -->
+            
+                <Grid ColumnDefinitions="*, Auto, Auto">
+                    <TextBlock Classes="ReadOnlyTitle" Grid.Column="0" Text="Created At"/>
+                    <TextBlock Classes="ReadOnlyIcon" Grid.Column="1" Text="&#xE10A;"/>
+                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="May 22, 2025 10:30 AM"/>
+                </Grid>
+            
         </Border>
     </Design.PreviewWith>
 
     <!-- Add Styles Here -->
+    
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ControlTheme x:Key="MyCalendarDatePickerButton" TargetType="Button">
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <TextBlock x:Name="CalendarIcon"
+                                   Text="&#xE108;"
+                                   FontFamily="{DynamicResource Phosphor}"
+                                   FontSize="25"
+                                   Foreground="#757575"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Cursor="Hand"/>
+                    </ControlTemplate>
+                </Setter>
+            </ControlTheme>
+        </ResourceDictionary>
+    </Styles.Resources>
     
     <Style Selector="Grid.HeaderGrid">
         <Setter Property="Background">
@@ -121,17 +147,20 @@
         <Setter Property="Background" Value="{DynamicResource ElementGeneralBackground}"></Setter>
         <Setter Property="Padding" Value="15"></Setter>
         <Setter Property="Width" Value="400"></Setter>
-        <Setter Property="Height" Value="700"></Setter>
+        <Setter Property="Height" Value="650"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="BoxShadow" Value="0 0 10 0 #20000000"></Setter>
     </Style>
     
     <Style Selector="Grid.ItemGrid">
         <Setter Property="Margin" Value="0 15 0 0"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
     </Style>
     
     <Style Selector="TextBlock.ProjectLabel">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
         <Setter Property="Margin" Value="10 0 0 0"></Setter>
-        <Setter Property="FontSize" Value="12.5"></Setter>
+        <Setter Property="FontSize" Value="10"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryAccentColor}"/>
     </Style>
     
@@ -143,6 +172,38 @@
         <Setter Property="Margin" Value="0 5 0 0"></Setter>
         <Setter Property="Padding" Value="15 5"></Setter>
         <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+    
+    <!-- DataValidationErrors (the root of the template) -->
+    <Style Selector="TextBox.ProjectTextBox /template/ DataValidationErrors">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <!-- The Panel wrapping everything -->
+    <Style Selector="TextBox.ProjectTextBox /template/ DataValidationErrors /template/ Panel">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+    
+    <Style Selector="TextBox.ProjectTextBox /template/ Border#PART_BorderElement">
+        <Setter Property="BoxShadow" Value="0 0 3 0 #50000000"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBox.ProjectTextBox:pointerover /template/ Border#PART_BorderElement">
+        <Setter Property="BoxShadow" Value="0 0 7 0 #75000000"></Setter>
+    </Style>
+    
+    <Style Selector="TextBox.ProjectTextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="BoxShadow" Value="0 0 6 0 #85000000"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
     </Style>
     
     <Style Selector="AutoCompleteBox.UserSearchBox">
@@ -181,6 +242,7 @@
         <Setter Property="CornerRadius" Value="20"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Top"></Setter>
         <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="Padding" Value="17 10"></Setter>
     </Style>
     
     <Style Selector="TextBox.TaskDescriptionBox">
@@ -198,10 +260,40 @@
         <Setter Property="Margin" Value="0 5 0 0"></Setter>
         <Setter Property="Padding" Value="15 0"></Setter>
         <Setter Property="Height" Value="37.5"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.ProjectDatePicker /template/ DataValidationErrors">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <Style Selector="CalendarDatePicker.ProjectDatePicker /template/ Panel#LayoutRoot">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.ProjectDatePicker /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="0 0 3 0 #50000000"/>
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.ProjectDatePicker:pointerover /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="0 0 7 0 #75000000"/>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.ProjectDatePicker:focus-within /template/ Border#Background">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BoxShadow" Value="0 0 7 0 #75000000"/>
     </Style>
     
     <Style Selector="CalendarDatePicker.ProjectDatePicker /template/ Button#PART_Button">
         <Setter Property="Margin" Value="0,0,10,0"/>
+        <Setter Property="Theme" Value="{StaticResource MyCalendarDatePickerButton}"></Setter>
     </Style>
     
     <Style Selector="ListBox.ProjectColors">
@@ -220,16 +312,6 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryAccentColor}"></Setter>
         <Setter Property="Opacity" Value="0.5"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
-    </Style>
-    
-    <Style Selector="TextBlock.ReadOnlyText">
-        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
-        <Setter Property="FontSize" Value="12.5"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryAccentColor}"></Setter>
-        <Setter Property="Opacity" Value="0.5"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="10 0"></Setter>
     </Style>
     
     <Style Selector="ComboBox.PriorityBox">
@@ -258,6 +340,54 @@
     
     <Style Selector="TextBlock.DeadlineLabel">
         <Setter Property="Margin" Value="15 0 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.Divider">
+        <Setter Property="Margin" Value="0 25 0 10"></Setter>
+        <Setter Property="Height" Value="1"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Background" Value="#DDDDDD"></Setter>
+        <Setter Property="CornerRadius" Value="100"></Setter>
+    </Style>
+    
+    <Style Selector="Border.ReadOnlyBorder">
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="BoxShadow" Value="0 0 6 0 #15000000"/>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Margin" Value="0 10 0 10"></Setter>
+        <Setter Property="Padding" Value="15 0"/>
+    </Style>
+    
+    <Style Selector="TextBlock.ReadOnlyTitle">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="FontSize" Value="12.5"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ReadOnlyIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="Opacity" Value="0.45"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ReadOnlyText">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+        <Setter Property="FontSize" Value="12.5"></Setter>
+        <Setter Property="Opacity" Value="0.45"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.StatusIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="Margin" Value="0 0 -10 0"></Setter>
+        <Setter Property="Foreground" Value="LimeGreen"></Setter>
+        <Setter Property="Opacity" Value="0.85"></Setter>
     </Style>
     
 </Styles>

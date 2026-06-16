@@ -15,9 +15,9 @@
     <Border Classes="MainBorder">
         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
             <!-- project color -->
-            <Grid Classes="ItemGrid" Grid.Row="0" RowDefinitions="Auto, Auto">
-                <TextBlock Classes="ProjectLabel" Grid.Row="0" Text="Project Color "/>
-                <ListBox Grid.Row="1" Classes="ProjectColors" ItemsSource="{Binding ProjectColors}" SelectedItem="{Binding SelectedProjectColor}">
+            <Grid Classes="ItemGrid" Grid.Row="0" ColumnDefinitions="Auto, Auto">
+                <TextBlock Grid.Column="0" Classes="ProjectLabel" Text="Project Color "/>
+                <ListBox Grid.Column="1" Classes="ProjectColors" ItemsSource="{Binding ProjectColors}" SelectedItem="{Binding SelectedProjectColor}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>
@@ -46,26 +46,31 @@
                 <CalendarDatePicker Classes="ProjectDatePicker" Grid.Row="1" SelectedDate="{Binding ProjectDeadline}"/>
             </Grid>
             <!-- read only header -->
-            <Grid Classes="ItemGrid" Grid.Row="4" ColumnDefinitions="*, Auto, *">
-                <Border Classes="HeaderLines" Grid.Column="0"/>
-                <TextBlock Classes="ReadOnlyText" Grid.Column="1" Text="Read Only"/>
-                <Border Classes="HeaderLines" Grid.Column="2"/>
-            </Grid>
+            <Border Classes="Divider" Grid.Row="4"/>
             <!-- Created at -->
-            <Grid Classes="ItemGrid" Grid.Row="5" RowDefinitions="Auto, Auto">
-                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Created At"/>
-                <TextBox Grid.Row="1" Classes="ProjectTextBox" IsReadOnly="True" Text="{Binding CreatedAt}"/>
-            </Grid>
+            <Border Classes="ReadOnlyBorder" Grid.Row="5">
+                <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="8">
+                    <TextBlock Classes="ReadOnlyTitle" Grid.Column="0" Text="Created at"/>
+                    <TextBlock Classes="ReadOnlyIcon" Grid.Column="1" Text="&#xE10A;"/>
+                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="May 22, 2025 10:30 AM"/>
+                </Grid>
+            </Border>
             <!-- Created by -->
-            <Grid Classes="ItemGrid" Grid.Row="6" RowDefinitions="Auto, Auto">
-                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Created By"/>
-                <TextBox Grid.Row="1" Classes="ProjectTextBox" IsReadOnly="True" Text="{Binding CreatedBy}"/>
-            </Grid>
+            <Border  Classes="ReadOnlyBorder" Grid.Row="6">
+                <Grid ColumnDefinitions="*, Auto, Auto">
+                    <TextBlock Classes="ReadOnlyTitle" Grid.Column="0" Text="Created by"/>
+                    <TextBlock Classes="ReadOnlyIcon" Grid.Column="1" Text="&#xE4C2;"/>
+                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="John Doe"/>
+                </Grid>
+            </Border>
             <!-- Status -->
-            <Grid Classes="ItemGrid" Grid.Row="7" RowDefinitions="Auto, Auto">
-                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Status"/>
-                <TextBox Grid.Row="1" Classes="ProjectTextBox" IsReadOnly="True" Text="{Binding Status}"/>
-            </Grid>
+            <Border  Classes="ReadOnlyBorder" Grid.Row="7">
+                <Grid ColumnDefinitions="*, Auto, Auto">
+                    <TextBlock Classes="ReadOnlyTitle" Grid.Column="0" Text="Status"/>
+                    <TextBlock Classes="ReadOnlyIcon StatusIcon" Grid.Column="1" Text="&#xECE0;"/>
+                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="Active"/>
+                </Grid>
+            </Border>
         </Grid>
     </Border>
     
