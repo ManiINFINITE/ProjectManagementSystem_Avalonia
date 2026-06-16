@@ -32,6 +32,10 @@ public class Project {
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     
     [Required]
+    [MaxLength(10)]
+    public string Color { get; set; } =  string.Empty;
+    
+    [Required]
     public int OwnerId { get; set; }
 
     [ForeignKey(nameof(OwnerId))]

@@ -1,0 +1,64 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             xmlns:models="clr-namespace:ProjectManagementSystem.Models"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
+             x:Class="ProjectManagementSystem.Views.AssigneeInfoView"
+             x:DataType="vm:ProjectCreationViewModel">
+    
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/ProjectCreationStyles.axaml"/>
+    </UserControl.Styles>
+    
+    <Border Classes="MainBorder">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+            <!-- search for user -->
+            <Grid Classes="ItemGrid" Grid.Row="0" RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Search For User To Assign"/>
+                <AutoCompleteBox Grid.Row="1"
+                                 Classes="UserSearchBox"
+                                 PlaceholderText="Search User"
+                                 ItemsSource="{Binding AllUsers}"
+                                 FilterMode="Contains"
+                                 SelectedItem="{Binding SelectedUser}"
+                                 ValueMemberBinding="{Binding FullName, x:DataType=models:User}"/>
+            </Grid>
+            <!-- Role -->
+            <Grid Classes="ItemGrid" Grid.Row="1" RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Assignee Role"/>
+                <TextBox Grid.Row="1" Classes="ProjectTextBox" PlaceholderText="Role" Text="{Binding AssigneeRole}"/>
+            </Grid>
+            <!-- Add Button -->
+            <Button Grid.Row="2" Classes="AssignUserButton" Content="Assign User" Command="{Binding AssignUserCommand}"/>
+            <!-- users list header -->
+            <Grid Classes="ItemGrid" Grid.Row="3" ColumnDefinitions="*, Auto, *">
+                <Border Classes="HeaderLines" Grid.Column="0"/>
+                <TextBlock Classes="ReadOnlyText" Grid.Column="1" Text="Assignees"/>
+                <Border Classes="HeaderLines" Grid.Column="2"/>
+            </Grid>
+            <!-- assignees list -->
+            <ScrollViewer Grid.Row="4" MaxHeight="200" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Assignees}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="models:AssigneeEntry">
+                            <Border Classes="AssigneeCard">
+                                <Grid ColumnDefinitions="*, Auto, Auto">
+                                    <TextBlock Grid.Column="0" Classes="AssigneeNameText"
+                                               Text="{Binding User.Username}"/>
+                                    <TextBlock Grid.Column="1" Classes="AssigneeRoleText"
+                                               Text="{Binding Role}"/>
+                                    <TextBlock Grid.Column="2" Classes="RemoveIcon"
+                                               Text="&#xE4F6;"
+                                               Tapped="RemoveAssignee_Tapped"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+    
+</UserControl>

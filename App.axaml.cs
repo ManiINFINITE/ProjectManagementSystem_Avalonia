@@ -5,6 +5,7 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using Microsoft.EntityFrameworkCore;
 using ProjectManagementSystem.Data;
 using ProjectManagementSystem.Services;
 using ProjectManagementSystem.ViewModels;
@@ -19,7 +20,7 @@ public partial class App : Application {
 
     public override void OnFrameworkInitializationCompleted() {
         using var db = new AppDbContext();
-        db.Database.EnsureCreated();
+        db.Database.Migrate();
         
         AppSettingsService.Instance!.Load();
         

@@ -1,0 +1,85 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             xmlns:models="clr-namespace:ProjectManagementSystem.Models"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
+             x:Class="ProjectManagementSystem.Views.TaskInfoView"
+             x:DataType="vm:ProjectCreationViewModel">
+    
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/ProjectCreationStyles.axaml"/>
+    </UserControl.Styles>
+    
+    <Border Classes="MainBorder">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+            <!-- title -->
+            <Grid Classes="ItemGrid" Grid.Row="0" RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Task Title"/>
+                <TextBox Classes="ProjectTextBox" Grid.Row="1" PlaceholderText="Title" Text="{Binding TaskTitle}"/>
+            </Grid>
+            <!-- description -->
+            <Grid Classes="ItemGrid" Grid.Row="1" RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Task Description"/>
+                <TextBox Classes="ProjectTextBox TaskDescriptionBox" Grid.Row="1" PlaceholderText="Description" Text="{Binding TaskDescription}"/>
+            </Grid>
+            <!-- priority and deadline -->
+            <Grid Classes="ItemGrid" Grid.Row="2" ColumnDefinitions="*, *">
+                <Grid Grid.Column="0" RowDefinitions="Auto, Auto">
+                    <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Priority"/>
+                    <ComboBox Classes="PriorityBox"
+                              Grid.Row="1"
+                              SelectedItem="{Binding SelectedPriority}"
+                              ItemsSource="{Binding Priorities}"/>
+                </Grid>
+                <Grid Grid.Column="1" RowDefinitions="Auto, Auto">
+                    <TextBlock Grid.Row="0" Classes="ProjectLabel DeadlineLabel" Text="Deadline"/>
+                    <CalendarDatePicker Classes="TaskDeadlinePicker" Grid.Row="1" SelectedDate="{Binding TaskDeadline}"/>
+                </Grid>
+            </Grid>
+            <!-- Select assignee -->
+            <Grid Classes="ItemGrid" Grid.Row="3" RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Select Assignee"/>
+                <AutoCompleteBox Grid.Row="1"
+                                 Classes="UserSearchBox" 
+                                 PlaceholderText="Search Assignee"
+                                 ItemsSource="{Binding AssigneeUsers}"
+                                 FilterMode="Contains"
+                                 SelectedItem="{Binding SelectedTaskAssignee}"
+                                 ValueMemberBinding="{Binding FullName, x:DataType=models:User}"/>
+            </Grid>
+            <!-- Add task button -->
+            <Button Grid.Row="4" Classes="AssignUserButton" Content="Add Task" Command="{Binding AddTaskCommand}"/>
+            <!-- users list header -->
+            <Grid Classes="ItemGrid" Grid.Row="5" ColumnDefinitions="*, Auto, *">
+                <Border Classes="HeaderLines" Grid.Column="0"/>
+                <TextBlock Classes="ReadOnlyText" Grid.Column="1" Text="Tasks"/>
+                <Border Classes="HeaderLines" Grid.Column="2"/>
+            </Grid>
+            <!-- tasks list -->
+            <ScrollViewer Grid.Row="6" MaxHeight="200" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Tasks}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="models:TaskEntry">
+                            <Border Classes="AssigneeCard">
+                                <Grid ColumnDefinitions="*, Auto, Auto, Auto">
+                                    <TextBlock Grid.Column="0" Classes="AssigneeNameText"
+                                               Text="{Binding Title}"/>
+                                    <TextBlock Grid.Column="1" Classes="AssigneeRoleText"
+                                               Text="{Binding Priority}"/>
+                                    <TextBlock Grid.Column="2" Classes="AssigneeRoleText"
+                                               Text="{Binding Assignee?.Username}"/>
+                                    <TextBlock Grid.Column="3" Classes="RemoveIcon"
+                                               Text="&#xE4F6;"
+                                               Tapped="RemoveTask_Tapped"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+    
+</UserControl>

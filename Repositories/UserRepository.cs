@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProjectManagementSystem.Data;
 using ProjectManagementSystem.Models;
@@ -12,6 +13,11 @@ public class UserRepository {
         
         await db.Users.AddAsync(user);
         await db.SaveChangesAsync();
+    }
+
+    public async Task<List<User>> GetAllAsync() {
+        await using var db = new AppDbContext();
+        return await db.Users.ToListAsync();
     }
 
     public async Task<User?> GetByIdAsync(int id) {

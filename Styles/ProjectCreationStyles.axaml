@@ -1,0 +1,263 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+    <Style Selector="Grid.HeaderGrid">
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.CreateNewProjectHeaderText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ElementGeneralBackground}"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+        <Setter Property="Margin" Value="20 5 0 5"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.CreateProjectIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="Foreground" Value="LimeGreen"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 5 2.5 5"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.DiscardProjectIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="Foreground" Value="Red"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="2.5 5 10 5"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.CreateProjectIcon:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.DiscardProjectIcon:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CreateProjectButton">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CreateProjectButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CreateProjectButton TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="Foreground" Value="LimeGreen"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+    </Style>
+    
+    <Style Selector="Button.DiscardProjectButton">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="Button.DiscardProjectButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+    </Style>
+    
+    <Style Selector="Button.DiscardProjectButton TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="Foreground" Value="Red"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AddProjectHorizontalDivider">
+        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Width" Value="1"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="Background" Value="{DynamicResource PrimaryAccentColor}"></Setter>
+        <Setter Property="Opacity" Value="0.5"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="10 15"></Setter>
+    </Style>
+    
+    <Style Selector="Border.MainBorder">
+        <Setter Property="Background" Value="{DynamicResource ElementGeneralBackground}"></Setter>
+        <Setter Property="Padding" Value="15"></Setter>
+        <Setter Property="Width" Value="400"></Setter>
+        <Setter Property="Height" Value="700"></Setter>
+    </Style>
+    
+    <Style Selector="Grid.ItemGrid">
+        <Setter Property="Margin" Value="0 15 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ProjectLabel">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+        <Setter Property="FontSize" Value="12.5"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryAccentColor}"/>
+    </Style>
+    
+    <Style Selector="TextBox.ProjectTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 5 0 0"></Setter>
+        <Setter Property="Padding" Value="15 5"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.UserSearchBox">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="0 5 0 0"></Setter>
+        <Setter Property="Padding" Value="15 5"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.UserSearchBox TextBox">
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.AssignUserButton">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="0 25 0 0"></Setter>
+        <Setter Property="Padding" Value="15 5"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBox.ProjectDescriptionBox">
+        <Setter Property="Height" Value="115"></Setter>
+        <Setter Property="CornerRadius" Value="20"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Top"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+    </Style>
+    
+    <Style Selector="TextBox.TaskDescriptionBox">
+        <Setter Property="Height" Value="80"></Setter>
+        <Setter Property="CornerRadius" Value="20"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Top"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.ProjectDatePicker">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 5 0 0"></Setter>
+        <Setter Property="Padding" Value="15 0"></Setter>
+        <Setter Property="Height" Value="37.5"></Setter>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.ProjectDatePicker /template/ Button#PART_Button">
+        <Setter Property="Margin" Value="0,0,10,0"/>
+    </Style>
+    
+    <Style Selector="ListBox.ProjectColors">
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    
+    <Style Selector="ListBox.ProjectColors ListBoxItem">
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    
+    <Style Selector="Border.HeaderLines">
+        <Setter Property="Height" Value="1"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="CornerRadius" Value="20"></Setter>
+        <Setter Property="Background" Value="{DynamicResource PrimaryAccentColor}"></Setter>
+        <Setter Property="Opacity" Value="0.5"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ReadOnlyText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="12.5"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryAccentColor}"></Setter>
+        <Setter Property="Opacity" Value="0.5"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="10 0"></Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.PriorityBox">
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="0 5 7.5 0"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Padding" Value="15 5"></Setter>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.TaskDeadlinePicker">
+        <Setter Property="Height" Value="37"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="7.5 5 0 0"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Padding" Value="15 5"></Setter>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.TaskDeadlinePicker /template/ Button#PART_Button">
+        <Setter Property="Margin" Value="0,0,10,0"/>
+    </Style>
+    
+    <Style Selector="TextBlock.DeadlineLabel">
+        <Setter Property="Margin" Value="15 0 0 0"></Setter>
+    </Style>
+    
+</Styles>

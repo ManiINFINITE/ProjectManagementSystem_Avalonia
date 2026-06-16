@@ -1,15 +1,32 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:ProjectManagementSystem.Views"
              xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="1000"
              x:Class="ProjectManagementSystem.Views.ProjectCreationView"
              x:DataType="vm:ProjectCreationViewModel">
     
-    <Border Background="{DynamicResource ElementGeneralBackground}"
-            CornerRadius="16"
-            Width="600"
-            Height="400"
-            Padding="32">
-        <TextBlock Text="TEST" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/ProjectCreationStyles.axaml"/>
+    </UserControl.Styles>
+    
+    <Border CornerRadius="15" ClipToBounds="True" Background="{DynamicResource ElementGeneralBackground}">
+        <Grid RowDefinitions="Auto, Auto">
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto" Classes="HeaderGrid">
+                <TextBlock Classes="CreateNewProjectHeaderText" Grid.Column="0" Text="Create New Project"/>
+                <TextBlock Tapped="CreateProject_Tapped" Classes="CreateProjectIcon" Grid.Column="1" Text="&#xE184;" ToolTip.Tip="Create Project"/>
+                <TextBlock Tapped="DiscardIcon_Tapped" Classes="DiscardProjectIcon" Grid.Column="2" Text="&#xE4F8;" ToolTip.Tip="Discard Project"/>
+            </Grid>
+            <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *, Auto, *" Width="1242" Height="700">
+                <views:ProjectInfoView Grid.Column="0"/>
+                <Border Grid.Column="1" Classes="AddProjectHorizontalDivider"/>
+                <views:AssigneeInfoView Grid.Column="2"/>
+                <Border Grid.Column="3" Classes="AddProjectHorizontalDivider"/>
+                <views:TaskInfoView Grid.Column="4"/>
+            </Grid>
+        </Grid>
     </Border>
     
 </UserControl>

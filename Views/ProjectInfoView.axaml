@@ -1,0 +1,72 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             xmlns:models="clr-namespace:ProjectManagementSystem.Models"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
+             x:Class="ProjectManagementSystem.Views.ProjectInfoView"
+             x:DataType="vm:ProjectCreationViewModel">
+    
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/ProjectCreationStyles.axaml"/>
+    </UserControl.Styles>
+    
+    <Border Classes="MainBorder">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+            <!-- project color -->
+            <Grid Classes="ItemGrid" Grid.Row="0" RowDefinitions="Auto, Auto">
+                <TextBlock Classes="ProjectLabel" Grid.Row="0" Text="Project Color "/>
+                <ListBox Grid.Row="1" Classes="ProjectColors" ItemsSource="{Binding ProjectColors}" SelectedItem="{Binding SelectedProjectColor}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:ProjectColorOption">
+                            <Border Width="15" Height="15" CornerRadius="50" ClipToBounds="True" ToolTip.Tip="{Binding Name}" Background="{Binding Brush}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <!-- name -->
+            <Grid Classes="ItemGrid" Grid.Row="1" RowDefinitions="Auto, Auto">
+                <TextBlock Classes="ProjectLabel" Grid.Row="0" Text="Name"/>
+                <TextBox Classes="ProjectTextBox" Grid.Row="1" PlaceholderText="Name" Text="{Binding ProjectName}"/>
+            </Grid>
+            <!-- Description -->
+            <Grid Classes="ItemGrid" Grid.Row="2" RowDefinitions="Auto, Auto">
+                <TextBlock Classes="ProjectLabel" Grid.Row="0" Text="Description"/>
+                <TextBox Classes="ProjectTextBox ProjectDescriptionBox" Grid.Row="1" PlaceholderText="Description" Text="{Binding ProjectDescription}"/>
+            </Grid>
+            <!-- Deadline -->
+            <Grid Classes="ItemGrid" Grid.Row="3" RowDefinitions="Auto, Auto">
+                <TextBlock Classes="ProjectLabel" Grid.Row="0" Text="Deadline"/>
+                <CalendarDatePicker Classes="ProjectDatePicker" Grid.Row="1" SelectedDate="{Binding ProjectDeadline}"/>
+            </Grid>
+            <!-- read only header -->
+            <Grid Classes="ItemGrid" Grid.Row="4" ColumnDefinitions="*, Auto, *">
+                <Border Classes="HeaderLines" Grid.Column="0"/>
+                <TextBlock Classes="ReadOnlyText" Grid.Column="1" Text="Read Only"/>
+                <Border Classes="HeaderLines" Grid.Column="2"/>
+            </Grid>
+            <!-- Created at -->
+            <Grid Classes="ItemGrid" Grid.Row="5" RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Created At"/>
+                <TextBox Grid.Row="1" Classes="ProjectTextBox" IsReadOnly="True" Text="{Binding CreatedAt}"/>
+            </Grid>
+            <!-- Created by -->
+            <Grid Classes="ItemGrid" Grid.Row="6" RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Created By"/>
+                <TextBox Grid.Row="1" Classes="ProjectTextBox" IsReadOnly="True" Text="{Binding CreatedBy}"/>
+            </Grid>
+            <!-- Status -->
+            <Grid Classes="ItemGrid" Grid.Row="7" RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Status"/>
+                <TextBox Grid.Row="1" Classes="ProjectTextBox" IsReadOnly="True" Text="{Binding Status}"/>
+            </Grid>
+        </Grid>
+    </Border>
+    
+</UserControl>

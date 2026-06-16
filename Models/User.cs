@@ -32,4 +32,6 @@ public class User {
     
     
     public byte[]? ProfilePicture { get; set; }
+    
+    public string FullName => $"{FirstName} {LastName} ({Username})";
 }
