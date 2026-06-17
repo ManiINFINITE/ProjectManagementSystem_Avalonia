@@ -47,6 +47,12 @@
 - Notification toggle (enable/disable)
 - Auto-dismiss duration selector
 
+### 🛠️ Project Creation
+- Creating project with name, description, deadline
+- Assigning users to project and giving them roles
+- Defining tasks for the project and assigning a user to it
+- Each task with title, description, assignee, priority, deadline
+
 ---
 
 ## 📸 Screenshots
@@ -124,8 +130,7 @@ The SQLite database (`project_management.db`) is created automatically on first 
 
 ## 🗺️ Roadmap
 
-- [ ] Project creation and management
-- [ ] Task assignment to users
+- [ ] Project editing and deletion
 - [ ] Project dashboard and tracking
 - [ ] In-app messaging between users
 - [ ] Role-based permissions (Admin, Member, Viewer)
