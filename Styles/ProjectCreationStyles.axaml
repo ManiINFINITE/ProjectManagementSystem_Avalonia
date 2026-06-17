@@ -546,11 +546,23 @@
         <Setter Property="Margin" Value="5 0 0 0"></Setter>
     </Style>
     
+    <!-- ItemsControl's generated item containers (ContentPresenter) -->
+    <Style Selector="ItemsControl ContentPresenter">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <!-- The default StackPanel ItemsPanel ItemsControl uses -->
+    <Style Selector="ItemsControl > StackPanel">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+    
     <Style Selector="Border.AssigneeCard">
         <Setter Property="Width" Value="370"></Setter>
-        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="Height" Value="60"></Setter>
         <Setter Property="CornerRadius" Value="10"></Setter>
         <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="Margin" Value="8 5"/>
     </Style>
     
     <Style Selector="Border.AssigneePicBorder">
@@ -558,7 +570,7 @@
         <Setter Property="CornerRadius" Value="999"></Setter>
         <Setter Property="Height" Value="40"></Setter>
         <Setter Property="Width" Value="40"></Setter>
-        <Setter Property="Margin" Value="5 0 10 0"></Setter>
+        <Setter Property="Margin" Value="10 0 10 0"></Setter>
     </Style>
     
     <Style Selector="Border.AssigneePicBorder Image">
@@ -567,19 +579,18 @@
     
     <Style Selector="TextBlock.AssigneeName">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
-        <Setter Property="Margin" Value="0 5 0 0"></Setter>
+        <Setter Property="Margin" Value="0 10 0 0"></Setter>
     </Style>
     
     <Style Selector="TextBlock.AssigneeEmail">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
         <Setter Property="FontSize" Value="10"></Setter>
         <Setter Property="Opacity" Value="0.5"></Setter>
-        <Setter Property="Margin" Value="0 2.5 0 0"></Setter>
+        <Setter Property="Margin" Value="0 7.5 0 0"></Setter>
     </Style>
     
     <Style Selector="Border.AssigneeRoleBorder">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Background" Value="#30FF0000"></Setter>
         <Setter Property="Padding" Value="10 5"></Setter>
         <Setter Property="CornerRadius" Value="5"></Setter>
         <Setter Property="Margin" Value="10 0 0 0"></Setter>
@@ -587,7 +598,6 @@
     
     <Style Selector="Border.AssigneeRoleBorder TextBlock">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
-        <Setter Property="Foreground" Value="#BBFF0000"></Setter>
         <Setter Property="FontSize" Value="12.5"></Setter>
     </Style>
     
@@ -595,12 +605,29 @@
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="10 0"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="Button.RemoveAssigneeButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
     </Style>
     
     <Style Selector="Button.RemoveAssigneeButton TextBlock">
         <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
         <Setter Property="Foreground" Value="#70000000"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Foreground" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.RemoveAssigneeButton:pointerover TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="Foreground" Value="#AAFF0000"></Setter>
     </Style>
     
 </Styles>

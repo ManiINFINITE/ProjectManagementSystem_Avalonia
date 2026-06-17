@@ -13,7 +13,7 @@
         <StyleInclude Source="../Styles/ProjectCreationStyles.axaml"/>
     </UserControl.Styles>
     
-    <Border Classes="MainBorder">
+    <Border Classes="MainBorder" ClipToBounds="False">
         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto" ClipToBounds="False">
             <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Margin="0 5 0 5">
                 <TextBlock Classes="HeaderIcon" Grid.Column="0" Text="&#xE4D6;"/>
@@ -47,8 +47,8 @@
             <!-- users list header -->
             <Border Grid.Row="4" Classes="Divider"></Border>
             <!-- assignees list -->
-            <ScrollViewer Grid.Row="5" MaxHeight="200" VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Assignees}">
+            <ScrollViewer Grid.Row="5" MaxHeight="200" VerticalScrollBarVisibility="Auto" Margin="-8 5">
+                <ItemsControl ItemsSource="{Binding Assignees}" ClipToBounds="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="models:AssigneeEntry">
                             <Border Classes="AssigneeCard">
@@ -73,10 +73,14 @@
                                         <TextBlock Classes="AssigneeName" Grid.Row="0" Text="{Binding User.FullName}"/>
                                         <TextBlock Classes="AssigneeEmail" Grid.Row="1" Text="{Binding User.Email}"/>
                                     </Grid>
-                                    <Border Classes="AssigneeRoleBorder" Grid.Column="2">
-                                        <TextBlock Text="{Binding Role}"/>
+                                    <Border Classes="AssigneeRoleBorder" Grid.Column="2"
+                                            Background="{Binding Role, Converter={x:Static converter:RoleBackgroundColorConverter.Instance}}">
+                                        <TextBlock Text="{Binding Role}"
+                                                   Foreground="{Binding Role, Converter={x:Static converter:RoleTextColorConverter.Instance}}"/>
                                     </Border>
-                                    <Button Classes="RemoveAssigneeButton" Grid.Column="3">
+                                    <Button Classes="RemoveAssigneeButton" Grid.Column="3"
+                                            Command="{Binding $parent[ItemsControl].((vm:ProjectCreationViewModel)DataContext)?.RemoveAssigneeCommand}"
+                                            CommandParameter="{Binding}">
                                         <TextBlock Text="&#xE4F6;"/>
                                     </Button>
                                 </Grid>
