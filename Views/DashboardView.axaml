@@ -129,7 +129,7 @@
             </Border>
         </Grid>
         
-        <Border Background="#88000000" IsVisible="{Binding IsCreateProjectOpen}">
+        <Border Background="#C8000000" IsVisible="{Binding IsCreateProjectOpen}" ClipToBounds="False">
             <views:ProjectCreationView DataContext="{Binding ProjectCreationViewModel}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>

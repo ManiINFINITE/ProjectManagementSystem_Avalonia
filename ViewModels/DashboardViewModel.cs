@@ -12,7 +12,8 @@ public partial class DashboardViewModel : ViewModelBase {
     public static DashboardViewModel? Instance { get; private set; }
 
     private readonly User? _currentUser;
-    public ProjectCreationViewModel ProjectCreationViewModel { get; } = new();
+    
+    [ObservableProperty] private ProjectCreationViewModel _projectCreationViewModel = new();
 
     [ObservableProperty] private ViewModelBase _currentRightPanelView;
     [ObservableProperty] private bool _isCreateProjectOpen;
@@ -45,6 +46,7 @@ public partial class DashboardViewModel : ViewModelBase {
     private void NavigateToSettings() => CurrentRightPanelView = new SettingsViewModel();
 
     public void OpenCreateProject() {
+        ProjectCreationViewModel = new ProjectCreationViewModel();
         IsCreateProjectOpen = true;
     }
 

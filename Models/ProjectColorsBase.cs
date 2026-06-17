@@ -9,27 +9,27 @@ public class ProjectColorsBase {
         
         new ProjectColorOption {
             Name = "Red",
-            Brush = new SolidColorBrush(Colors.Red),
+            Brush = new SolidColorBrush(Color.FromRgb(245, 66, 66)),
         },
         new ProjectColorOption {
             Name = "Green",
-            Brush = new SolidColorBrush(Colors.Green),
+            Brush = new SolidColorBrush(Color.FromRgb(74, 247, 83)),
         },
         new ProjectColorOption {
-            Name = "Yellow",
-            Brush = new SolidColorBrush(Colors.Yellow),
+            Name = "Pink",
+            Brush = new SolidColorBrush(Color.FromRgb(245, 88, 200)),
         },
         new ProjectColorOption {
             Name = "Blue",
-            Brush = new SolidColorBrush(Colors.Blue),
+            Brush = new SolidColorBrush(Color.FromRgb(88, 88, 245)),
         },
         new ProjectColorOption {
             Name = "Purple",
-            Brush = new SolidColorBrush(Colors.BlueViolet),
+            Brush = new SolidColorBrush(Color.FromRgb(172, 71, 255)),
         },
         new ProjectColorOption {
             Name = "Orange",
-            Brush = new SolidColorBrush(Colors.OrangeRed),
+            Brush = new SolidColorBrush(Color.FromRgb(245, 114, 49)),
         },
     };
 }

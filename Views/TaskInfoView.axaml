@@ -13,19 +13,23 @@
     </UserControl.Styles>
     
     <Border Classes="MainBorder">
-        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Margin="0 5 0 5">
+                <TextBlock Classes="HeaderIcon" Grid.Column="0" Text="&#xE198;"/>
+                <TextBlock Classes="HeaderText" Grid.Column="1" Text="Tasks Info"/>
+            </Grid>
             <!-- title -->
-            <Grid Classes="ItemGrid" Grid.Row="0" RowDefinitions="Auto, Auto">
+            <Grid Classes="ItemGrid" Grid.Row="1" RowDefinitions="Auto, Auto">
                 <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Task Title"/>
                 <TextBox Classes="ProjectTextBox" Grid.Row="1" PlaceholderText="Title" Text="{Binding TaskTitle}"/>
             </Grid>
             <!-- description -->
-            <Grid Classes="ItemGrid" Grid.Row="1" RowDefinitions="Auto, Auto">
+            <Grid Classes="ItemGrid" Grid.Row="2" RowDefinitions="Auto, Auto">
                 <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Task Description"/>
                 <TextBox Classes="ProjectTextBox TaskDescriptionBox" Grid.Row="1" PlaceholderText="Description" Text="{Binding TaskDescription}"/>
             </Grid>
             <!-- priority and deadline -->
-            <Grid Classes="ItemGrid" Grid.Row="2" ColumnDefinitions="*, *">
+            <Grid Classes="ItemGrid" Grid.Row="3" ColumnDefinitions="*, *">
                 <Grid Grid.Column="0" RowDefinitions="Auto, Auto">
                     <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Priority"/>
                     <ComboBox Classes="PriorityBox"
@@ -35,11 +39,11 @@
                 </Grid>
                 <Grid Grid.Column="1" RowDefinitions="Auto, Auto">
                     <TextBlock Grid.Row="0" Classes="ProjectLabel DeadlineLabel" Text="Deadline"/>
-                    <CalendarDatePicker Classes="TaskDeadlinePicker" Grid.Row="1" SelectedDate="{Binding TaskDeadline}"/>
+                    <CalendarDatePicker Classes="TaskDeadlinePicker ProjectDatePicker" Grid.Row="1" SelectedDate="{Binding TaskDeadline}"/>
                 </Grid>
             </Grid>
             <!-- Select assignee -->
-            <Grid Classes="ItemGrid" Grid.Row="3" RowDefinitions="Auto, Auto">
+            <Grid Classes="ItemGrid" Grid.Row="4" RowDefinitions="Auto, Auto">
                 <TextBlock Grid.Row="0" Classes="ProjectLabel" Text="Select Assignee"/>
                 <AutoCompleteBox Grid.Row="1"
                                  Classes="UserSearchBox" 
@@ -47,18 +51,19 @@
                                  ItemsSource="{Binding AssigneeUsers}"
                                  FilterMode="Contains"
                                  SelectedItem="{Binding SelectedTaskAssignee}"
-                                 ValueMemberBinding="{Binding FullName, x:DataType=models:User}"/>
+                                 ValueMemberBinding="{Binding FullNameUsername, x:DataType=models:User}"/>
             </Grid>
             <!-- Add task button -->
-            <Button Grid.Row="4" Classes="AssignUserButton" Content="Add Task" Command="{Binding AddTaskCommand}"/>
+            <Button Grid.Row="5" Classes="AssignUserButton" Command="{Binding AddTaskCommand}">
+                <Grid ColumnDefinitions="*, *">
+                    <TextBlock Grid.Column="0" Classes="AssignIcon" Text="&#xE3D4;"/>
+                    <TextBlock Grid.Column="1" Classes="AssignText" Text="Add Task"/>
+                </Grid>
+            </Button>
             <!-- users list header -->
-            <Grid Classes="ItemGrid" Grid.Row="5" ColumnDefinitions="*, Auto, *">
-                <Border Classes="HeaderLines" Grid.Column="0"/>
-                <TextBlock Classes="ReadOnlyText" Grid.Column="1" Text="Tasks"/>
-                <Border Classes="HeaderLines" Grid.Column="2"/>
-            </Grid>
+            <Border Grid.Row="6" Classes="Divider"></Border>
             <!-- tasks list -->
-            <ScrollViewer Grid.Row="6" MaxHeight="200" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="7" MaxHeight="200" VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding Tasks}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="models:TaskEntry">

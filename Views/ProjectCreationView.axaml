@@ -14,24 +14,16 @@
     
     <Border CornerRadius="15" ClipToBounds="True" Background="{DynamicResource ElementGeneralBackground}">
         <Grid ColumnDefinitions="*, *, *" Width="1300" Height="700">
-            <Border Grid.Column="0" Padding="0" Margin="15 5">
+            <Border Grid.Column="0" Padding="5" Margin="0 5" ClipToBounds="False">
                 <views:ProjectInfoView/>
             </Border>
-            <Border Grid.Column="1" Padding="0" Margin="15 5">
+            <Border Grid.Column="1" Padding="5" Margin="0 5" ClipToBounds="False">
                 <views:AssigneeInfoView/>
             </Border>
-            <Border Grid.Column="2" Padding="0" Margin="15 5">
+            <Border Grid.Column="2" Padding="5" Margin="0 5" ClipToBounds="False">
                 <views:TaskInfoView/>
             </Border>
         </Grid>
-        <!--<Grid RowDefinitions="Auto, Auto">
-            <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto" Classes="HeaderGrid">
-                <TextBlock Classes="CreateNewProjectHeaderText" Grid.Column="0" Text="Create New Project"/>
-                <TextBlock Tapped="CreateProject_Tapped" Classes="CreateProjectIcon" Grid.Column="1" Text="&#xE184;" ToolTip.Tip="Create Project"/>
-                <TextBlock Tapped="DiscardIcon_Tapped" Classes="DiscardProjectIcon" Grid.Column="2" Text="&#xE4F8;" ToolTip.Tip="Discard Project"/>
-            </Grid>
-            
-        </Grid>-->
     </Border>
     
 </UserControl>

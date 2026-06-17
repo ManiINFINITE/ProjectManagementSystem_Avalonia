@@ -35,10 +35,12 @@
                 
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="ElementGeneralBackground">WhiteSmoke</Color>
+                    <Color x:Key="ElementGeneralBackground_INVERTED">#151515</Color>
                     <Color x:Key="PrimaryLoginPanelAccentColor">#BDC2FF</Color>
                     <Color x:Key="SecondaryLoginPanelAccentColor">#8D80FF</Color>
                     <Color x:Key="NavButtonsHoverBackground">#DDDDDD</Color>
                     <Color x:Key="NavButtonsPressedBackground">#CCCCCC</Color>
+                    <Color x:Key="ReadOnlyBackground">#DEDEDE</Color>
                     
                     <SolidColorBrush x:Key="MyProjectsForeground">#555555</SolidColorBrush>
                     <SolidColorBrush x:Key="CollapseIconForeground">Black</SolidColorBrush>
@@ -46,14 +48,22 @@
                     <SolidColorBrush x:Key="PageTitleForeground">#555555</SolidColorBrush>
                     <SolidColorBrush x:Key="PageSectionHeader">#BBBBBB</SolidColorBrush>
                     <SolidColorBrush x:Key="ListBoxSelectedBorderColor">Black</SolidColorBrush>
+                    
+                    <BoxShadows x:Key="MainBorderShadow">0 0 10 0 #35000000</BoxShadows>
+                    <BoxShadows x:Key="SoftShadow">0 0 3 0 #50000000</BoxShadows>
+                    <BoxShadows x:Key="HoverShadow">0 0 7 0 #75000000</BoxShadows>
+                    <BoxShadows x:Key="FocusShadow">0 0 6 0 #85000000</BoxShadows>
+                    <BoxShadows x:Key="ReadOnlyShadow">0 0 6 0 #15000000</BoxShadows>
                 </ResourceDictionary>
                 
                 <ResourceDictionary x:Key="Dark">
                     <Color x:Key="ElementGeneralBackground">#151515</Color>
+                    <Color x:Key="ElementGeneralBackground_INVERTED">WhiteSmoke</Color>
                     <Color x:Key="PrimaryLoginPanelAccentColor">#343469</Color>
                     <Color x:Key="SecondaryLoginPanelAccentColor">#0E0E1F</Color>
                     <Color x:Key="NavButtonsHoverBackground">#5C5C5C</Color>
                     <Color x:Key="NavButtonsPressedBackground">#3C3C3C</Color>
+                    <Color x:Key="ReadOnlyBackground">#2B2B2B</Color>
                     
                     <SolidColorBrush x:Key="MyProjectsForeground">WhiteSmoke</SolidColorBrush>
                     <SolidColorBrush x:Key="CollapseIconForeground">White</SolidColorBrush>
@@ -61,6 +71,12 @@
                     <SolidColorBrush x:Key="PageTitleForeground">#8A8A8A</SolidColorBrush>
                     <SolidColorBrush x:Key="PageSectionHeader">#717171</SolidColorBrush>
                     <SolidColorBrush x:Key="ListBoxSelectedBorderColor">White</SolidColorBrush>
+                    
+                    <BoxShadows x:Key="MainBorderShadow">0 0 10 0 #35DDDDDD</BoxShadows>
+                    <BoxShadows x:Key="SoftShadow">0 0 3 0 #50DDDDDD</BoxShadows>
+                    <BoxShadows x:Key="HoverShadow">0 0 7 0 #75DDDDDD</BoxShadows>
+                    <BoxShadows x:Key="FocusShadow">0 0 8 0 #90DDDDDD</BoxShadows>
+                    <BoxShadows x:Key="ReadOnlyShadow">0 0 6 0 #15DDDDDD</BoxShadows>
                 </ResourceDictionary>
                 
             </ResourceDictionary.ThemeDictionaries>
@@ -74,7 +90,7 @@
         <!-- Solid Color Brush -->
         <SolidColorBrush x:Key="ImageTextForeground">#9692FF</SolidColorBrush>
         <SolidColorBrush x:Key="ButtonForeground">#E2E3FF</SolidColorBrush>
-        <SolidColorBrush x:Key="ButtonHoverForeground">White</SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonHoverForeground">WhiteSmoke</SolidColorBrush>
         
         <!-- Box Shadows -->
         <BoxShadows x:Key="AccentBoxShadow">0 0 60 0 #15152A</BoxShadows>

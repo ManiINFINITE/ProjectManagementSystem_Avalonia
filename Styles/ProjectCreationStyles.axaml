@@ -1,14 +1,26 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
-        <Border Classes="ReadOnlyBorder" Padding="20"  Width="370" Height="60">
+        <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
             
-                <Grid ColumnDefinitions="*, Auto, Auto">
-                    <TextBlock Classes="ReadOnlyTitle" Grid.Column="0" Text="Created At"/>
-                    <TextBlock Classes="ReadOnlyIcon" Grid.Column="1" Text="&#xE10A;"/>
-                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="May 22, 2025 10:30 AM"/>
+            <Border Classes="AssigneeCard">
+                <Grid ColumnDefinitions="Auto, *, Auto, Auto">
+                    <Border Classes="AssigneePicBorder" Grid.Column="0">
+                        <Image Source="../Assets/Images/deep-red.jpg"/>
+                    </Border>
+                    <Grid Grid.Column="1" RowDefinitions="Auto, Auto">
+                        <TextBlock Classes="AssigneeName" Grid.Row="0" Text="Mani Vakili"/>
+                        <TextBlock Classes="AssigneeEmail" Grid.Row="1" Text="manivakili907@gmail.com"/>
+                    </Grid>
+                    <Border Classes="AssigneeRoleBorder" Grid.Column="2">
+                        <TextBlock Text="UI UX Designer"/>
+                    </Border>
+                    <Button Classes="RemoveAssigneeButton" Grid.Column="3">
+                        <TextBlock Text="&#xE4F6;"/>
+                    </Button>
                 </Grid>
+            </Border>
             
         </Border>
     </Design.PreviewWith>
@@ -149,7 +161,7 @@
         <Setter Property="Width" Value="400"></Setter>
         <Setter Property="Height" Value="650"></Setter>
         <Setter Property="CornerRadius" Value="10"></Setter>
-        <Setter Property="BoxShadow" Value="0 0 10 0 #20000000"></Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource MainBorderShadow}"></Setter>
     </Style>
     
     <Style Selector="Grid.ItemGrid">
@@ -188,7 +200,7 @@
     </Style>
     
     <Style Selector="TextBox.ProjectTextBox /template/ Border#PART_BorderElement">
-        <Setter Property="BoxShadow" Value="0 0 3 0 #50000000"></Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"></Setter>
         <Setter Property="ClipToBounds" Value="False"></Setter>
         <Setter Property="Transitions">
             <Transitions>
@@ -198,11 +210,11 @@
     </Style>
     
     <Style Selector="TextBox.ProjectTextBox:pointerover /template/ Border#PART_BorderElement">
-        <Setter Property="BoxShadow" Value="0 0 7 0 #75000000"></Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource HoverShadow}"></Setter>
     </Style>
     
     <Style Selector="TextBox.ProjectTextBox:focus /template/ Border#PART_BorderElement">
-        <Setter Property="BoxShadow" Value="0 0 6 0 #85000000"></Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource FocusShadow}"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
     </Style>
     
@@ -213,10 +225,52 @@
         <Setter Property="Margin" Value="0 5 0 0"></Setter>
         <Setter Property="Padding" Value="15 5"></Setter>
         <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.UserSearchBox /template/ Grid#PART_LayoutRoot">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <Style Selector="AutoCompleteBox.UserSearchBox /template/ TextBox#PART_TextBox">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <Style Selector="AutoCompleteBox.UserSearchBox /template/ TextBox#PART_TextBox /template/ DataValidationErrors">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <Style Selector="AutoCompleteBox.UserSearchBox /template/ TextBox#PART_TextBox /template/ DataValidationErrors /template/ Panel">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.UserSearchBox /template/ DataValidationErrors">
+        <Setter Property="ClipToBounds" Value="False"></Setter>
     </Style>
     
     <Style Selector="AutoCompleteBox.UserSearchBox TextBox">
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.UserSearchBox /template/ TextBox#PART_TextBox /template/ Border#PART_BorderElement">
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.UserSearchBox /template/ TextBox#PART_TextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.UserSearchBox:pointerover /template/ TextBox#PART_TextBox /template/ Border#PART_BorderElement">
+        <Setter Property="BoxShadow" Value="{DynamicResource HoverShadow}"></Setter>
     </Style>
     
     <Style Selector="Button.AssignUserButton">
@@ -235,6 +289,11 @@
                 <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
             </LinearGradientBrush>
         </Setter>
+    </Style>
+    
+    <Style Selector="Button.AssignUserButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonHoverForeground}"></Setter>
     </Style>
     
     <Style Selector="TextBox.ProjectDescriptionBox">
@@ -273,7 +332,7 @@
     </Style>
     
     <Style Selector="CalendarDatePicker.ProjectDatePicker /template/ Border#Background">
-        <Setter Property="BoxShadow" Value="0 0 3 0 #50000000"/>
+        <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"/>
         <Setter Property="ClipToBounds" Value="False"/>
         <Setter Property="Transitions">
             <Transitions>
@@ -283,12 +342,12 @@
     </Style>
     
     <Style Selector="CalendarDatePicker.ProjectDatePicker:pointerover /template/ Border#Background">
-        <Setter Property="BoxShadow" Value="0 0 7 0 #75000000"/>
+        <Setter Property="BoxShadow" Value="{DynamicResource HoverShadow}"/>
     </Style>
     
     <Style Selector="CalendarDatePicker.ProjectDatePicker:focus-within /template/ Border#Background">
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BoxShadow" Value="0 0 7 0 #75000000"/>
+        <Setter Property="BoxShadow" Value="{DynamicResource FocusShadow}"/>
     </Style>
     
     <Style Selector="CalendarDatePicker.ProjectDatePicker /template/ Button#PART_Button">
@@ -299,10 +358,35 @@
     <Style Selector="ListBox.ProjectColors">
         <Setter Property="Margin" Value="10 0 0 0"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="MinHeight" Value="0"></Setter>
     </Style>
     
     <Style Selector="ListBox.ProjectColors ListBoxItem">
         <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="MinHeight" Value="0"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="BorderThickness" Value="1.5"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="Margin" Value="5 0"></Setter>
+    </Style>
+    
+    <Style Selector="ListBox.ProjectColors ListBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    
+    <Style Selector="ListBox.ProjectColors ListBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    
+    <Style Selector="ListBox.ProjectColors ListBoxItem:selected">
+        <Setter Property="BorderBrush" Value="{DynamicResource ElementGeneralBackground_INVERTED}"/>
+        <Setter Property="BorderThickness" Value="1.5"/>
+        <Setter Property="CornerRadius" Value="50"/>
     </Style>
     
     <Style Selector="Border.HeaderLines">
@@ -322,6 +406,36 @@
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
         <Setter Property="Padding" Value="15 5"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.PriorityBox /template/ DataValidationErrors">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <Style Selector="ComboBox.PriorityBox /template/ Grid">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+    
+    <Style Selector="ComboBox.PriorityBox /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"/>
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <!-- Pointer over -->
+    <Style Selector="ComboBox.PriorityBox:pointerover /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="{DynamicResource HoverShadow}"/>
+    </Style>
+
+    <!-- Focus-visible (this is the actual focus pseudo-class used in this template) -->
+    <Style Selector="ComboBox.PriorityBox:focus-visible /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="{DynamicResource FocusShadow}"/>
     </Style>
     
     <Style Selector="CalendarDatePicker.TaskDeadlinePicker">
@@ -354,7 +468,8 @@
     <Style Selector="Border.ReadOnlyBorder">
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="Height" Value="50"></Setter>
-        <Setter Property="BoxShadow" Value="0 0 6 0 #15000000"/>
+        <Setter Property="BoxShadow" Value="{DynamicResource ReadOnlyShadow}"/>
+        <Setter Property="Background" Value="{DynamicResource ReadOnlyBackground}"></Setter>
         <Setter Property="CornerRadius" Value="10"></Setter>
         <Setter Property="Margin" Value="0 10 0 10"></Setter>
         <Setter Property="Padding" Value="15 0"/>
@@ -388,6 +503,104 @@
         <Setter Property="Margin" Value="0 0 -10 0"></Setter>
         <Setter Property="Foreground" Value="LimeGreen"></Setter>
         <Setter Property="Opacity" Value="0.85"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.HeaderIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="22"></Setter>
+        <Setter Property="Foreground">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.HeaderText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+        <Setter Property="Foreground">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"></GradientStop>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"></GradientStop>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="FontSize" Value="17.5"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AssignIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 5 0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AssignText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="5 0 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AssigneeCard">
+        <Setter Property="Width" Value="370"></Setter>
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AssigneePicBorder">
+        <Setter Property="ClipToBounds" Value="True"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="40"></Setter>
+        <Setter Property="Margin" Value="5 0 10 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AssigneePicBorder Image">
+        <Setter Property="Stretch" Value="UniformToFill"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AssigneeName">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Margin" Value="0 5 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AssigneeEmail">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="10"></Setter>
+        <Setter Property="Opacity" Value="0.5"></Setter>
+        <Setter Property="Margin" Value="0 2.5 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AssigneeRoleBorder">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Background" Value="#30FF0000"></Setter>
+        <Setter Property="Padding" Value="10 5"></Setter>
+        <Setter Property="CornerRadius" Value="5"></Setter>
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.AssigneeRoleBorder TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Foreground" Value="#BBFF0000"></Setter>
+        <Setter Property="FontSize" Value="12.5"></Setter>
+    </Style>
+    
+    <Style Selector="Button.RemoveAssigneeButton">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.RemoveAssigneeButton TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="Foreground" Value="#70000000"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
     </Style>
     
 </Styles>
