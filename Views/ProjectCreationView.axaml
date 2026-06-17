@@ -13,16 +13,27 @@
     </UserControl.Styles>
     
     <Border CornerRadius="15" ClipToBounds="True" Background="{DynamicResource ElementGeneralBackground}">
-        <Grid ColumnDefinitions="*, *, *" Width="1300" Height="700">
-            <Border Grid.Column="0" Padding="5" Margin="0 5" ClipToBounds="False">
-                <views:ProjectInfoView/>
-            </Border>
-            <Border Grid.Column="1" Padding="5" Margin="0 5" ClipToBounds="False">
-                <views:AssigneeInfoView/>
-            </Border>
-            <Border Grid.Column="2" Padding="5" Margin="0 5" ClipToBounds="False">
-                <views:TaskInfoView/>
-            </Border>
+        <Grid RowDefinitions="Auto, Auto">
+            <Grid Grid.Row="0" ColumnDefinitions="*, *, *" Width="1300" Height="700">
+                <Border Grid.Column="0" Padding="5" Margin="0 5" ClipToBounds="False">
+                    <views:ProjectInfoView/>
+                </Border>
+                <Border Grid.Column="1" Padding="5" Margin="0 5" ClipToBounds="False">
+                    <views:AssigneeInfoView/>
+                </Border>
+                <Border Grid.Column="2" Padding="5" Margin="0 5" ClipToBounds="False">
+                    <views:TaskInfoView/>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
+                <Button Classes="CancelProjectButton" Grid.Column="0" Content="Cancel" Command="{Binding DiscardCommand}"/>
+                <Button Classes="CreateProjectButton" Grid.Column="1" Command="{Binding CreateProjectCommand}">
+                    <Grid ColumnDefinitions="*, *">
+                        <TextBlock Classes="Icon" Grid.Column="0" Text="&#xE258;"/>
+                        <TextBlock Classes="Text" Grid.Column="1" Text="Create Project"/>
+                    </Grid>
+                </Button>
+            </Grid>
         </Grid>
     </Border>
     

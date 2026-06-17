@@ -41,7 +41,7 @@ public partial class ProjectCreationViewModel : ViewModelBase {
     [ObservableProperty] private ObservableCollection<TaskEntry> _tasks = [];
     
     // Read-only display
-    public string CreatedAt => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+    public string CreatedAt => DateTime.Now.ToString("d MMMM, yyyy h:mm tt");
     public string CreatedBy => SessionService.Instance.CurrentUser?.Username ?? string.Empty;
     public string Status => nameof(ProjectStatus.Active);
     public IEnumerable<TaskPriority> Priorities => Enum.GetValues<TaskPriority>();

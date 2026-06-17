@@ -4,16 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
              xmlns:models="clr-namespace:ProjectManagementSystem.Models"
+             xmlns:converters="clr-namespace:ProjectManagementSystem.Converters"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
              x:Class="ProjectManagementSystem.Views.TaskInfoView"
-             x:DataType="vm:ProjectCreationViewModel">
+             x:DataType="vm:ProjectCreationViewModel"
+             ClipToBounds="False">
     
     <UserControl.Styles>
         <StyleInclude Source="../Styles/ProjectCreationStyles.axaml"/>
     </UserControl.Styles>
     
-    <Border Classes="MainBorder">
-        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+    <Border Classes="MainBorder" ClipToBounds="False">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto" ClipToBounds="False">
             <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Margin="0 5 0 5">
                 <TextBlock Classes="HeaderIcon" Grid.Column="0" Text="&#xE198;"/>
                 <TextBlock Classes="HeaderText" Grid.Column="1" Text="Tasks Info"/>
@@ -63,21 +65,49 @@
             <!-- users list header -->
             <Border Grid.Row="6" Classes="Divider"></Border>
             <!-- tasks list -->
-            <ScrollViewer Grid.Row="7" MaxHeight="200" VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Tasks}">
+            <ScrollViewer Grid.Row="7" MaxHeight="200" VerticalScrollBarVisibility="Auto" Margin="-8 5">
+                <ItemsControl ItemsSource="{Binding Tasks}" ClipToBounds="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="models:TaskEntry">
                             <Border Classes="AssigneeCard">
                                 <Grid ColumnDefinitions="*, Auto, Auto, Auto">
-                                    <TextBlock Grid.Column="0" Classes="AssigneeNameText"
-                                               Text="{Binding Title}"/>
-                                    <TextBlock Grid.Column="1" Classes="AssigneeRoleText"
-                                               Text="{Binding Priority}"/>
-                                    <TextBlock Grid.Column="2" Classes="AssigneeRoleText"
-                                               Text="{Binding Assignee?.Username}"/>
-                                    <TextBlock Grid.Column="3" Classes="RemoveIcon"
-                                               Text="&#xE4F6;"
-                                               Tapped="RemoveTask_Tapped"/>
+                                    <Grid Grid.Column="0" RowDefinitions="Auto, Auto" Margin="12.5 0 0 0">
+                                        <TextBlock Classes="AssigneeName" Grid.Row="0" Text="{Binding Title}"/>
+                                        <TextBlock Classes="AssigneeEmail" Grid.Row="1"
+                                                   Text="{Binding Description, Converter={x:Static converters:LongStringConverter.Instance}, ConverterParameter=25}"
+                                                   ToolTip.Tip="{Binding Description}"/>
+                                    </Grid>
+                                    <Border Classes="AssigneePicBorder" Grid.Column="1" Margin="0 0 7.5 0">
+                                        <Panel>
+                                            <Border CornerRadius="999"
+                                                    Background="{Binding Assignee, Converter={x:Static converters:UserAvatarColorConverter.Instance}}"
+                                                    IsVisible="{Binding Assignee?.ProfilePicture, Converter={x:Static ObjectConverters.IsNull}}">
+                                                <TextBlock Text="{Binding Assignee?.Initials}"
+                                                           FontFamily="{DynamicResource Nunito-Bold}"
+                                                           Foreground="White"
+                                                           FontSize="14"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                            </Border>
+                                            <Image Source="{Binding Assignee?.ProfilePicture, Converter={x:Static converters:ByteArrayToBitmapConverter.Instance}}"
+                                                   IsVisible="{Binding Assignee?.ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                                        </Panel>
+                                    </Border>
+                                    <Grid Grid.Column="2" RowDefinitions="Auto, Auto" Margin="7.5 0">
+                                        <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Margin="0 10 0 7.5">
+                                            <TextBlock Classes="TaskPriorityIcon" Grid.Column="0" Text="&#xE244;"
+                                                       Foreground="{Binding Priority, Converter={x:Static converters:TaskPriorityColorConverter.Instance}}"/>
+                                            <TextBlock Classes="TaskPriorityText" Grid.Column="1" Text="{Binding Priority}"
+                                                       Foreground="{Binding Priority, Converter={x:Static converters:TaskPriorityColorConverter.Instance}}"/>
+                                        </Grid>
+                                        <TextBlock Classes="TaskDeadline" Grid.Row="1" 
+                                                   Text="{Binding Deadline, Converter={x:Static converters:DateOnlyToStringConverter.Instance}}"/>
+                                    </Grid>
+                                    <Button Classes="RemoveAssigneeButton" Grid.Column="3"
+                                            Command="{Binding $parent[ItemsControl].((vm:ProjectCreationViewModel)DataContext)?.RemoveTaskCommand}"
+                                            CommandParameter="{Binding}">
+                                        <TextBlock Text="&#xE4F6;"/>
+                                    </Button>
                                 </Grid>
                             </Border>
                         </DataTemplate>

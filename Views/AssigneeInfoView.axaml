@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
              xmlns:models="clr-namespace:ProjectManagementSystem.Models"
-             xmlns:converter="clr-namespace:ProjectManagementSystem.Converters"
+             xmlns:converters="clr-namespace:ProjectManagementSystem.Converters"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
              x:Class="ProjectManagementSystem.Views.AssigneeInfoView"
              x:DataType="vm:ProjectCreationViewModel">
@@ -47,7 +47,7 @@
             <!-- users list header -->
             <Border Grid.Row="4" Classes="Divider"></Border>
             <!-- assignees list -->
-            <ScrollViewer Grid.Row="5" MaxHeight="200" VerticalScrollBarVisibility="Auto" Margin="-8 5">
+            <ScrollViewer Grid.Row="5" MaxHeight="325" VerticalScrollBarVisibility="Auto" Margin="-8 5">
                 <ItemsControl ItemsSource="{Binding Assignees}" ClipToBounds="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="models:AssigneeEntry">
@@ -56,7 +56,7 @@
                                     <Border Classes="AssigneePicBorder" Grid.Column="0">
                                         <Panel>
                                             <Border CornerRadius="999"
-                                                    Background="{Binding User, Converter={x:Static converter:UserAvatarColorConverter.Instance}}"
+                                                    Background="{Binding User, Converter={x:Static converters:UserAvatarColorConverter.Instance}}"
                                                     IsVisible="{Binding User.ProfilePicture, Converter={x:Static ObjectConverters.IsNull}}">
                                                 <TextBlock Text="{Binding User.Initials}"
                                                            FontFamily="{DynamicResource Nunito-Bold}"
@@ -65,18 +65,23 @@
                                                            HorizontalAlignment="Center"
                                                            VerticalAlignment="Center"/>
                                             </Border>
-                                            <Image Source="{Binding User.ProfilePicture, Converter={x:Static converter:ByteArrayToBitmapConverter.Instance}}"
+                                            <Image Source="{Binding User.ProfilePicture, Converter={x:Static converters:ByteArrayToBitmapConverter.Instance}}"
                                                    IsVisible="{Binding User.ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                                         </Panel>
                                     </Border>
                                     <Grid Grid.Column="1" RowDefinitions="Auto, Auto">
-                                        <TextBlock Classes="AssigneeName" Grid.Row="0" Text="{Binding User.FullName}"/>
-                                        <TextBlock Classes="AssigneeEmail" Grid.Row="1" Text="{Binding User.Email}"/>
+                                        <TextBlock Classes="AssigneeName" Grid.Row="0"
+                                                   Text="{Binding User.FullName, Converter={x:Static converters:LongStringConverter.Instance}, ConverterParameter=20}"
+                                                   ToolTip.Tip="{Binding User.FullName}"/>
+                                        <TextBlock Classes="AssigneeEmail" Grid.Row="1"
+                                                   Text="{Binding User.Email, Converter={x:Static converters:LongStringConverter.Instance}, ConverterParameter=23}"
+                                                   ToolTip.Tip="{Binding User.Email}"/>
                                     </Grid>
                                     <Border Classes="AssigneeRoleBorder" Grid.Column="2"
-                                            Background="{Binding Role, Converter={x:Static converter:RoleBackgroundColorConverter.Instance}}">
-                                        <TextBlock Text="{Binding Role}"
-                                                   Foreground="{Binding Role, Converter={x:Static converter:RoleTextColorConverter.Instance}}"/>
+                                            Background="{Binding Role, Converter={x:Static converters:RoleBackgroundColorConverter.Instance}}">
+                                        <TextBlock Text="{Binding Role, Converter={x:Static converters:LongStringConverter.Instance}, ConverterParameter=17}"
+                                                   ToolTip.Tip="{Binding Role}"
+                                                   Foreground="{Binding Role, Converter={x:Static converters:RoleTextColorConverter.Instance}}"/>
                                     </Border>
                                     <Button Classes="RemoveAssigneeButton" Grid.Column="3"
                                             Command="{Binding $parent[ItemsControl].((vm:ProjectCreationViewModel)DataContext)?.RemoveAssigneeCommand}"

@@ -4,23 +4,15 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
             
-            <Border Classes="AssigneeCard">
-                <Grid ColumnDefinitions="Auto, *, Auto, Auto">
-                    <Border Classes="AssigneePicBorder" Grid.Column="0">
-                        <Image Source="../Assets/Images/deep-red.jpg"/>
-                    </Border>
-                    <Grid Grid.Column="1" RowDefinitions="Auto, Auto">
-                        <TextBlock Classes="AssigneeName" Grid.Row="0" Text="Mani Vakili"/>
-                        <TextBlock Classes="AssigneeEmail" Grid.Row="1" Text="manivakili907@gmail.com"/>
+            <Grid Width="1300" ColumnDefinitions="*, Auto">
+                <Button Classes="CancelProjectButton" Grid.Column="0" Content="Cancel"/>
+                <Button Classes="CreateProjectButton" Grid.Column="1">
+                    <Grid ColumnDefinitions="*, *">
+                        <TextBlock Classes="Icon" Grid.Column="0" Text="&#xE258;"/>
+                        <TextBlock Classes="Text" Grid.Column="1" Text="Create Project"/>
                     </Grid>
-                    <Border Classes="AssigneeRoleBorder" Grid.Column="2">
-                        <TextBlock Text="UI UX Designer"/>
-                    </Border>
-                    <Button Classes="RemoveAssigneeButton" Grid.Column="3">
-                        <TextBlock Text="&#xE4F6;"/>
-                    </Button>
-                </Grid>
-            </Border>
+                </Button>
+            </Grid>
             
         </Border>
     </Design.PreviewWith>
@@ -43,107 +35,11 @@
                     </ControlTemplate>
                 </Setter>
             </ControlTheme>
+            
+            <!-- Thickness -->
+            <x:Double x:Key="ScrollBarThickness">3</x:Double>
         </ResourceDictionary>
     </Styles.Resources>
-    
-    <Style Selector="Grid.HeaderGrid">
-        <Setter Property="Background">
-            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
-                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
-                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
-            </LinearGradientBrush>
-        </Setter>
-    </Style>
-    
-    <Style Selector="TextBlock.CreateNewProjectHeaderText">
-        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource ElementGeneralBackground}"></Setter>
-        <Setter Property="FontSize" Value="25"></Setter>
-        <Setter Property="Margin" Value="20 5 0 5"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-    </Style>
-    
-    <Style Selector="TextBlock.CreateProjectIcon">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
-        <Setter Property="Foreground" Value="LimeGreen"></Setter>
-        <Setter Property="FontSize" Value="25"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="0 5 2.5 5"></Setter>
-        <Setter Property="Cursor" Value="Hand"></Setter>
-        <Setter Property="RenderTransform" Value="scale(1)"></Setter>
-        <Setter Property="Transitions">
-            <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"/>
-            </Transitions>
-        </Setter>
-    </Style>
-    
-    <Style Selector="TextBlock.DiscardProjectIcon">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
-        <Setter Property="Foreground" Value="Red"></Setter>
-        <Setter Property="FontSize" Value="25"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="2.5 5 10 5"></Setter>
-        <Setter Property="Cursor" Value="Hand"></Setter>
-        <Setter Property="RenderTransform" Value="scale(1)"></Setter>
-        <Setter Property="Transitions">
-            <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"/>
-            </Transitions>
-        </Setter>
-    </Style>
-    
-    <Style Selector="TextBlock.CreateProjectIcon:pointerover">
-        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
-    </Style>
-    
-    <Style Selector="TextBlock.DiscardProjectIcon:pointerover">
-        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
-    </Style>
-    
-    <Style Selector="Button.CreateProjectButton">
-        <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        <Setter Property="Cursor" Value="Hand"></Setter>
-    </Style>
-    
-    <Style Selector="Button.CreateProjectButton:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
-    </Style>
-    
-    <Style Selector="Button.CreateProjectButton TextBlock">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
-        <Setter Property="Foreground" Value="LimeGreen"></Setter>
-        <Setter Property="FontSize" Value="25"></Setter>
-    </Style>
-    
-    <Style Selector="Button.DiscardProjectButton">
-        <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="0 0 10 0"></Setter>
-        <Setter Property="Cursor" Value="Hand"></Setter>
-    </Style>
-    
-    <Style Selector="Button.DiscardProjectButton:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
-    </Style>
-    
-    <Style Selector="Button.DiscardProjectButton TextBlock">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
-        <Setter Property="Foreground" Value="Red"></Setter>
-        <Setter Property="FontSize" Value="25"></Setter>
-    </Style>
     
     <Style Selector="Border.AddProjectHorizontalDivider">
         <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
@@ -173,7 +69,7 @@
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
         <Setter Property="Margin" Value="10 0 0 0"></Setter>
         <Setter Property="FontSize" Value="10"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryAccentColor}"/>
+        <Setter Property="Opacity" Value="0.7"></Setter>
     </Style>
     
     <Style Selector="TextBox.ProjectTextBox">
@@ -461,7 +357,7 @@
         <Setter Property="Height" Value="1"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Background" Value="#DDDDDD"></Setter>
+        <Setter Property="Background" Value="{DynamicResource NavButtonsHoverBackground}"></Setter>
         <Setter Property="CornerRadius" Value="100"></Setter>
     </Style>
     
@@ -615,8 +511,8 @@
     </Style>
     
     <Style Selector="Button.RemoveAssigneeButton TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource RemoveIconForeground}"></Setter>
         <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
-        <Setter Property="Foreground" Value="#70000000"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Transitions">
             <Transitions>
@@ -626,8 +522,106 @@
     </Style>
     
     <Style Selector="Button.RemoveAssigneeButton:pointerover TextBlock">
+        <Setter Property="Foreground" Value="#CCFF0000"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.TaskPriorityIcon">
         <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
-        <Setter Property="Foreground" Value="#AAFF0000"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 5 0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.TaskPriorityText">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="11.5"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.TaskDeadline">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CancelProjectButton">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="CornerRadius" Value="7.5"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="0 0 0 10"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground_INVERTED}"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CancelProjectButton /template/ ContentPresenter">
+        <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+                <BrushTransition Property="Foreground" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.CancelProjectButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#AAFF0000"></Setter>
+        <Setter Property="Foreground" Value="WhiteSmoke"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CancelProjectButton:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#AABF0000"></Setter>
+        <Setter Property="Foreground" Value="WhiteSmoke"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CreateProjectButton">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="250"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="CornerRadius" Value="7.5"></Setter>
+        <Setter Property="Margin" Value="10 0 10 10"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CreateProjectButton /template/ ContentPresenter">
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+                <BrushTransition Property="Foreground" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.CreateProjectButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonHoverForeground}"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CreateProjectButton TextBlock.Text">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CreateProjectButton TextBlock.Icon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Margin" Value="0 0 10 2.5"></Setter>
     </Style>
     
 </Styles>

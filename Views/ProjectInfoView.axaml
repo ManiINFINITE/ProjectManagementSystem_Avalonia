@@ -15,7 +15,7 @@
     <Border Classes="MainBorder">
         <Grid Classes="ItemGrid" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
             <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Margin="0 -10 0 5">
-                <TextBlock Classes="HeaderIcon" Grid.Column="0" Text="&#xE4E2;"/>
+                <TextBlock Classes="HeaderIcon" Grid.Column="0" Text="&#xE4E2;" RenderTransform="rotate(180deg)"/>
                 <TextBlock Classes="HeaderText" Grid.Column="1" Text="Project Info"/>
             </Grid>
             <!-- project color -->
@@ -62,7 +62,7 @@
                 <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="8">
                     <TextBlock Classes="ReadOnlyTitle" Grid.Column="0" Text="Created at"/>
                     <TextBlock Classes="ReadOnlyIcon" Grid.Column="1" Text="&#xE10A;"/>
-                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="May 22, 2025 10:30 AM"/>
+                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="{Binding CreatedAt}"/>
                 </Grid>
             </Border>
             <!-- Created by -->
@@ -70,7 +70,7 @@
                 <Grid ColumnDefinitions="*, Auto, Auto">
                     <TextBlock Classes="ReadOnlyTitle" Grid.Column="0" Text="Created by"/>
                     <TextBlock Classes="ReadOnlyIcon" Grid.Column="1" Text="&#xE4C2;"/>
-                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="John Doe"/>
+                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="{Binding CreatedBy}"/>
                 </Grid>
             </Border>
             <!-- Status -->
@@ -78,7 +78,7 @@
                 <Grid ColumnDefinitions="*, Auto, Auto">
                     <TextBlock Classes="ReadOnlyTitle" Grid.Column="0" Text="Status"/>
                     <TextBlock Classes="ReadOnlyIcon StatusIcon" Grid.Column="1" Text="&#xECE0;"/>
-                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="Active"/>
+                    <TextBlock Classes="ReadOnlyText" Grid.Column="2" Text="{Binding Status}"/>
                 </Grid>
             </Border>
         </Grid>

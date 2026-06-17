@@ -48,6 +48,8 @@
                     <SolidColorBrush x:Key="PageTitleForeground">#555555</SolidColorBrush>
                     <SolidColorBrush x:Key="PageSectionHeader">#BBBBBB</SolidColorBrush>
                     <SolidColorBrush x:Key="ListBoxSelectedBorderColor">Black</SolidColorBrush>
+                    <SolidColorBrush x:Key="RemoveIconForeground">#50000000</SolidColorBrush>
+                    <SolidColorBrush x:Key="ButtonForeground_INVERTED">#151515</SolidColorBrush>
                     
                     <BoxShadows x:Key="MainBorderShadow">0 0 10 0 #35000000</BoxShadows>
                     <BoxShadows x:Key="SoftShadow">0 0 3 0 #50000000</BoxShadows>
@@ -71,6 +73,8 @@
                     <SolidColorBrush x:Key="PageTitleForeground">#8A8A8A</SolidColorBrush>
                     <SolidColorBrush x:Key="PageSectionHeader">#717171</SolidColorBrush>
                     <SolidColorBrush x:Key="ListBoxSelectedBorderColor">White</SolidColorBrush>
+                    <SolidColorBrush x:Key="RemoveIconForeground">#50FFFFFF</SolidColorBrush>
+                    <SolidColorBrush x:Key="ButtonForeground_INVERTED">WhiteSmoke</SolidColorBrush>
                     
                     <BoxShadows x:Key="MainBorderShadow">0 0 10 0 #35DDDDDD</BoxShadows>
                     <BoxShadows x:Key="SoftShadow">0 0 3 0 #50DDDDDD</BoxShadows>
