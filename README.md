@@ -63,6 +63,8 @@
 | ![Settings Page with Slate Violet Theme LIGHT](Screenshots/slate-violet-settings-LIGHT.png) | ![Settings Page with Slate Violet Theme DARK](Screenshots/slate-violet-settings-DARK.png) |
 | ![Sign In With Deep Red Theme DARK](Screenshots/deep-red-signin.png) | ![Settings With Deep Red Theme DARK](Screenshots/deep-red-settings-DARK.png) |
 | ![Settings With Deep Red Theme LIGHT](Screenshots/deep-red-settings-LIGHT.png) | ![Settings With Lime Forest Theme LIGHT](Screenshots/lime-forest-settings-LIGHT.png) |
+| ![Project creation with google blue LIGHT](Screenshots/google-blue-project-creation-LIGHT.png) | ![Project creation with google blue DARK](Screenshots/google-blue-project-creation-DARK.png) |
+| ![project creation full with orange DARK](Screenshots/orange-project-creation-DARK.png) | ![Project creation with pink light](Screenshots/pink-project-creation-LIGHT.png) |
 
 ---
 
