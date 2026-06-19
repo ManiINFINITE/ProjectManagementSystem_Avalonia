@@ -35,7 +35,7 @@ public class User {
     public UserProfilePicture? ProfilePicture { get; set; }
 
     [Required] [MaxLength(100)]
-    public string AccentColorName { get; set; } = "Slate Violet";
+    public string AccentColorName { get; set; } = string.Empty;
     
     public string FullName => $"{FirstName} {LastName}";
     

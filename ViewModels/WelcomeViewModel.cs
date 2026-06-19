@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -30,16 +31,25 @@ public partial class WelcomeViewModel : ViewModelBase {
 
     [RelayCommand]
     private void SelectUser(User user) {
-        var AuthVm = new AuthenticationViewModel {
+        var AuthVm = new AuthenticationViewModel(user.AccentColorName) {
             CurrentAuthViewModel = new SignInViewModel {
                 Username =  user.Username
             }
         };
+        
+        var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == user.AccentColorName)
+            ??  AccentColorsBase.AccentColors.First();
+        AppSettingsService.Instance!.ApplyAccentColor(accent);
+        
         NavigationService.Instance.NavigateTo(AuthVm);
     }
 
     [RelayCommand]
     private void SignInWithDifferentAccount() {
-        NavigationService.Instance.NavigateTo(new AuthenticationViewModel());
+
+        var accent = AccentColorsBase.AccentColors.First();
+        AppSettingsService.Instance!.ApplyAccentColor(accent);
+        
+        NavigationService.Instance.NavigateTo(new AuthenticationViewModel("Slate Violet"));
     }
 }

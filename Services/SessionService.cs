@@ -16,7 +16,8 @@ public class SessionService {
     }
 
     public void Logout() {
+        string accentColorName = CurrentUser?.AccentColorName!;
         CurrentUser = null;
-        NavigationService.Instance?.NavigateTo(new AuthenticationViewModel());
+        NavigationService.Instance?.NavigateTo(new AuthenticationViewModel(accentColorName));
     }
 }

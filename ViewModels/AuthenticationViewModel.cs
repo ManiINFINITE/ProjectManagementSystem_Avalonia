@@ -17,11 +17,10 @@ public partial class AuthenticationViewModel : ViewModelBase {
     [ObservableProperty] private Bitmap? _image;
     [ObservableProperty] private string _imageText = "Continue Your Business";
 
-    public AuthenticationViewModel() {
+    public AuthenticationViewModel(string accentColorName) {
         Instance = this;
-
-        var accentName = AppSettingsService.Instance?.CurrentSettings.AccentColorName ?? "Slate Violet";
-        var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == accentName)
+        
+        var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == accentColorName)
                      ?? AccentColorsBase.AccentColors.First();
         
         LoadImage(accent.ImagePath);
