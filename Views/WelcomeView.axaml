@@ -28,7 +28,8 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="models:User">
-                        <Border Classes="UserCard" Tapped="UserCard_Tapped">
+                        <Border Classes="UserCard" Tapped="UserCard_Tapped" 
+                                BorderBrush="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToBrushConverter.Instance}}">
                             <Grid ColumnDefinitions="Auto, *, Auto">
                                 <Border Grid.Column="0" Classes="ImageBorder">
                                     <Panel>
@@ -50,7 +51,16 @@
                                     <TextBlock Classes="UsernameText" Grid.Row="0" Text="{Binding Username}"/>
                                     <TextBlock Classes="FullnameText" Grid.Row="1" Text="{Binding FullName}" TextTrimming="CharacterEllipsis"/>
                                 </Grid>
-                                <Border Classes="Ellipse" Grid.Column="2"/>
+                                <Border Classes="Ellipse" Grid.Column="2">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0%, 100%" EndPoint="50%, 0%">
+                                            <GradientStop Offset="0"
+                                                          Color="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToPrimaryConverter.Instance}}"/>
+                                            <GradientStop Offset="1"
+                                                          Color="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToSecondaryConverter.Instance}}"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
                             </Grid>
                         </Border>
                     </DataTemplate>
