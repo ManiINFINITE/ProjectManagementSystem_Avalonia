@@ -13,8 +13,8 @@ public class AppDbContext : DbContext {
     public DbSet<UserProject> UserProjects => Set<UserProject>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-        var connectionString = "Server=localhost;Database=ProjectManagementSystem;User=root;Password=Mani@1384;";
-        optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+        var connectionString = "Host=localhost;Database=ProjectManagementSystem;Username=postgres;Password=Mani@1384";
+        optionsBuilder.UseNpgsql(connectionString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
