@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectManagementSystem.Models;
@@ -28,6 +29,7 @@ public class User {
     public string Email { get; set; } = string.Empty;
     
     [Required]
+    [MaxLength(200)]
     public string PasswordHash { get; set; } = string.Empty;
     
     
@@ -38,4 +40,5 @@ public class User {
     public string FullNameUsername => $"{FirstName} {LastName} ({Username})";
 
     public string Initials => $"{FirstName[0]}{LastName[0]}";
+    
 }

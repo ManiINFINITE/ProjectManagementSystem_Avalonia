@@ -36,7 +36,7 @@ public class UserProjectRepository {
     public async Task<List<Project>> GetProjectsByUserIdAsync(int userId) {
         await using var db = new AppDbContext();
         return await db.UserProjects
-            .Include(up => up.User)
+            .Include(up => up.Project)
             .Where(up => up.UserId == userId)
             .Select(up => up.Project)
             .ToListAsync();

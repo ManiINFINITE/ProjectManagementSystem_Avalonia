@@ -30,7 +30,7 @@ public class Project {
     
     [Required]
     [DataType(DataType.DateTime)]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     
     [Required]
     [MaxLength(10)]

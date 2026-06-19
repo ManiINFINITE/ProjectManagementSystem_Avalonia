@@ -41,7 +41,7 @@ public partial class ProjectCreationViewModel : ViewModelBase {
     [ObservableProperty] private ObservableCollection<TaskEntry> _tasks = [];
     
     // Read-only display
-    public string CreatedAt => DateTime.Now.ToString("d MMMM, yyyy h:mm tt");
+    public string CreatedAt => DateTime.UtcNow.ToString("d MMMM, yyyy h:mm tt");
     public string CreatedBy => SessionService.Instance.CurrentUser?.Username ?? string.Empty;
     public string Status => nameof(ProjectStatus.Active);
     public IEnumerable<TaskPriority> Priorities => Enum.GetValues<TaskPriority>();
@@ -111,7 +111,7 @@ public partial class ProjectCreationViewModel : ViewModelBase {
             Description = ProjectDescription,
             Deadline = ProjectDeadline.HasValue ? DateOnly.FromDateTime(ProjectDeadline.Value) : null,
             Status =  ProjectStatus.Active,
-            CreatedAt = DateTime.Now,
+            CreatedAt = DateTime.UtcNow,
             OwnerId = owner.Id,
             Color = SelectedProjectColor?.HexColor ?? "#6C63FF"
         };
@@ -135,13 +135,14 @@ public partial class ProjectCreationViewModel : ViewModelBase {
                 Priority = task.Priority,
                 Status = ProjectTaskStatus.ToDo,
                 Deadline = task.Deadline,
-                CreatedAt = DateTime.Now,
+                CreatedAt = DateTime.UtcNow,
                 AssigneeId = task.Assignee?.Id ?? owner.Id,
                 ProjectId =  project.ProjectId
             });
         }
         
         NotificationService.Instance.Send("Project Created!", $"{project.Name} created successfully!", NotificationType.Success);
+        await DashboardViewModel.Instance?.RefreshUserProjectsAsync()!;
         DashboardViewModel.Instance?.CloseCreateProject();
     }
 

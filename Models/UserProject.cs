@@ -16,10 +16,6 @@ public class UserProject {
     public string Role  { get; set; } = string.Empty;
     
     [Required]
-    [DataType(DataType.DateTime)]
-    public DateTime JoinedAt { get; set; }
-    
-    [Required]
     public int UserId { get; set; }
     
     [Required]

@@ -1,8 +1,11 @@
-﻿using Avalonia.Controls;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectManagementSystem.Enums;
 using ProjectManagementSystem.Models;
+using ProjectManagementSystem.Repositories;
 using ProjectManagementSystem.Services;
 
 namespace ProjectManagementSystem.ViewModels;
@@ -11,12 +14,13 @@ public partial class DashboardViewModel : ViewModelBase {
 
     public static DashboardViewModel? Instance { get; private set; }
 
+    private readonly UserProjectRepository _userProjectRepository = new();
     private readonly User? _currentUser;
     
     [ObservableProperty] private ProjectCreationViewModel _projectCreationViewModel = new();
-
     [ObservableProperty] private ViewModelBase _currentRightPanelView;
     [ObservableProperty] private bool _isCreateProjectOpen;
+    [ObservableProperty] private ObservableCollection<Project> _userProjects = [];
 
     public DashboardViewModel() {
         Instance = this;
@@ -28,6 +32,18 @@ public partial class DashboardViewModel : ViewModelBase {
         
         _currentUser = SessionService.Instance?.CurrentUser!;
         _currentRightPanelView = new SettingsViewModel();
+
+        _ = LoadProjectsAsync();
+    }
+
+    private async Task LoadProjectsAsync() {
+        if (_currentUser == null) return;
+        var projects = await _userProjectRepository.GetProjectsByUserIdAsync(_currentUser.Id);
+        UserProjects = new ObservableCollection<Project>(projects);
+    }
+
+    public async Task RefreshUserProjectsAsync() {
+        await LoadProjectsAsync();
     }
     
     [RelayCommand]

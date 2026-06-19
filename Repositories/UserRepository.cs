@@ -17,7 +17,9 @@ public class UserRepository {
 
     public async Task<List<User>> GetAllAsync() {
         await using var db = new AppDbContext();
-        return await db.Users.ToListAsync();
+        return await db.Users
+            .Include(u => u.ProfilePicture)
+            .ToListAsync();
     }
 
     public async Task<User?> GetByIdAsync(int id) {

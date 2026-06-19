@@ -89,7 +89,7 @@
                                                            HorizontalAlignment="Center"
                                                            VerticalAlignment="Center"/>
                                             </Border>
-                                            <Image Source="{Binding Assignee?.ProfilePicture, Converter={x:Static converters:ByteArrayToBitmapConverter.Instance}}"
+                                            <Image Source="{Binding Assignee?.ProfilePicture?.PictureData, Converter={x:Static converters:ByteArrayToBitmapConverter.Instance}}"
                                                    IsVisible="{Binding Assignee?.ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                                         </Panel>
                                     </Border>
