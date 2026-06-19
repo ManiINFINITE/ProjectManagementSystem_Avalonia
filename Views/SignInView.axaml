@@ -17,6 +17,7 @@
                     <TextBlock Tapped="ChangePasswordVisibility_Click"  Classes="PassVisibleIcon" Text="&#xE220;" IsVisible="{Binding PasswordField.PasswordVisible, Converter={x:Static BoolConverters.Not}}"/>
                     <TextBlock Tapped="ChangePasswordVisibility_Click" Classes="PassVisibleIcon" Text="&#xE224;" IsVisible="{Binding PasswordField.PasswordVisible}"/>
                 </Panel>
+                <CheckBox Classes="RememberMeCheckBox" Content="Remember Me" IsChecked="{Binding RememberMe}"/>
                 <Button Name="SignInButton" Classes="SignInButton" Content="Sign In" Command="{Binding SignInCommand}"></Button>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Classes="DontHaveAccountText" Text="Don't have an account?"></TextBlock>

@@ -11,6 +11,7 @@ public partial class SignInViewModel : ViewModelBase {
 
     [ObservableProperty] private string _username =  string.Empty;
     [ObservableProperty] private string _password =  string.Empty;
+    [ObservableProperty] private bool _rememberMe;
 
     public PasswordFieldViewModel PasswordField { get; } = new();
 
@@ -39,6 +40,7 @@ public partial class SignInViewModel : ViewModelBase {
         NotificationService.Instance.Send("Signed In", $"Welcome {user.FirstName}! Let's Get to work. There are a lot of projects and tasks waiting for you!", NotificationType.Success);
         AppSettingsService.Instance!.SaveLastUser(user.Id);
         AppSettingsService.Instance.LoadForUser(user.Id);
+        if (RememberMe) AppSettingsService.Instance.AddRememberedUser(user.Id);
         NavigationService.Instance.NavigateTo(new DashboardViewModel());
     }
 

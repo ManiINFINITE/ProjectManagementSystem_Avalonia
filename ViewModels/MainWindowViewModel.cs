@@ -12,7 +12,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 
     public MainWindowViewModel() {
         Instance = this;
-        _currentView = new AuthenticationViewModel();
+        _currentView = new WelcomeViewModel();
     }
 
     public void NavigateTo(ViewModelBase viewModel) {

@@ -476,6 +476,8 @@
     <Style Selector="TextBlock.AssigneeName">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
         <Setter Property="Margin" Value="0 10 0 0"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="MaxWidth" Value="160"></Setter>
     </Style>
     
     <Style Selector="TextBlock.AssigneeEmail">
@@ -483,6 +485,8 @@
         <Setter Property="FontSize" Value="10"></Setter>
         <Setter Property="Opacity" Value="0.5"></Setter>
         <Setter Property="Margin" Value="0 7.5 0 0"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="MaxWidth" Value="220"></Setter>
     </Style>
     
     <Style Selector="Border.AssigneeRoleBorder">
@@ -490,6 +494,7 @@
         <Setter Property="Padding" Value="10 5"></Setter>
         <Setter Property="CornerRadius" Value="5"></Setter>
         <Setter Property="Margin" Value="10 0 0 0"></Setter>
+        <Setter Property="MaxWidth" Value="135"></Setter>
     </Style>
     
     <Style Selector="Border.AssigneeRoleBorder TextBlock">

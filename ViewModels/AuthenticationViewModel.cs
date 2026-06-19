@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProjectManagementSystem.Enums;
 using ProjectManagementSystem.Models;

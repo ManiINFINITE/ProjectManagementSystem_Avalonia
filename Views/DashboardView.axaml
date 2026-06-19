@@ -78,30 +78,6 @@
                                 <TextBlock Classes="AddProjectIconLeftPanel" Text="&#xE3D6;"></TextBlock>
                             </Button>
                         </Grid>
-                        <!--<Button Classes="ProjectButtonLeftPanel">
-                            <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
-                                <Border Classes="ProjectDotLeftPanel"></Border>
-                                <TextBlock Name="Project1" Classes="ProjectNameLeftPanel" Text="Mobile App"></TextBlock>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="ProjectButtonLeftPanel">
-                            <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
-                                <Border Classes="ProjectDotLeftPanel" Background="red"></Border>
-                                <TextBlock Name="Project2" Classes="ProjectNameLeftPanel" Text="Website Redesign"></TextBlock>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="ProjectButtonLeftPanel">
-                            <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
-                                <Border Classes="ProjectDotLeftPanel" Background="DodgerBlue"></Border>
-                                <TextBlock Name="Project3" Classes="ProjectNameLeftPanel" Text="App Design"></TextBlock>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="ProjectButtonLeftPanel">
-                            <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
-                                <Border Classes="ProjectDotLeftPanel" Background="Green"></Border>
-                                <TextBlock Name="Project4" Classes="ProjectNameLeftPanel" Text="Mobile App"></TextBlock>
-                            </StackPanel>
-                        </Button>-->
                         <ItemsControl ItemsSource="{Binding UserProjects}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="models:Project">

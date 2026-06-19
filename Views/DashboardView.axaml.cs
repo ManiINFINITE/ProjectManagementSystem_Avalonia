@@ -107,18 +107,14 @@ public partial class DashboardView : UserControl {
 
         await Task.WhenAll(
             rotateAnim.RunAsync(CollapseButton),
-            // fadeOut.RunAsync(HomeText),
-            // fadeOut.RunAsync(MessagesText),
-            // fadeOut.RunAsync(TasksText),
-            // fadeOut.RunAsync(MembersText),
-            // fadeOut.RunAsync(SettingsText),
+            fadeOut.RunAsync(HomeText),
+            fadeOut.RunAsync(MessagesText),
+            fadeOut.RunAsync(TasksText),
+            fadeOut.RunAsync(MembersText),
+            fadeOut.RunAsync(SettingsText),
             moveAddButton.RunAsync(AddProjectButton),
             fadeOut.RunAsync(MyProjectsText),
-            /*fadeOut.RunAsync(Project1),
-            fadeOut.RunAsync(Project2),
-            fadeOut.RunAsync(Project3),
-            fadeOut.RunAsync(Project4),*/
-            /*fadeOut.RunAsync(LogoutText),*/
+            fadeOut.RunAsync(LogoutText),
             fadeOut.RunAsync(ProjectMText),
             fadeOut.RunAsync(ExpandedLeftPanelHeader),
             shrink.RunAsync(LeftPanel), 
@@ -128,17 +124,13 @@ public partial class DashboardView : UserControl {
         );
         
         // Hide texts
-        /*HomeText.IsVisible = false;
+        HomeText.IsVisible = false;
         MessagesText.IsVisible = false;
         TasksText.IsVisible = false;
         MembersText.IsVisible = false;
-        SettingsText.IsVisible = false;*/
+        SettingsText.IsVisible = false;
         MyProjectsText.IsVisible = false;
-        // Project1.IsVisible = false;
-        // Project2.IsVisible = false;
-        // Project3.IsVisible = false;
-        // Project4.IsVisible = false;
-        // LogoutText.IsVisible = false;
+        LogoutText.IsVisible = false;
         ProjectMText.IsVisible = false;
         ExpandedLeftPanelHeader.IsVisible = false;
         
@@ -220,33 +212,25 @@ public partial class DashboardView : UserControl {
         };
         
         // Show texts
-        /*HomeText.IsVisible = true;
+        HomeText.IsVisible = true;
         MessagesText.IsVisible = true;
         TasksText.IsVisible = true;
         MembersText.IsVisible = true;
-        SettingsText.IsVisible = true;*/
+        SettingsText.IsVisible = true;
         MyProjectsText.IsVisible = true;
-        // Project1.IsVisible = true;
-        // Project2.IsVisible = true;
-        // Project3.IsVisible = true;
-        // Project4.IsVisible = true;
-        // LogoutText.IsVisible = true;
+        LogoutText.IsVisible = true;
         ProjectMText.IsVisible = true;
         ExpandedLeftPanelHeader.IsVisible = true;
         
         await Task.WhenAll(
-            /*fadeIn.RunAsync(HomeText),
+            fadeIn.RunAsync(HomeText),
             fadeIn.RunAsync(MessagesText),
             fadeIn.RunAsync(TasksText),
             fadeIn.RunAsync(MembersText),
-            fadeIn.RunAsync(SettingsText),*/
+            fadeIn.RunAsync(SettingsText),
             moveAddButton.RunAsync(AddProjectButton),
             fadeIn.RunAsync(MyProjectsText),
-            // fadeIn.RunAsync(Project1),
-            // fadeIn.RunAsync(Project2),
-            // fadeIn.RunAsync(Project3),
-            // fadeIn.RunAsync(Project4),
-            // fadeIn.RunAsync(LogoutText),
+            fadeIn.RunAsync(LogoutText),
             fadeIn.RunAsync(ProjectMText),
             fadeIn.RunAsync(ExpandedLeftPanelHeader),
             expand.RunAsync(LeftPanel),

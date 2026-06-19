@@ -71,15 +71,18 @@
                                     </Border>
                                     <Grid Grid.Column="1" RowDefinitions="Auto, Auto">
                                         <TextBlock Classes="AssigneeName" Grid.Row="0"
-                                                   Text="{Binding User.FullName, Converter={x:Static converters:LongStringConverter.Instance}, ConverterParameter=20}"
+                                                   Text="{Binding User.FullName}"
+                                                   TextTrimming="CharacterEllipsis"
                                                    ToolTip.Tip="{Binding User.FullName}"/>
                                         <TextBlock Classes="AssigneeEmail" Grid.Row="1"
-                                                   Text="{Binding User.Email, Converter={x:Static converters:LongStringConverter.Instance}, ConverterParameter=23}"
+                                                   Text="{Binding User.Email}"
+                                                   TextTrimming="CharacterEllipsis"
                                                    ToolTip.Tip="{Binding User.Email}"/>
                                     </Grid>
                                     <Border Classes="AssigneeRoleBorder" Grid.Column="2"
                                             Background="{Binding Role, Converter={x:Static converters:RoleBackgroundColorConverter.Instance}}">
-                                        <TextBlock Text="{Binding Role, Converter={x:Static converters:LongStringConverter.Instance}, ConverterParameter=17}"
+                                        <TextBlock Text="{Binding Role}"
+                                                   TextTrimming="CharacterEllipsis"
                                                    ToolTip.Tip="{Binding Role}"
                                                    Foreground="{Binding Role, Converter={x:Static converters:RoleTextColorConverter.Instance}}"/>
                                     </Border>

@@ -47,6 +47,13 @@ public class UserRepository {
             .FirstOrDefaultAsync(u => u.Username == username);
     }
 
+    public async Task<User?> GetByIdWithProfilePictureAsync(int userId) {
+        await using var db = new AppDbContext();
+        return await db.Users
+            .Include(u => u.ProfilePicture)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+    }
+
     public async Task<bool> UpdateProfilePictureAsync(int userId, byte[] pictureData) {
         await using var db = new AppDbContext();
 

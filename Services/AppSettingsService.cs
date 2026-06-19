@@ -156,4 +156,18 @@ public class AppSettingsService {
             File.WriteAllText(GlobalSettingsPath, json);
         } catch { /**/ }
     }
+
+    public void AddRememberedUser(int userId) {
+        if (!GlobalSettings.RememberedUsers.Contains(userId)) {
+            GlobalSettings.RememberedUsers.Insert(0, userId);
+            if (GlobalSettings.RememberedUsers.Count > 6) {
+                GlobalSettings.RememberedUsers.RemoveAt(6);
+            }
+        } else {
+            // Move to front if already exists
+            GlobalSettings.RememberedUsers.Remove(userId);
+            GlobalSettings.RememberedUsers.Insert(0, userId);
+        }
+        SaveGlobal();
+    }
 }
