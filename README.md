@@ -18,6 +18,12 @@
 - Smooth Animated sign-in / sign-up transition
 - Session management via a singleton `SessionService`
 
+### 📊 User Dashboard
+- User dashboard with 5 pages (Home, Messages, Tasks, Members and Settings)
+- Collapsable Navigation Bar
+- Projects List
+- Totally customizable with 34 combinations of 17 accent colors and Dark/Light Theme
+
 ### 👤 Per-User Account Management
 - Profile picture upload, display, and deletion (stored as `BLOB` in SQLite per user)
 - Profile initials fallback when no picture is set
