@@ -13,19 +13,12 @@ public class AppDbContext : DbContext {
     public DbSet<UserProject> UserProjects => Set<UserProject>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-        var dbPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "ProjectManagementSystem",
-            "project_management.db"
-            );
-
-        Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
-        optionsBuilder.UseSqlite($"Data Source={dbPath}");
+        var connectionString = "Server=localhost;Database=ProjectManagementSystem;User=root;Password=Mani@1384;";
+        optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<UserProject>()
-            .HasIndex(up => new { up.UserId, up.ProjectId })
-            .IsUnique();
+            .HasKey(up => new { up.UserId, up.ProjectId });
     }
 }
