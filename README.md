@@ -20,7 +20,7 @@
 
 ### 📊 User Dashboard
 - User dashboard with 5 pages (Home, Messages, Tasks, Members and Settings)
-- Collapsable Navigation Bar
+- Collapsible Navigation Bar
 - Projects List
 - Totally customizable with 34 combinations of 17 accent colors and Dark/Light Theme
 
