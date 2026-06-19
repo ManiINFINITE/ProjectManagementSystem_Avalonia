@@ -38,22 +38,40 @@ public class UserRepository {
         return await db.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
 
+    public async Task<User?> GetByUsernameWithProfilePictureAsync(string username) {
+        await  using var db = new AppDbContext();
+        return await db.Users
+            .Include(u => u.ProfilePicture)
+            .FirstOrDefaultAsync(u => u.Username == username);
+    }
+
     public async Task<bool> UpdateProfilePictureAsync(int userId, byte[] pictureData) {
         await using var db = new AppDbContext();
 
-        var user = await db.Users.FindAsync(userId);
-        if (user == null) return false;
-        user.ProfilePicture = pictureData;
+        var existing = await db.UserProfilePictures.FindAsync(userId);
+        if (existing != null) {
+            // Update existing
+            existing.PictureData = pictureData;
+            existing.UploadedAt = System.DateTime.UtcNow;
+        } else {
+            // Insert new
+            await db.UserProfilePictures.AddAsync(new UserProfilePicture {
+                UserId =  userId,
+                PictureData = pictureData
+            });
+        }
+        
         await db.SaveChangesAsync();
         return true;
     }
     
     public async Task<bool> DeleteProfilePictureAsync(int userId) {
         await using var db = new AppDbContext();
-        
-        var user = await db.Users.FindAsync(userId);
-        if (user == null) return false;
-        user.ProfilePicture = null;
+
+        var picture = await db.UserProfilePictures.FindAsync(userId);
+        if (picture == null) return false;
+
+        db.UserProfilePictures.Remove(picture);
         await db.SaveChangesAsync();
         return true;
     }

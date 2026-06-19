@@ -46,8 +46,8 @@ public partial class SettingsViewModel : ViewModelBase {
         _selectedTheme = AppSettingsService.Instance.CurrentSettings.Theme;
         
         // Profile Picture
-        if (user?.ProfilePicture != null) {
-            using var ms = new MemoryStream(user.ProfilePicture);
+        if (user?.ProfilePicture?.PictureData != null) {
+            using var ms = new MemoryStream(user.ProfilePicture.PictureData);
             _profilePicture = new Bitmap(ms);
         }
         
@@ -108,7 +108,10 @@ public partial class SettingsViewModel : ViewModelBase {
         var userId = SessionService.Instance.CurrentUser!.Id;
         await _userRepository.UpdateProfilePictureAsync(userId, imageBytes);
 
-        SessionService.Instance.CurrentUser!.ProfilePicture = imageBytes;
+        if (SessionService.Instance.CurrentUser!.ProfilePicture == null)
+            SessionService.Instance.CurrentUser.ProfilePicture = new UserProfilePicture { UserId = userId };
+        SessionService.Instance.CurrentUser.ProfilePicture.PictureData = imageBytes;
+        
         NotificationService.Instance.Send("Profile Picture Updated!", "Your profile picture is updated successfully", NotificationType.Success);
     }
 
@@ -121,6 +124,8 @@ public partial class SettingsViewModel : ViewModelBase {
 
         SessionService.Instance.CurrentUser.ProfilePicture = null;
         ProfilePicture = null;
+        
+        NotificationService.Instance.Send("Profile Picture Deleted!", "Your profile picture has been removed.", NotificationType.Success);
     }
     
     [RelayCommand]

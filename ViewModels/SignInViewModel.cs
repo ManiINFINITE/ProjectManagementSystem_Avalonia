@@ -19,7 +19,7 @@ public partial class SignInViewModel : ViewModelBase {
         var repository = new UserRepository();
 
         // Find username
-        var user = await repository.GetByUsernameAsync(Username);
+        var user = await repository.GetByUsernameWithProfilePictureAsync(Username);
 
         if (user == null) {
             NotificationService.Instance.Send("User Not Found!", "The Username you entered was not found! Please try again!",  NotificationType.Error);

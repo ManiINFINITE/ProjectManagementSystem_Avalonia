@@ -11,6 +11,7 @@ public class AppDbContext : DbContext {
     public DbSet<Project> Projects => Set<Project>();
     public DbSet<ProjectTask> Tasks => Set<ProjectTask>();
     public DbSet<UserProject> UserProjects => Set<UserProject>();
+    public DbSet<UserProfilePicture>  UserProfilePictures => Set<UserProfilePicture>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         var connectionString = "Host=localhost;Database=ProjectManagementSystem;Username=postgres;Password=Mani@1384";
@@ -20,5 +21,10 @@ public class AppDbContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<UserProject>()
             .HasKey(up => new { up.UserId, up.ProjectId });
+        
+        modelBuilder.Entity<UserProfilePicture>()
+            .HasOne(p => p.User)
+            .WithOne(u => u.ProfilePicture)
+            .HasForeignKey<UserProfilePicture>(p => p.UserId);
     }
 }

@@ -31,7 +31,7 @@ public class User {
     public string PasswordHash { get; set; } = string.Empty;
     
     
-    public byte[]? ProfilePicture { get; set; }
+    public UserProfilePicture? ProfilePicture { get; set; }
     
     public string FullName => $"{FirstName} {LastName}";
     
