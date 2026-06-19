@@ -149,9 +149,7 @@ public partial class SettingsViewModel : ViewModelBase {
     partial void OnSelectedAccentColorChanged(AccentColorOption? value) {
         if (value == null) return;
         
-        AppSettingsService.Instance!.ApplyAccentColor(
-            value
-            );
+        AppSettingsService.Instance!.ApplyAccentColor(value);
         
         NotificationService.Instance.Send("Accent Color Changed!", $"Accent color changed to {value.Name} successfully.", NotificationType.Success);
     }

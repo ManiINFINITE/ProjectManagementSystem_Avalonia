@@ -84,4 +84,13 @@ public class UserRepository {
         await db.SaveChangesAsync();
         return true;
     }
+
+    public async Task<bool> UpdateAccentColorAsync(int userId, string accentColorName) {
+        await using var db = new AppDbContext();
+        var user = await db.Users.FindAsync(userId);
+        if (user == null) return false;
+        user.AccentColorName = accentColorName;
+        await db.SaveChangesAsync();
+        return true;
+    }
 }

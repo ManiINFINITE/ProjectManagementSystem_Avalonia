@@ -6,6 +6,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Styling;
 using ProjectManagementSystem.Models;
+using ProjectManagementSystem.Repositories;
 using ProjectManagementSystem.ViewModels;
 
 namespace ProjectManagementSystem.Services;
@@ -67,9 +68,9 @@ public class AppSettingsService {
         
         Application.Current.Resources["PrimaryAccentColor"] = option.PrimaryColor.Color;
         Application.Current.Resources["SecondaryAccentColor"] = option.SecondaryColor.Color;
-        AuthenticationViewModel.Instance?.UpdateImage(option.ImagePath);
         Application.Current.Resources["ImageTextForeground"] = option.ImageTextForeground;
         Application.Current.Resources["ButtonHoverBackground"] = option.ButtonHoverBackground;
+        AuthenticationViewModel.Instance?.UpdateImage(option.ImagePath);
         
         // Apply login panel colors to the correct theme dictionaries
         if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Light, out var lightDict)
@@ -82,6 +83,13 @@ public class AppSettingsService {
             && darkDict is ResourceDictionary dark) {
             dark["PrimaryLoginPanelAccentColor"] = option.PrimaryLoginPanelAccentColor_DARK.Color;
             dark["SecondaryLoginPanelAccentColor"] = option.SecondaryLoginPanelAccentColor_DARK.Color;
+        }
+        
+        // Save to DB if user is logged in
+        var currentUser = SessionService.Instance.CurrentUser;
+        if (currentUser != null) {
+            currentUser.AccentColorName = option.Name;
+            _ = new UserRepository().UpdateAccentColorAsync(currentUser.Id, option.Name);
         }
 
         CurrentSettings.AccentColorName = option.Name;
@@ -139,6 +147,12 @@ public class AppSettingsService {
             }
         } catch {
             CurrentSettings = new UserSettings();
+        }
+        
+        // Override accent color from DB
+        var user = SessionService.Instance.CurrentUser;
+        if (user != null) {
+            CurrentSettings.AccentColorName = user.AccentColorName;
         }
 
         Apply(CurrentSettings);

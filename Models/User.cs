@@ -32,8 +32,10 @@ public class User {
     [MaxLength(200)]
     public string PasswordHash { get; set; } = string.Empty;
     
-    
     public UserProfilePicture? ProfilePicture { get; set; }
+
+    [Required] [MaxLength(100)]
+    public string AccentColorName { get; set; } = "Slate Violet";
     
     public string FullName => $"{FirstName} {LastName}";
     

@@ -53,7 +53,8 @@ public partial class SignUpViewModel : ViewModelBase {
             LastName = Lastname,
             Username = Username,
             Email = Email,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(Password)
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(Password),
+            AccentColorName = "Slate Violet"
         };
         
         // Success
