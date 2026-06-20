@@ -11,6 +11,15 @@
 
 ## ✨ Features
 
+### 🙋 Welcome Page
+- A minimal and modern welcome experience
+- Supports up to 6 remembered accounts for quick access
+- Personalized account cards with profile pictures or generated initials
+- Each remembered account displays its own accent color identity
+- One-click account selection for faster sign-in
+- "Use Another Account" option for signing in with non-remembered accounts
+- Secure authentication flow requiring password verification after account selection
+
 ### 🔐 Authentication
 - User registration with input validation (email format, password strength)
 - Password visibility toggle feature
@@ -71,6 +80,7 @@
 | ![Settings With Deep Red Theme LIGHT](Screenshots/deep-red-settings-LIGHT.png) | ![Settings With Lime Forest Theme LIGHT](Screenshots/lime-forest-settings-LIGHT.png) |
 | ![Project creation with google blue LIGHT](Screenshots/google-blue-project-creation-LIGHT.png) | ![Project creation with google blue DARK](Screenshots/google-blue-project-creation-DARK.png) |
 | ![project creation full with orange DARK](Screenshots/orange-project-creation-DARK.png) | ![Project creation with pink light](Screenshots/pink-project-creation-LIGHT.png) |
+| ![welcome-page](Screenshots/welcome-page.png) |
 
 ---
 
