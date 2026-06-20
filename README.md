@@ -6,6 +6,7 @@
 ![EF Core](https://img.shields.io/badge/EF%20Core-10.0-blue?style=flat)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
 ![Build](https://github.com/ManiINFINITE/ProjectManagementSystem_Avalonia/actions/workflows/dotnet.yml/badge.svg)
+![License MIT](https://img.shields.io/badge/license-MIT-blue)
 
 ---
 
