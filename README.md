@@ -12,8 +12,16 @@
 
 ## ✨ Features
 
+### 🚀 Start-Up
+- Simple startup page with app's name on it
+- smoothly animated (FadeIn and out)
+
+### ↔️  Page Transitions
+- Smooth page slide transitions between pages
+- Using warmup at startup to prevent laggy animations
+
 ### 🙋 Welcome Page
-- A minimal and modern welcome experience
+- A minimal, animated, modern welcome experience
 - Supports up to 6 remembered accounts for quick access
 - Personalized account cards with profile pictures or generated initials
 - Each remembered account displays its own accent color identity
@@ -76,13 +84,13 @@
 
 | | |
 |---|---|
+| ![startup](Screenshots/startup.png) | ![welcome-page](Screenshots/welcome.png) |
 | ![Sign In With Slate Violet Theme LIGHT](Screenshots/slate-violet-signin.png) | ![Sign Up With Slate Violet Theme LIGHT](Screenshots/slate-violet-signup.png) |
 | ![Settings Page with Slate Violet Theme LIGHT](Screenshots/slate-violet-settings-LIGHT.png) | ![Settings Page with Slate Violet Theme DARK](Screenshots/slate-violet-settings-DARK.png) |
 | ![Sign In With Deep Red Theme DARK](Screenshots/deep-red-signin.png) | ![Settings With Deep Red Theme DARK](Screenshots/deep-red-settings-DARK.png) |
 | ![Settings With Deep Red Theme LIGHT](Screenshots/deep-red-settings-LIGHT.png) | ![Settings With Lime Forest Theme LIGHT](Screenshots/lime-forest-settings-LIGHT.png) |
 | ![Project creation with google blue LIGHT](Screenshots/google-blue-project-creation-LIGHT.png) | ![Project creation with google blue DARK](Screenshots/google-blue-project-creation-DARK.png) |
 | ![project creation full with orange DARK](Screenshots/orange-project-creation-DARK.png) | ![Project creation with pink light](Screenshots/pink-project-creation-LIGHT.png) |
-| ![welcome-page](Screenshots/welcome.png) |
 
 ---
 
