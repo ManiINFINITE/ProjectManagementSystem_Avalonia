@@ -12,8 +12,44 @@
         Icon="/Assets/Icons/project_icon.png">
 
         <Panel>
-                <!-- Content Switcher -->
-                <ContentControl Content="{Binding CurrentView}"/>
+                <!-- Real content control -->
+                <TransitioningContentControl Content="{Binding CurrentView}" IsVisible="{Binding !IsWarmingUp}">
+                        <TransitioningContentControl.PageTransition>
+                                <PageSlide Duration="0:0:0.3" 
+                                           Orientation="Horizontal"
+                                           SlideInEasing="CubicEaseOut"
+                                           SlideOutEasing="CubicEaseIn"/>
+                        </TransitioningContentControl.PageTransition>
+                </TransitioningContentControl>
+                
+                <!-- Warm-up control -->
+                <TransitioningContentControl Content="{Binding WarmupView}"
+                                             Opacity="0"
+                                             IsHitTestVisible="False"
+                                             ZIndex="-1">
+                        <TransitioningContentControl.PageTransition>
+                                <PageSlide Duration="0:0:0.25"/>
+                        </TransitioningContentControl.PageTransition>
+                </TransitioningContentControl>
+                
+                <Border Background="#242424"
+                        IsVisible="{Binding IsWarmingUp}"
+                        ZIndex="9999">
+                        <TextBlock x:Name="SplashText"
+                                   Text="Project Management System"
+                                   FontFamily="{DynamicResource Nunito-ExtraBold}"
+                                   FontSize="40"
+                                   Foreground="GhostWhite"
+                                   Opacity="0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                                <TextBlock.Transitions>
+                                        <Transitions>
+                                                <DoubleTransition Property="Opacity" Duration="0:0:0.6" Easing="CubicEaseInOut"/>
+                                        </Transitions>
+                                </TextBlock.Transitions>
+                        </TextBlock>
+                </Border>
                 
                 <!-- Notification overlay - always on top -->
                 <views:NotificationView DataContext="{Binding NotificationViewModel}"

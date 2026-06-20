@@ -40,16 +40,14 @@ public class AppSettingsService {
             GlobalSettings = new GlobalSettings();
         }
 
-        // If last user exists, load their settings
-        if (GlobalSettings.LastUserId.HasValue)
-            LoadForUser(GlobalSettings.LastUserId.Value);
-        else
-            Apply(CurrentSettings);
+        Apply(CurrentSettings);
     }
 
     public void Save() {
-        if (GlobalSettings.LastUserId == null) return;
-        var path = GetUserSettingsPath(GlobalSettings.LastUserId.Value);
+        var currentUser = SessionService.Instance.CurrentUser;
+        if (currentUser == null) return;
+
+        var path = GetUserSettingsPath(currentUser.Id);
         try {
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
             var json = JsonSerializer.Serialize(CurrentSettings, new JsonSerializerOptions { WriteIndented = true });
@@ -144,11 +142,6 @@ public class AppSettingsService {
         }
 
         Apply(CurrentSettings);
-    }
-
-    public void SaveLastUser(int userId) {
-        GlobalSettings.LastUserId = userId;
-        SaveGlobal();
     }
     
     private void SaveGlobal() {
