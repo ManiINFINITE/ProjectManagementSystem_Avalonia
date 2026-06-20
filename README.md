@@ -4,7 +4,7 @@
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?style=flat&logo=dotnet)
 ![Avalonia](https://img.shields.io/badge/Avalonia-12.0-8B5CF6?style=flat)
 ![EF Core](https://img.shields.io/badge/EF%20Core-10.0-blue?style=flat)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
 ![Build](https://github.com/ManiINFINITE/ProjectManagementSystem_Avalonia/actions/workflows/dotnet.yml/badge.svg)
 
 ---
