@@ -61,6 +61,12 @@
                                                               Color="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToSecondaryConverter.Instance}}"/>
                                             </LinearGradientBrush>
                                         </Border.Background>
+                                        <TextBlock Text="{Binding Id, Converter={x:Static converters:IdToThemeIconConverter.Instance}}"
+                                                   FontFamily="{DynamicResource Phosphor-Fill}"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="{Binding Id, Converter={x:Static converters:IdToThemeIconForegroundConverter.Instance}}"
+                                                   FontSize="30"/>
                                     </Border>
                                 </Grid>
                             </Border>

@@ -53,7 +53,7 @@
         <Setter Property="Height" Value="100"></Setter>
         <Setter Property="CornerRadius" Value="20"></Setter>
         <Setter Property="Background" Value="#2A2A2A"></Setter>
-        <Setter Property="BorderThickness" Value="0 0 0 6.5"></Setter>
+        <Setter Property="BorderThickness" Value="0 0 0 4"></Setter>
         <Setter Property="ClipToBounds" Value="True"></Setter>
         <Setter Property="BoxShadow" Value="0 4 10 5 #FF0000"></Setter>
         <Setter Property="Margin" Value="0"></Setter>
