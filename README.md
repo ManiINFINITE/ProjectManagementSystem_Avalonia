@@ -137,24 +137,42 @@ ProjectManagementSystem/
 
 ### Prerequisites
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+- [PostgreSQL 16+](https://www.postgresql.org/download/)
 - Any IDE: [Rider](https://www.jetbrains.com/rider/), [Visual Studio 2022](https://visualstudio.microsoft.com/), or [VS Code](https://code.visualstudio.com/)
-- Git LFS installed: `git lfs install`
+- [Git LFS](https://git-lfs.com/) — required for image assets
 
-### Run Locally
-
+### 1. Clone the Repository
 ```bash
-# Clone the repo
+git lfs install
 git clone https://github.com/ManiINFINITE/ProjectManagementSystem_Avalonia.git
 cd ProjectManagementSystem_Avalonia
+```
 
-# Restore dependencies
+### 2. Set Up PostgreSQL
+1. Install PostgreSQL and make sure the service is running
+2. Open **pgAdmin** or **psql** and create the database:
+```sql
+CREATE DATABASE "ProjectManagementSystem";
+```
+3. Open `Data/AppDbContext.cs` and update the connection string with your credentials:
+```csharp
+"Host=localhost;Database=ProjectManagementSystem;Username=YOUR_USERNAME;Password=YOUR_PASSWORD"
+```
+
+### 3. Apply Migrations
+```bash
+dotnet tool install --global dotnet-ef
+dotnet ef database update
+```
+This creates all tables automatically.
+
+### 4. Restore & Run
+```bash
 dotnet restore
-
-# Run the app
 dotnet run
 ```
 
-The SQLite database (`project_management.db`) is created automatically on first run via `EnsureCreated()`.
+> ⚠️ This project is still in active development. A standalone installer will be available upon release.
 
 ---
 
