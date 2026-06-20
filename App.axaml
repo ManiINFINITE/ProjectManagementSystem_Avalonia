@@ -41,9 +41,6 @@
                     <Color x:Key="NavButtonsHoverBackground">#DDDDDD</Color>
                     <Color x:Key="NavButtonsPressedBackground">#CCCCCC</Color>
                     <Color x:Key="ReadOnlyBackground">#DEDEDE</Color>
-                    <Color x:Key="WelcomePageBackgroundDarker">#898791</Color>
-                    <Color x:Key="WelcomePageBackgroundLighter">#ECEAF5</Color>
-                    <Color x:Key="WelcomeUserCardBackground">#BFBFBF</Color>
                     
                     <SolidColorBrush x:Key="MyProjectsForeground">#555555</SolidColorBrush>
                     <SolidColorBrush x:Key="CollapseIconForeground">Black</SolidColorBrush>
@@ -69,9 +66,6 @@
                     <Color x:Key="NavButtonsHoverBackground">#5C5C5C</Color>
                     <Color x:Key="NavButtonsPressedBackground">#3C3C3C</Color>
                     <Color x:Key="ReadOnlyBackground">#2B2B2B</Color>
-                    <Color x:Key="WelcomePageBackgroundDarker">#242424</Color>
-                    <Color x:Key="WelcomePageBackgroundLighter">#404040</Color>
-                    <Color x:Key="WelcomeUserCardBackground">#2A2A2A</Color>
                     
                     <SolidColorBrush x:Key="MyProjectsForeground">WhiteSmoke</SolidColorBrush>
                     <SolidColorBrush x:Key="CollapseIconForeground">White</SolidColorBrush>

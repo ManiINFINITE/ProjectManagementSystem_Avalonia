@@ -21,12 +21,6 @@ public class AppSettingsService {
         "settings.json"
     );
     
-    private static readonly string DefaultSettingsPath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "ProjectManagementSystem",
-        "settings.json"
-    );
-    
     public GlobalSettings GlobalSettings { get; private set; } = new();
     public UserSettings CurrentSettings { get; private set; } = new();
 
@@ -129,12 +123,6 @@ public class AppSettingsService {
             _       => ThemeVariant.Default
         };
     }
-
-    private static string GetSettingsPath(int userId) => Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "ProjectManagementSystem",
-        $"settings.user.{userId}.json"
-        );
     
     public void LoadForUser(int userId) {
         var path = GetUserSettingsPath(userId);
@@ -183,5 +171,21 @@ public class AppSettingsService {
             GlobalSettings.RememberedUsers.Insert(0, userId);
         }
         SaveGlobal();
+    }
+
+    public string? getThemeForUser(int userId) {
+        var path = GetUserSettingsPath(userId);
+
+        try {
+            if (!File.Exists(path)) return null;
+            
+            var json = File.ReadAllText(path);
+            using var doc = JsonDocument.Parse(json);
+
+            if (doc.RootElement.TryGetProperty("Theme", out var themeElement)) {
+                return themeElement.GetString();
+            }
+        } catch {/**/}
+        return null;
     }
 }

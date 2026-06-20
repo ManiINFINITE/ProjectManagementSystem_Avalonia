@@ -23,59 +23,61 @@
                         <WrapPanel Orientation="Horizontal"
                                    HorizontalAlignment="Center"
                                    MaxWidth="1000"
-                                   Margin="0 30 0 0"/>
+                                   Margin="0 40 0 0"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="models:User">
-                        <Border Classes="UserCard" Tapped="UserCard_Tapped" 
+                        <Border Classes="UserCardShadow">
+                            <Border Classes="UserCard" PointerPressed="UserCard_PointerPressed" PointerReleased="UserCard_PointerReleased" PointerCaptureLost="UserCard_OnPointerCaptureLost"
                                 BorderBrush="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToBrushConverter.Instance}}">
-                            <Grid ColumnDefinitions="Auto, *, Auto">
-                                <Border Grid.Column="0" Classes="ImageBorder">
-                                    <Panel>
-                                        <Border CornerRadius="999"
-                                                Background="{Binding Converter={x:Static converters:UserAvatarColorConverter.Instance}}"
-                                                IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNull}}">
-                                            <TextBlock Text="{Binding Initials}"
-                                                       FontFamily="{DynamicResource Nunito-Bold}"
-                                                       Foreground="White"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       FontSize="25"/>
-                                        </Border>
-                                        <Image Source="{Binding ProfilePicture?.PictureData, Converter={x:Static converters:ByteArrayToBitmapConverter.Instance}}"
-                                               IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}"/>
-                                    </Panel>
-                                </Border>
-                                <Grid Grid.Column="1" RowDefinitions="Auto, Auto" Margin="10 0 0 0">
-                                    <TextBlock Classes="UsernameText" Grid.Row="0" Text="{Binding Username}"/>
-                                    <TextBlock Classes="FullnameText" Grid.Row="1" Text="{Binding FullName}" TextTrimming="CharacterEllipsis"/>
+                                <Grid ColumnDefinitions="Auto, *, Auto">
+                                    <Border Grid.Column="0" Classes="ImageBorder">
+                                        <Panel>
+                                            <Border CornerRadius="999"
+                                                    Background="{Binding Converter={x:Static converters:UserAvatarColorConverter.Instance}}"
+                                                    IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNull}}">
+                                                <TextBlock Text="{Binding Initials}"
+                                                           FontFamily="{DynamicResource Nunito-Bold}"
+                                                           Foreground="White"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="25"/>
+                                            </Border>
+                                            <Image Source="{Binding ProfilePicture?.PictureData, Converter={x:Static converters:ByteArrayToBitmapConverter.Instance}}"
+                                                   IsVisible="{Binding ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                                        </Panel>
+                                    </Border>
+                                    <Grid Grid.Column="1" RowDefinitions="Auto, Auto" Margin="10 0 0 0">
+                                        <TextBlock Classes="UsernameText" Grid.Row="0" Text="{Binding Username}"/>
+                                        <TextBlock Classes="FullnameText" Grid.Row="1" Text="{Binding FullName}" TextTrimming="CharacterEllipsis"/>
+                                    </Grid>
+                                    <Border Classes="Ellipse" Grid.Column="2">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0%, 100%" EndPoint="50%, 0%">
+                                                <GradientStop Offset="0"
+                                                              Color="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToPrimaryConverter.Instance}}"/>
+                                                <GradientStop Offset="1"
+                                                              Color="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToSecondaryConverter.Instance}}"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
                                 </Grid>
-                                <Border Classes="Ellipse" Grid.Column="2">
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0%, 100%" EndPoint="50%, 0%">
-                                            <GradientStop Offset="0"
-                                                          Color="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToPrimaryConverter.Instance}}"/>
-                                            <GradientStop Offset="1"
-                                                          Color="{Binding AccentColorName, Converter={x:Static converters:AccentColorNameToSecondaryConverter.Instance}}"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                </Border>
-                            </Grid>
+                            </Border>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Grid Grid.Row="3" ColumnDefinitions="*, Auto, *" Margin="0 20 0 20">
+            <Grid Grid.Row="3" ColumnDefinitions="*, Auto, *" Margin="0 0 0 0">
                 <Border Classes="SideLines" Grid.Column="0"
                         Margin="250 0 0 0"
-                        Opacity="0.5"/>
+                        Opacity="0.35"/>
                 <TextBlock Classes="OrText" Grid.Column="1" Text="or"
                            Margin="20 0"
-                           Opacity="0.5"/>
+                           Opacity="0.35"/>
                 <Border Classes="SideLines" Grid.Column="2"
                         Margin="0 0 250 0"
-                        Opacity="0.5"/>
+                        Opacity="0.35"/>
             </Grid>
             <Button Grid.Row="4"
                     Command="{Binding SignInWithDifferentAccountCommand}"

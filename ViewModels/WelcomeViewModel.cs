@@ -37,18 +37,26 @@ public partial class WelcomeViewModel : ViewModelBase {
             }
         };
         
+        // Apply selected user's accent color
         var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == user.AccentColorName)
             ??  AccentColorsBase.AccentColors.First();
         AppSettingsService.Instance!.ApplyAccentColor(accent);
+        
+        // Apply selected user's theme
+        var theme = AppSettingsService.Instance.getThemeForUser(user.Id);
+        AppSettingsService.Instance.ApplyTheme(theme!);
         
         NavigationService.Instance.NavigateTo(AuthVm);
     }
 
     [RelayCommand]
     private void SignInWithDifferentAccount() {
-
+        // Apply default accent color
         var accent = AccentColorsBase.AccentColors.First();
         AppSettingsService.Instance!.ApplyAccentColor(accent);
+        
+        // Apply system theme
+        AppSettingsService.Instance.ApplyTheme("System");
         
         NavigationService.Instance.NavigateTo(new AuthenticationViewModel("Slate Violet"));
     }

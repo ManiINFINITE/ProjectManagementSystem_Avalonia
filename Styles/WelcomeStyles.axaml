@@ -25,8 +25,8 @@
     <Style Selector="Border.MainBorder">
         <Setter Property="Background">
             <LinearGradientBrush StartPoint="0, 0" EndPoint="0%, 100%">
-                <GradientStop Offset="0" Color="{DynamicResource WelcomePageBackgroundLighter}"/>
-                <GradientStop Offset="1" Color="{DynamicResource WelcomePageBackgroundDarker}"/>
+                <GradientStop Offset="0" Color="#404040"/>
+                <GradientStop Offset="1" Color="#242424"/>
             </LinearGradientBrush>
         </Setter>
     </Style>
@@ -37,6 +37,7 @@
         <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Margin" Value="0 55 0 0"></Setter>
         <Setter Property="Opacity" Value="0.85"></Setter>
+        <Setter Property="Foreground" Value="GhostWhite"></Setter>
     </Style>
     
     <Style Selector="TextBlock.AppName">
@@ -44,18 +45,43 @@
         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="45"></Setter>
         <Setter Property="Opacity" Value="0.9"></Setter>
+        <Setter Property="Foreground" Value="GhostWhite"></Setter>
     </Style>
     
     <Style Selector="Border.UserCard">
         <Setter Property="Width" Value="350"></Setter>
         <Setter Property="Height" Value="100"></Setter>
         <Setter Property="CornerRadius" Value="20"></Setter>
-        <Setter Property="Background" Value="{DynamicResource WelcomeUserCardBackground}"></Setter>
+        <Setter Property="Background" Value="#2A2A2A"></Setter>
         <Setter Property="BorderThickness" Value="0 0 0 6.5"></Setter>
         <Setter Property="ClipToBounds" Value="True"></Setter>
-        <Setter Property="BoxShadow" Value="0 4 10 5 #75000000"></Setter>
-        <Setter Property="Margin" Value="20"></Setter>
+        <Setter Property="BoxShadow" Value="0 4 10 5 #FF0000"></Setter>
+        <Setter Property="Margin" Value="0"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="Border.UserCardShadow">
+        <Setter Property="Width" Value="350"></Setter>
+        <Setter Property="Height" Value="100"></Setter>
+        <Setter Property="CornerRadius" Value="20"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="BoxShadow" Value="0 5 10 0 #80000000"></Setter>
+        <Setter Property="Margin" Value="20"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Border.UserCardShadow:pointerover">
+        <Setter Property="RenderTransform" Value="translateY(-6px) scale(1.02)"></Setter>
+        <Setter Property="BoxShadow" Value="0 5 15 0 #80505050"></Setter>
+    </Style>
+    
+    <Style Selector="Border.UserCardShadow.Pressed">
+        <Setter Property="RenderTransform" Value="translateY(-2px) scale(0.97)"/>
     </Style>
     
     <Style Selector="Border.ImageBorder">
@@ -74,11 +100,13 @@
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Margin" Value="0 17 0 7.5"></Setter>
+        <Setter Property="Foreground" Value="GhostWhite"></Setter>
     </Style>
     
     <Style Selector="TextBlock.FullnameText">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-Regular}"></Setter>
         <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="Foreground" Value="GhostWhite"></Setter>
     </Style>
     
     <Style Selector="Border.Ellipse">
@@ -93,29 +121,34 @@
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="0 0 0 100"></Setter>
+        <Setter Property="Margin" Value="0 20 0 60"></Setter>
     </Style>
     
     <Style Selector="Button.UseAnotherAccountButton:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="Transparent"></Setter>
     </Style>
     
+    <Style Selector="Button.UseAnotherAccountButton TextBlock">
+        <Setter Property="Foreground" Value="GhostWhite"></Setter>
+    </Style>
+    
     <Style Selector="Button.UseAnotherAccountButton:pointerover TextBlock">
         <Setter Property="TextDecorations" Value="Underline"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
     </Style>
     
     <Style Selector="Border.SideLines">
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="Height" Value="1"></Setter>
-        <Setter Property="Background" Value="{DynamicResource NavButtonsHoverBackground}"></Setter>
+        <Setter Property="Background" Value="GhostWhite"></Setter>
         <Setter Property="CornerRadius" Value="100"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
     </Style>
     
     <Style Selector="TextBlock.OrText">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-Regular}"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource NavButtonsForeground}"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="FontSize" Value="12.5"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="Foreground" Value="GhostWhite"></Setter>
     </Style>
 </Styles>
