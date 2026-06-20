@@ -36,16 +36,56 @@
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-Light}"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Margin" Value="0 55 0 0"></Setter>
-        <Setter Property="Opacity" Value="0.85"></Setter>
+        <Setter Property="Opacity" Value="0"></Setter>
         <Setter Property="Foreground" Value="GhostWhite"></Setter>
+        <Setter Property="RenderTransform" Value="translateY(-25px)"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.8" Easing="CubicEaseOut"/>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.8" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.WelcomeText.Shown">
+        <Setter Property="Opacity" Value="0.85"></Setter>
+        <Setter Property="RenderTransform" Value="translateY(0)"></Setter>
     </Style>
     
     <Style Selector="TextBlock.AppName">
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-ExtraBold}"></Setter>
         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="45"></Setter>
-        <Setter Property="Opacity" Value="0.9"></Setter>
+        <Setter Property="Opacity" Value="0"></Setter>
         <Setter Property="Foreground" Value="GhostWhite"></Setter>
+        <Setter Property="RenderTransform" Value="translateY(-25px)"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.8" Easing="CubicEaseOut"/>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.8" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AppName.Shown">
+        <Setter Property="Opacity" Value="0.9"/>
+        <Setter Property="RenderTransform" Value="translateY(0)"/>
+    </Style>
+    
+    <Style Selector="ItemsControl.FadeInGroup, Grid.FadeInGroup, Button.FadeInGroup">
+        <Setter Property="Opacity" Value="0"/>
+        <Setter Property="RenderTransform" Value="translateY(-12px)"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.7" Easing="CubicEaseOut"/>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.7" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+
+    <Style Selector="ItemsControl.FadeInGroup.Shown, Grid.FadeInGroup.Shown, Button.FadeInGroup.Shown">
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="RenderTransform" Value="translateY(0)"/>
     </Style>
     
     <Style Selector="Border.UserCard">

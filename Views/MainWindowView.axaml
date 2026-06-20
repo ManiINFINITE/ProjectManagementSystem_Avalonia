@@ -32,9 +32,14 @@
                         </TransitioningContentControl.PageTransition>
                 </TransitioningContentControl>
                 
-                <Border Background="#242424"
-                        IsVisible="{Binding IsWarmingUp}"
+                <Border IsVisible="{Binding IsWarmingUp}"
                         ZIndex="9999">
+                        <Border.Background>
+                                <LinearGradientBrush StartPoint="0, 0" EndPoint="0%, 100%">
+                                        <GradientStop Offset="0" Color="#404040"/>
+                                        <GradientStop Offset="1" Color="#242424"/>
+                                </LinearGradientBrush>
+                        </Border.Background>
                         <TextBlock x:Name="SplashText"
                                    Text="Project Management System"
                                    FontFamily="{DynamicResource Nunito-ExtraBold}"

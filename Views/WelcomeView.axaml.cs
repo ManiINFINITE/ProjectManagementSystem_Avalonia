@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -11,6 +12,25 @@ namespace ProjectManagementSystem.Views;
 public partial class WelcomeView : UserControl {
     public WelcomeView() {
         InitializeComponent();
+        Loaded += async (_, _) => await PlayEntranceAsync();
+    }
+
+    private async Task PlayEntranceAsync() {
+        await Task.Delay(250); // let page-slide settle before starting
+
+        WelcomeTextBlock.Classes.Add("Shown");
+        await Task.Delay(450);
+
+        AppNameTextBlock.Classes.Add("Shown");
+        await Task.Delay(550);
+
+        UsersItemsControl.Classes.Add("Shown");
+        await Task.Delay(180);
+
+        DividerGrid.Classes.Add("Shown");
+        await Task.Delay(180);
+
+        UseAnotherButton.Classes.Add("Shown");
     }
 
     private void UserCard_PointerPressed(object sender, PointerPressedEventArgs e) {

@@ -15,9 +15,9 @@
     
     <Border Classes="MainBorder">
         <Grid RowDefinitions="Auto, Auto, *, Auto, Auto">
-            <TextBlock Classes="WelcomeText" Grid.Row="0" Text="Welcome to"/>
-            <TextBlock Classes="AppName" Grid.Row="1" Text="Project Management System"/>
-            <ItemsControl Grid.Row="2" ItemsSource="{Binding RememberedUsers}">
+            <TextBlock Classes="WelcomeText" x:Name="WelcomeTextBlock" Grid.Row="0" Text="Welcome to"/>
+            <TextBlock Classes="AppName" x:Name="AppNameTextBlock" Grid.Row="1" Text="Project Management System"/>
+            <ItemsControl Classes="FadeInGroup" x:Name="UsersItemsControl" Grid.Row="2" ItemsSource="{Binding RememberedUsers}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"
@@ -74,7 +74,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Grid Grid.Row="3" ColumnDefinitions="*, Auto, *" Margin="0 0 0 0">
+            <Grid Classes="FadeInGroup" x:Name="DividerGrid" Grid.Row="3" ColumnDefinitions="*, Auto, *" Margin="0 0 0 0">
                 <Border Classes="SideLines" Grid.Column="0"
                         Margin="250 0 0 0"
                         Opacity="0.35"/>
@@ -87,7 +87,8 @@
             </Grid>
             <Button Grid.Row="4"
                     Command="{Binding SignInWithDifferentAccountCommand}"
-                    Classes="UseAnotherAccountButton">
+                    Classes="UseAnotherAccountButton FadeInGroup"
+                    x:Name="UseAnotherButton">
                 <TextBlock Text="Use Another Account"/>
             </Button>
         </Grid>
