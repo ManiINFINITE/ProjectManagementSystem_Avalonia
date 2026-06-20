@@ -34,7 +34,7 @@
 - Totally customizable with 34 combinations of 17 accent colors and Dark/Light Theme
 
 ### 👤 Per-User Account Management
-- Profile picture upload, display, and deletion (stored as `BLOB` in SQLite per user)
+- Profile picture upload, display, and deletion (stored as `BLOB` in PostgreSQL per user)
 - Profile initials fallback when no picture is set
 - Per-user settings persisted in individual JSON files (`settings.user.{id}.json`)
 - Last logged-in user's settings automatically restored on app startup
@@ -44,7 +44,8 @@
 - **17 accent color presets** with gradient previews (Slate Violet, Google Blue, Deep Purple, Emerald, and more)
 - Each accent color preset comes with its **own unique signin Picture**
 - All colors applied dynamically via Avalonia resource dictionaries
-- Accent colors are looked up by name from a central `AccentColorsBase` — no stale color values stored in JSON
+- Accent colors are looked up by name from a central `AccentColorsBase`
+- Accent colors are also saved to PostgreSQL database
 
 ### 🔔 Notification System
 - JetBrains-style toast notifications sliding in from the **bottom right**
@@ -91,14 +92,16 @@ ProjectManagementSystem/
 ├── Assets/
 │   └── Icons/           # icons used for main window
 │   └── Images/          # 17 accent color background images (Git LFS)
+│   └── Fonts/           # Fonts for both texts (Nunito) and Icons (Phosphor)
+├── Converters/          # Custom converters
 ├── Data/
-│   └── AppDbContext.cs  # EF Core SQLite context
+│   └── AppDbContext.cs  # EF Core PostgreSQL context
 ├── Enums/               # NotificationType, AuthenticationMode
 ├── Helpers/
 │   └── UserValidator.cs # Email & password validation
 ├── Models/              # User, Notification, AppSettings, AccentColorOption, etc.
-├── Repositories/        # UserRepository (data access layer)
-├── Services/            # AppSettingsService, NotificationService, SessionService, SharedAnimationService
+├── Repositories/        # One Repository per table (Data level access)
+├── Services/            # AppSettingsService, NotificationService, SessionService, SharedAnimationService, NavigationService and etc.
 ├── Styles/              # Avalonia AXAML stylesheets per view
 ├── ViewModels/          # MVVM ViewModels (CommunityToolkit.Mvvm)
 ├── Views/               # Avalonia UserControls and Windows
