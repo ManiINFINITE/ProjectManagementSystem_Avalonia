@@ -4,13 +4,6 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
           
-            <Button Classes="LogoutButton">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Classes="LogoutIcon" Text="&#xE42A;"></TextBlock>
-                    <TextBlock Classes="LogoutText" Text="Logout"></TextBlock>
-                </StackPanel>
-            </Button>
-          
           
         </Border>
     </Design.PreviewWith>
@@ -37,6 +30,12 @@
         <Setter Property="Margin" Value="10 0 0 0"></Setter>
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Opacity" Value="1"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.3"/>
+            </Transitions>
+        </Setter>
     </Style>
     
     <Style Selector="Button.CollapseButton">
@@ -49,6 +48,12 @@
         <Setter Property="Margin" Value="50 0 0 0"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         <Setter Property="RenderTransformOrigin" Value="50%, 50%"></Setter>
+        <Setter Property="RenderTransform" Value="rotate(0) translateX(0)"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3"/>
+            </Transitions>
+        </Setter>
     </Style>
     
     <Style Selector="TextBlock.CollapseIcon">
@@ -80,6 +85,11 @@
         <Setter Property="BoxShadow" Value="0 0 20 0 #3d3d3d"></Setter>
         <Setter Property="Margin" Value="15 15 7.5 15"></Setter>
         <Setter Property="Padding" Value="10"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Width" Duration="0:0:0.3" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
     </Style>
     
     <Style Selector="Border.RightPanel">
@@ -115,6 +125,14 @@
         <Setter Property="Margin" Value="0 360 0 5"></Setter>
     </Style>
     
+    <Style Selector="Border.HLine1, Border.HLine2, Border.HLine3">
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Width" Duration="0:0:0.3" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
     <Style Selector="TextBlock.ButtonIcon">
         <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -128,6 +146,12 @@
         <Setter Property="Margin" Value="20 0 0 0"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource NavButtonsForeground}"></Setter>
         <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="Opacity" Value="1"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.3"/>
+            </Transitions>
+        </Setter>
     </Style>
     
     <Style Selector="Button.LeftPanelButton">
@@ -152,6 +176,12 @@
         <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
         <Setter Property="Foreground" Value="#888888"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Opacity" Value="1"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.3"/>
+            </Transitions>
+        </Setter>
     </Style>
     
     <Style Selector="TextBlock.AddProjectIconLeftPanel">
@@ -172,6 +202,12 @@
         <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="Margin" Value="100 0 0 0"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="RenderTransform" Value="translateX(0)"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
     </Style>
     
     <Style Selector="Button.AddProjectButtonLeftPanel:pointerover /template/ ContentPresenter">
@@ -300,9 +336,11 @@
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="Margin" Value="20 0 0 0"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Opacity" Value="1"></Setter>
         <Setter Property="Transitions">
             <Transitions>
                 <BrushTransition Property="Foreground" Duration="0:0:0.1"></BrushTransition>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.3"/>
             </Transitions>
         </Setter>
     </Style>
@@ -313,6 +351,54 @@
 
     <Style Selector="Button.LogoutButton:pointerover TextBlock">
         <Setter Property="Foreground" Value="White"/>
+    </Style>
+    
+    <Style Selector="StackPanel.ExpandedLeftPanelHeader">
+        <Setter Property="Opacity" Value="1"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.3" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    
+    <!-- Animation -->
+    
+    <Style Selector="Button.AddProjectButtonLeftPanel.Collapsed">
+        <Setter Property="RenderTransform" Value="translateX(-194px)"></Setter>
+    </Style>
+    
+    <Style Selector="Button.CollapseButton.Collapsed">
+        <Setter Property="RenderTransform" Value="rotate(180deg) translateX(-15px)"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ButtonText.Collapsed">
+        <Setter Property="Opacity" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.MyProjectsText.Collapsed">
+        <Setter Property="Opacity" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.LogoutText.Collapsed">
+        <Setter Property="Opacity" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.ProjectMText.Collapsed">
+        <Setter Property="Opacity" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="StackPanel.ExpandedLeftPanelHeader.Collapsed">
+        <Setter Property="Opacity" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.LeftPanel.Collapsed">
+        <Setter Property="Width" Value="60"></Setter>
+    </Style>
+    
+    <Style Selector="Border.HLine1.Collapsed, Border.HLine2.Collapsed, Border.HLine3.Collapsed">
+        <Setter Property="Width" Value="30"/>
     </Style>
     
 </Styles>

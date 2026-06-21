@@ -19,7 +19,7 @@
             <Border Name="LeftPanel" Classes="LeftPanel" Grid.Column="0">
                 <Grid RowDefinitions="Auto, Auto, *, Auto">
                     <Grid Grid.Row="0" Margin="0 -12.5 0 0">
-                        <StackPanel Name="ExpandedLeftPanelHeader" Orientation="Horizontal">
+                        <StackPanel Name="ExpandedLeftPanelHeader" Classes="ExpandedLeftPanelHeader" Orientation="Horizontal">
                             <TextBlock Classes="ProjectIcon" Text="&#xEC08;"></TextBlock>
                             <TextBlock Name="ProjectMText" Classes="ProjectMText" Text="Project M."
                                        VerticalAlignment="Center">
@@ -27,9 +27,6 @@
                         </StackPanel>
                         <Button Name="CollapseButton" Classes="CollapseButton" Click="CollapseButton_Click"
                                 HorizontalAlignment="Right">
-                            <Button.RenderTransform>
-                                <RotateTransform Angle="0"></RotateTransform>
-                            </Button.RenderTransform>
                             <TextBlock Name="CollapseIcon" Classes="CollapseIcon" Text="&#xE128;"></TextBlock>
                         </Button>
                     </Grid>
@@ -76,9 +73,6 @@
                         <Grid Margin="15 5 0 10" ClipToBounds="False">
                             <TextBlock Name="MyProjectsText" Classes="MyProjectsText" Text="MY PROJECTS"></TextBlock>
                             <Button Click="AddProjectButton_Click" Name="AddProjectButton" Classes="AddProjectButtonLeftPanel" Margin="185 0 0 0">
-                                <Button.RenderTransform>
-                                    <TranslateTransform X="0" />
-                                </Button.RenderTransform>
                                 <TextBlock Classes="AddProjectIconLeftPanel" Text="&#xE3D6;"></TextBlock>
                             </Button>
                         </Grid>
@@ -122,11 +116,11 @@
             </Border>
         </Grid>
         
-        <Border Background="#C8000000" IsVisible="{Binding IsCreateProjectOpen}" ClipToBounds="False">
+        <!--<Border Background="#C8000000" IsVisible="{Binding IsCreateProjectOpen}" ClipToBounds="False">
             <views:ProjectCreationView DataContext="{Binding ProjectCreationViewModel}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
-        </Border>
+        </Border>-->
         
     </Panel>
     
