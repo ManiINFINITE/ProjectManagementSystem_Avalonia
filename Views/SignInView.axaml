@@ -7,6 +7,10 @@
              x:Class="ProjectManagementSystem.Views.SignInView"
              x:DataType="vm:SignInViewModel">
     
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/AuthenticationStyles.axaml"/>
+    </UserControl.Styles>
+    
     <Border Classes="InnerRightBorder">
         <Grid RowDefinitions="Auto, *">
             <TextBlock Classes="SignInText" Grid.Row="0" Text="Sign In"></TextBlock>

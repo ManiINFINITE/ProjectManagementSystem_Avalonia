@@ -8,6 +8,10 @@
              mc:Ignorable="d" d:DesignWidth="1366" d:DesignHeight="768"
              x:Class="ProjectManagementSystem.Views.DashboardView"
              x:DataType="vm:DashboardViewModel">
+    
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/DashboardStyles.axaml"/>
+    </UserControl.Styles>
 
     <Panel>
         

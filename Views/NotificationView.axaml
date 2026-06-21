@@ -8,6 +8,10 @@
              x:DataType="vm:NotificationViewModel"
              ClipToBounds="False">
     
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/NotificationStyles.axaml"/>
+    </UserControl.Styles>
+    
     <ItemsControl ItemsSource="{Binding VisibleNotifications}" ClipToBounds="False">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>

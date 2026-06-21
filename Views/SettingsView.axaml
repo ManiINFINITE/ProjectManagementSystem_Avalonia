@@ -8,6 +8,10 @@
              x:Class="ProjectManagementSystem.Views.SettingsView"
              x:DataType="using:SettingsViewModel">
     
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/SettingsStyles.axaml"/>
+    </UserControl.Styles>
+    
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid RowDefinitions="Auto, Auto, Auto, Auto">
             <Border Classes="TitleBorder" Grid.Row="0">

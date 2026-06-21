@@ -7,9 +7,9 @@
         x:Class="ProjectManagementSystem.Views.AuthenticationView"
         x:DataType="vm:AuthenticationViewModel">
     
-    <Design.DataContext>
-        <vm:AuthenticationViewModel></vm:AuthenticationViewModel>
-    </Design.DataContext>
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/AuthenticationStyles.axaml"/>
+    </UserControl.Styles>
 
     <Grid Classes="SignInGrid" ColumnDefinitions="0.2*, *, 0.2*" RowDefinitions="0.2*, *, 0.2*">
         <Border Classes="TopLeftCircle" Grid.Column="0" Grid.Row="0"></Border>
@@ -31,11 +31,22 @@
                     </Border.RenderTransform>
                     <Grid>
                         <Image Classes="LandscapeImage" Source="{Binding Image}"></Image>
-                        <TextBlock Name="ImageText" Classes="ImageText" Text="{Binding ImageText}">
-                            <TextBlock.RenderTransform>
-                                <TranslateTransform X="0"/>
-                            </TextBlock.RenderTransform>
-                        </TextBlock>
+                        <Panel>
+                            <Border Height="60"
+                                    Width="340"
+                                    HorizontalAlignment="Center"
+                                    Margin="0 -360 0 0"
+                                    Background="#40000000">
+                                <Border.Effect>
+                                    <BlurEffect Radius="50"/>
+                                </Border.Effect>
+                            </Border>
+                            <TextBlock Name="ImageText" Classes="ImageText" Text="{Binding ImageText}">
+                                <TextBlock.RenderTransform>
+                                    <TranslateTransform X="0"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Panel>
                     </Grid>
                 </Border>
                 <Border Name="InfoBorder" Grid.Column="1" Classes="InnerRightBorder" RenderOptions.BitmapInterpolationMode="LowQuality">
