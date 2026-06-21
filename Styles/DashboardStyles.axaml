@@ -363,7 +363,7 @@
     </Style>
     
     
-    <!-- Animation -->
+    <!-- Collapse Animation -->
     
     <Style Selector="Button.AddProjectButtonLeftPanel.Collapsed">
         <Setter Property="RenderTransform" Value="translateX(-194px)"></Setter>

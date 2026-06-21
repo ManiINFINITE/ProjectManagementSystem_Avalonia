@@ -7,7 +7,8 @@
              xmlns:models="clr-namespace:ProjectManagementSystem.Models"
              mc:Ignorable="d" d:DesignWidth="1366" d:DesignHeight="768"
              x:Class="ProjectManagementSystem.Views.DashboardView"
-             x:DataType="vm:DashboardViewModel">
+             x:DataType="vm:DashboardViewModel"
+             x:Name="Root">
     
     <UserControl.Styles>
         <StyleInclude Source="../Styles/DashboardStyles.axaml"/>
@@ -80,6 +81,32 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="models:Project">
                                     <Button Classes="ProjectButtonLeftPanel">
+                                        <Button.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="View"
+                                                          Command="{Binding $parent[ItemsControl].((vm:DashboardViewModel)DataContext)?.ViewProjectCommand}"
+                                                          CommandParameter="{Binding}">
+                                                    <MenuItem.Icon>
+                                                        <TextBlock Text="&#xE220;" FontFamily="{DynamicResource Phosphor}"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Header="Update"
+                                                          Command="{Binding $parent[ItemsControl].((vm:DashboardViewModel)DataContext)?.UpdateProjectCommand}"
+                                                          CommandParameter="{Binding}">
+                                                    <MenuItem.Icon>
+                                                        <TextBlock Text="&#xE52A;" FontFamily="{DynamicResource Phosphor}"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <Separator/>
+                                                <MenuItem Header="Delete"
+                                                          Command="{Binding #Root.((vm:DashboardViewModel)DataContext)?.DeleteProjectCommand}"
+                                                          CommandParameter="{Binding}">
+                                                    <MenuItem.Icon>
+                                                        <TextBlock Text="&#xE4A6;" FontFamily="{DynamicResource Phosphor}"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                            </ContextMenu>
+                                        </Button.ContextMenu>
                                         <StackPanel Classes="ProjectLeftPanel" Orientation="Horizontal">
                                             <Border Classes="ProjectDotLeftPanel" Background="{Binding Color}"/>
                                             <TextBlock Classes="ProjectNameLeftPanel" Text="{Binding Name}"/>
@@ -116,11 +143,11 @@
             </Border>
         </Grid>
         
-        <!--<Border Background="#C8000000" IsVisible="{Binding IsCreateProjectOpen}" ClipToBounds="False">
+        <Border Background="#C8000000" IsVisible="{Binding IsCreateProjectOpen}" ClipToBounds="False">
             <views:ProjectCreationView DataContext="{Binding ProjectCreationViewModel}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
-        </Border>-->
+        </Border>
         
     </Panel>
     

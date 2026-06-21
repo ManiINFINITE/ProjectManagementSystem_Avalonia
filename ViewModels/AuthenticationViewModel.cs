@@ -5,7 +5,6 @@ using Avalonia.Platform;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProjectManagementSystem.Enums;
 using ProjectManagementSystem.Models;
-using ProjectManagementSystem.Services;
 
 namespace ProjectManagementSystem.ViewModels;
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -15,6 +16,8 @@ public partial class DashboardViewModel : ViewModelBase {
     public static DashboardViewModel? Instance { get; private set; }
 
     private readonly UserProjectRepository _userProjectRepository = new();
+    private readonly ProjectRepository _projectRepository = new();
+    
     private readonly User? _currentUser;
     
     [ObservableProperty] private ProjectCreationViewModel _projectCreationViewModel = new();
@@ -68,6 +71,34 @@ public partial class DashboardViewModel : ViewModelBase {
 
     public void CloseCreateProject() {
         IsCreateProjectOpen = false;
+    }
+
+    [RelayCommand]
+    private void ViewProject(Project project) {
+        //TODO: Navigate to project view
+        throw new NotImplementedException();
+    }
+
+    [RelayCommand]
+    private void UpdateProject(Project project) {
+        //TODO: Open update project overlay
+        throw new NotImplementedException();
+    }
+
+    [RelayCommand]
+    private async Task DeleteProject(Project project) {
+        Console.WriteLine($"=== DeleteProject called for: {project?.Name}");
+    
+        if (project == null) {
+            Console.WriteLine("=== Project is NULL!");
+            return;
+        }
+    
+        var result = await _projectRepository.RemoveAsync(project.ProjectId);
+        Console.WriteLine($"=== Remove result: {result}");
+    
+        UserProjects.Remove(project);
+        NotificationService.Instance.Send("Project Deleted!", $"Project ({project.Name}) has been deleted successfully", NotificationType.Success);
     }
 
     [RelayCommand]

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using Avalonia;
-using Avalonia.Animation;
-using Avalonia.Animation.Easings;
+﻿using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Media;
-using Avalonia.Styling;
 using ProjectManagementSystem.ViewModels;
 
 namespace ProjectManagementSystem.Views;
@@ -14,11 +8,6 @@ namespace ProjectManagementSystem.Views;
 public partial class DashboardView : UserControl {
 
     private bool _isExpanded = true;
-    private const double EXPANDED_WIDTH = 250;
-    private  const double COLLAPSED_WIDTH = 60;
-    private const double HLINE_COLLAPSED_WIDTH = 30.0;
-    private const double HLINE_EXPANDED_WIDTH = 220.0;
-    private const double ADD_BUTTON_COLLAPSED_OFFSET = -194.0;
     
     public DashboardView() {
         InitializeComponent();
