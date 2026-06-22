@@ -76,24 +76,21 @@
                                 <TextBlock Classes="AddProjectIconLeftPanel" Text="&#xE3D6;"></TextBlock>
                             </Button>
                         </Grid>
-                        <ItemsControl ItemsSource="{Binding UserProjects}">
-                            <ItemsControl.ItemTemplate>
+                        <ListBox Classes="ProjectsListBox"
+                                 ItemsSource="{Binding UserProjects}"
+                                 SelectedItem="{Binding SelectedProject}">
+                            <ListBox.ItemTemplate>
                                 <DataTemplate x:DataType="models:Project">
-                                    <Button Classes="ProjectButtonLeftPanel" PointerEntered="ProjectButton_OnPointerEntered">
-                                        <Button.ContextMenu>
+                                    <Grid Classes="ProjectButtonLeftPanel"
+                                          ColumnDefinitions="Auto, *, Auto"
+                                          PointerPressed="ProjectItem_OnPointerPressed">
+                                        <Grid.ContextMenu>
                                             <ContextMenu>
-                                                <MenuItem Header="View"
-                                                          Command="{Binding $parent[ItemsControl].((vm:DashboardViewModel)DataContext)?.ViewProjectCommand}"
+                                                <MenuItem Header="Edit"
+                                                          Command="{Binding $parent[ListBox].((vm:DashboardViewModel)DataContext)?.EditProjectCommand}"
                                                           CommandParameter="{Binding}">
                                                     <MenuItem.Icon>
-                                                        <TextBlock Text="&#xE220;" Classes="MenuItemIcon"/>
-                                                    </MenuItem.Icon>
-                                                </MenuItem>
-                                                <MenuItem Header="Update"
-                                                          Command="{Binding $parent[ItemsControl].((vm:DashboardViewModel)DataContext)?.UpdateProjectCommand}"
-                                                          CommandParameter="{Binding}">
-                                                    <MenuItem.Icon>
-                                                        <TextBlock Text="&#xE52A;" Classes="MenuItemIcon"/>
+                                                        <TextBlock Text="&#xE3B2;" Classes="MenuItemIcon"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
                                                 <Separator/>
@@ -106,17 +103,15 @@
                                                     </MenuItem.Icon>
                                                 </MenuItem>
                                             </ContextMenu>
-                                        </Button.ContextMenu>
-                                        <Grid ColumnDefinitions="Auto, *, Auto">
-                                            <Border Grid.Column="0" Classes="ProjectDotLeftPanel" Background="{Binding Color}"/>
-                                            <TextBlock Grid.Column="1" Classes="ProjectNameLeftPanel" Text="{Binding Name}"/>
-                                            <TextBlock Grid.Column="2" Classes="More" Text="&#xE1FE;"
-                                                       IsVisible="{Binding #Root.((vm:DashboardViewModel)DataContext)?.IsLeftPanelExpanded}"/>
-                                        </Grid>
-                                    </Button>
+                                        </Grid.ContextMenu>
+                                        <Border Grid.Column="0" Classes="ProjectDotLeftPanel" Background="{Binding Color}"/>
+                                        <TextBlock Grid.Column="1" Classes="ProjectNameLeftPanel" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="2" Classes="More" Text="&#xE1FE;"
+                                                   IsVisible="{Binding #Root.((vm:DashboardViewModel)DataContext)?.IsLeftPanelExpanded}"/>
+                                    </Grid>
                                 </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </StackPanel>
                     <Border Name="HLine3" Grid.Row="2" Classes="HLine3"></Border>
                     <Grid Grid.Row="3" Margin="0 0 0 5">

@@ -239,16 +239,50 @@
         <Setter Property="Margin" Value="10 0 0 0"></Setter>
     </Style>
     
-    <Style Selector="Button.ProjectButtonLeftPanel">
+    <!-- Container styling now lives on the ListBoxItem, since Grid has no chrome of its own -->
+    <Style Selector="ListBox.ProjectsListBox">
+        <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="Height" Value="30"></Setter>
-        <Setter Property="Margin" Value="7 0 7 5"></Setter>
-        <Setter Property="ClipToBounds" Value="True"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+    </Style>
+
+    <Style Selector="ListBox.ProjectsListBox ListBoxItem">
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="7.5 0 7 5"></Setter>
+        <Setter Property="MinHeight" Value="0"></Setter>
+        <Setter Property="CornerRadius" Value="6"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
     </Style>
+
+    <!-- Suppress the default Fluent selection/hover backgrounds, we'll drive visuals ourselves -->
+    <Style Selector="ListBox.ProjectsListBox ListBoxItem /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+
+    <Style Selector="ListBox.ProjectsListBox ListBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource NavButtonsHoverBackground}"></Setter>
+    </Style>
+
+    <Style Selector="ListBox.ProjectsListBox ListBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource NavButtonsHoverBackground}"></Setter>
+    </Style>
+
+    <Style Selector="ListBox.ProjectsListBox ListBoxItem:selected:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource NavButtonsHoverBackground}"></Setter>
+    </Style>
+
+    <!-- The actual row content -->
+    <Style Selector="ListBoxItem">
+        <Setter Property="Margin" Value="7 0 7 5"></Setter>
+    </Style>
     
-    <Style Selector="Button.ProjectButtonLeftPanel TextBlock.More">
+    <Style Selector="Grid.ProjectButtonLeftPanel">
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ClipToBounds" Value="True"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="7 3"></Setter>
+    </Style>
+
+    <Style Selector="Grid.ProjectButtonLeftPanel TextBlock.More">
         <Setter Property="Opacity" Value="0"></Setter>
         <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
@@ -259,8 +293,8 @@
             </Transitions>
         </Setter>
     </Style>
-    
-    <Style Selector="Button.ProjectButtonLeftPanel:pointerover TextBlock.More">
+
+    <Style Selector="ListBoxItem:pointerover Grid.ProjectButtonLeftPanel TextBlock.More">
         <Setter Property="Opacity" Value="1"></Setter>
     </Style>
     

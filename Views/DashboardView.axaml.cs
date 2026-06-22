@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -90,7 +91,9 @@ public partial class DashboardView : UserControl {
         }
     }
 
-    private void ProjectButton_OnPointerEntered(object? sender, PointerEventArgs e) {
-        
+    private void ProjectItem_OnPointerPressed(object? sender, PointerPressedEventArgs e) {
+        if (e.GetCurrentPoint(sender as Visual).Properties.IsRightButtonPressed) {
+            e.Handled = true;
+        }
     }
 }

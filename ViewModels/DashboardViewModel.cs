@@ -25,6 +25,7 @@ public partial class DashboardViewModel : ViewModelBase {
     [ObservableProperty] private ViewModelBase _currentRightPanelView;
     [ObservableProperty] private bool _isCreateProjectOpen;
     [ObservableProperty] private ObservableCollection<Project> _userProjects = [];
+    [ObservableProperty] private Project? _selectedProject;
 
     public DashboardViewModel() {
         Instance = this;
@@ -74,16 +75,17 @@ public partial class DashboardViewModel : ViewModelBase {
         IsCreateProjectOpen = false;
     }
 
-    [RelayCommand]
-    private void ViewProject(Project project) {
-        //TODO: Navigate to project view
-        throw new NotImplementedException();
+    partial void OnSelectedProjectChanged(Project? value) {
+        if (value is null) return;
+        
+        // TODO: replace with project view in right panel
+        Console.WriteLine($"{value.Name} is selected!");
     }
 
     [RelayCommand]
-    private void UpdateProject(Project project) {
+    private void EditProject(Project project) {
         //TODO: Open update project overlay
-        throw new NotImplementedException();
+        Console.WriteLine($"Editing {project.Name}...");
     }
 
     [RelayCommand]
@@ -92,6 +94,10 @@ public partial class DashboardViewModel : ViewModelBase {
         Console.WriteLine($"=== Remove result: {result}");
     
         UserProjects.Remove(project);
+        
+        if (SelectedProject == project)
+            SelectedProject = null;
+        
         NotificationService.Instance.Send("Project Deleted!", $"Project ({project.Name}) has been deleted successfully", NotificationType.Success);
     }
 

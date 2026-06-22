@@ -147,7 +147,7 @@
         <Setter Property="Foreground" Value="White"></Setter>
     </Style>
     
-    <Style Selector="ListBox.AccentColor">
+    <Style Selector="ListBox.AccentColors">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
