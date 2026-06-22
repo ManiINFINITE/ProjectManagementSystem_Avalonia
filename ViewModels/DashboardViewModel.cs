@@ -20,6 +20,7 @@ public partial class DashboardViewModel : ViewModelBase {
     
     private readonly User? _currentUser;
     
+    [ObservableProperty] private bool _isLeftPanelExpanded;
     [ObservableProperty] private ProjectCreationViewModel _projectCreationViewModel = new();
     [ObservableProperty] private ViewModelBase _currentRightPanelView;
     [ObservableProperty] private bool _isCreateProjectOpen;
@@ -33,7 +34,7 @@ public partial class DashboardViewModel : ViewModelBase {
             return;
         }
         
-        _currentUser = SessionService.Instance?.CurrentUser!;
+        _currentUser = SessionService.Instance.CurrentUser!;
         _currentRightPanelView = new SettingsViewModel();
 
         _ = LoadProjectsAsync();
@@ -87,13 +88,6 @@ public partial class DashboardViewModel : ViewModelBase {
 
     [RelayCommand]
     private async Task DeleteProject(Project project) {
-        Console.WriteLine($"=== DeleteProject called for: {project?.Name}");
-    
-        if (project == null) {
-            Console.WriteLine("=== Project is NULL!");
-            return;
-        }
-    
         var result = await _projectRepository.RemoveAsync(project.ProjectId);
         Console.WriteLine($"=== Remove result: {result}");
     

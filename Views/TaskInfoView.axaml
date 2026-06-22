@@ -65,7 +65,7 @@
             <!-- users list header -->
             <Border Grid.Row="6" Classes="Divider"></Border>
             <!-- tasks list -->
-            <ScrollViewer Grid.Row="7" MaxHeight="200" VerticalScrollBarVisibility="Auto" Margin="-8 5">
+            <ScrollViewer Grid.Row="7" MaxHeight="150" VerticalScrollBarVisibility="Auto" Margin="-8 5">
                 <ItemsControl ItemsSource="{Binding Tasks}" ClipToBounds="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="models:TaskEntry">

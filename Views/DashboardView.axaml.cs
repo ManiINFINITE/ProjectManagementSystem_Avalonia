@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using ProjectManagementSystem.ViewModels;
 
@@ -21,6 +22,9 @@ public partial class DashboardView : UserControl {
         }
         
         _isExpanded = !_isExpanded;
+        if (DataContext is DashboardViewModel vm) {
+            vm.IsLeftPanelExpanded = _isExpanded;
+        }
     }
 
     private async void Collapse() {
@@ -84,5 +88,9 @@ public partial class DashboardView : UserControl {
         if (DataContext is DashboardViewModel vm) {
             vm.OpenCreateProject();
         }
+    }
+
+    private void ProjectButton_OnPointerEntered(object? sender, PointerEventArgs e) {
+        
     }
 }

@@ -38,6 +38,7 @@
                     <Color x:Key="NavButtonsPressedBackground">#CCCCCC</Color>
                     <Color x:Key="ReadOnlyBackground">#DEDEDE</Color>
                     
+                    <SolidColorBrush x:Key="ElementGeneralForeground">WhiteSmoke</SolidColorBrush>
                     <SolidColorBrush x:Key="MyProjectsForeground">#555555</SolidColorBrush>
                     <SolidColorBrush x:Key="CollapseIconForeground">Black</SolidColorBrush>
                     <SolidColorBrush x:Key="NavButtonsForeground">#707070</SolidColorBrush>
@@ -63,6 +64,7 @@
                     <Color x:Key="NavButtonsPressedBackground">#3C3C3C</Color>
                     <Color x:Key="ReadOnlyBackground">#2B2B2B</Color>
                     
+                    <SolidColorBrush x:Key="ElementGeneralForeground">#151515</SolidColorBrush>
                     <SolidColorBrush x:Key="MyProjectsForeground">WhiteSmoke</SolidColorBrush>
                     <SolidColorBrush x:Key="CollapseIconForeground">White</SolidColorBrush>
                     <SolidColorBrush x:Key="NavButtonsForeground">#D0D0D0</SolidColorBrush>

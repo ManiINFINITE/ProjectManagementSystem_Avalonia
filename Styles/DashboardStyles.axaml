@@ -248,6 +248,22 @@
         <Setter Property="Cursor" Value="Hand"></Setter>
     </Style>
     
+    <Style Selector="Button.ProjectButtonLeftPanel TextBlock.More">
+        <Setter Property="Opacity" Value="0"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.ProjectButtonLeftPanel:pointerover TextBlock.More">
+        <Setter Property="Opacity" Value="1"></Setter>
+    </Style>
+    
     <Style Selector="Border.Circle">
         <Setter Property="Background" Value="LightGray"></Setter>
         <Setter Property="Width" Value="70"></Setter>
@@ -360,6 +376,30 @@
                 <DoubleTransition Property="Opacity" Duration="0:0:0.3" Easing="CubicEaseOut"/>
             </Transitions>
         </Setter>
+    </Style>
+    
+    <Style Selector="MenuItem.DeleteProject">
+        <Setter Property="Foreground" Value="#FF382F"/>
+    </Style>
+
+    <Style Selector="MenuItem.DeleteProject:pointerover /template/ Border">
+        <Setter Property="Background" Value="#FF382F"/>
+    </Style>
+    
+    <Style Selector="TextBlock.MenuItemIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"/>
+    </Style>
+
+    <Style Selector="MenuItem:selected TextBlock.MenuItemIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"/>
+    </Style>
+
+    <Style Selector="MenuItem.DeleteProject:pointerover">
+        <Setter Property="Foreground" Value="{DynamicResource ElementGeneralForeground}"/>
+    </Style>
+    
+    <Style Selector="MenuItem.DeleteProject:selected /template/ ContentPresenter#PART_HeaderPresenter">
+        <Setter Property="Foreground" Value="{DynamicResource ElementGeneralForeground}"></Setter>
     </Style>
     
     
