@@ -110,7 +110,8 @@
                                         <Grid ColumnDefinitions="Auto, *, Auto">
                                             <Border Grid.Column="0" Classes="ProjectDotLeftPanel" Background="{Binding Color}"/>
                                             <TextBlock Grid.Column="1" Classes="ProjectNameLeftPanel" Text="{Binding Name}"/>
-                                            <TextBlock Grid.Column="2" Classes="More" Text="&#xE1FE;"/>
+                                            <TextBlock Grid.Column="2" Classes="More" Text="&#xE1FE;"
+                                                       IsVisible="{Binding #Root.((vm:DashboardViewModel)DataContext)?.IsLeftPanelExpanded}"/>
                                         </Grid>
                                     </Button>
                                 </DataTemplate>

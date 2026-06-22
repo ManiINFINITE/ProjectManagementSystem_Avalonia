@@ -20,7 +20,7 @@ public partial class DashboardViewModel : ViewModelBase {
     
     private readonly User? _currentUser;
     
-    [ObservableProperty] private bool _isLeftPanelExpanded;
+    [ObservableProperty] private bool _isLeftPanelExpanded = true;
     [ObservableProperty] private ProjectCreationViewModel _projectCreationViewModel = new();
     [ObservableProperty] private ViewModelBase _currentRightPanelView;
     [ObservableProperty] private bool _isCreateProjectOpen;
