@@ -29,6 +29,7 @@ public class UserProjectRepository {
         await using var db = new AppDbContext();
         return await db.UserProjects
             .Include(up => up.User)
+            .ThenInclude(u => u.ProfilePicture)
             .Where(up => up.ProjectId == projectId)
             .ToListAsync();
     }

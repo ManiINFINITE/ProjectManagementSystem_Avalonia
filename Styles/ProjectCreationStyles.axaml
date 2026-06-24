@@ -4,16 +4,6 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
             
-            <Grid Width="1300" ColumnDefinitions="*, Auto">
-                <Button Classes="CancelProjectButton" Grid.Column="0" Content="Cancel"/>
-                <Button Classes="CreateProjectButton" Grid.Column="1">
-                    <Grid ColumnDefinitions="*, *">
-                        <TextBlock Classes="Icon" Grid.Column="0" Text="&#xE258;"/>
-                        <TextBlock Classes="Text" Grid.Column="1" Text="Create Project"/>
-                    </Grid>
-                </Button>
-            </Grid>
-            
         </Border>
     </Design.PreviewWith>
 

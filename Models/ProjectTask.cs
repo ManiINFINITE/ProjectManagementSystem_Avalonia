@@ -27,7 +27,7 @@ public class ProjectTask {
     public ProjectTaskStatus Status { get; set; } = ProjectTaskStatus.ToDo;
     
     [DataType(DataType.Date)]
-    public DateOnly? Deadline { get; set; } = null;
+    public DateOnly? Deadline { get; set; }
     
     [Required]
     [DataType(DataType.DateTime)]

@@ -1,0 +1,381 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+            
+            <Border Classes="TasksBorder ToDo">
+                <Grid RowDefinitions="Auto, *">
+                    <!-- Header -->
+                    <Grid Grid.Row="0" RowDefinitions="Auto, Auto">
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, Auto, *">
+                            <Border Grid.Column="0" Classes="Ellipse"/>
+                            <TextBlock Grid.Column="1" Classes="HeaderText" Text="To Do"/>
+                            <Border Grid.Column="2" Classes="CountBorder">
+                                <TextBlock/>
+                            </Border>
+                            <Button Grid.Column="3" Classes="AddTaskButton" Content="&#xE3D4;"/>
+                        </Grid>
+                    </Grid>
+                    <!-- TODO: ToDo Tasks ListBox (Or ItemsControl) -->
+                </Grid>
+            </Border>
+            
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ControlTheme x:Key="MyCalendarDatePickerButton" TargetType="Button">
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <TextBlock x:Name="CalendarIcon"
+                                   Text="&#xE108;"
+                                   FontFamily="{DynamicResource Phosphor}"
+                                   FontSize="25"
+                                   Foreground="#757575"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Cursor="Hand"/>
+                    </ControlTemplate>
+                </Setter>
+            </ControlTheme>
+        </ResourceDictionary>
+    </Styles.Resources>
+    
+    <Style Selector="TextBlock.ProjectNameText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-ExtraBold}"></Setter>
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0"></Setter>
+    </Style>
+    
+    <Style Selector="Button.EditProjectButton">
+        <Setter Property="Height" Value="27.5"></Setter>
+        <Setter Property="Width" Value="27.5"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Background" Value="Aquamarine"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="Foreground" Value="DarkGreen"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="0 0 5 0"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.DeleteProjectButton">
+        <Setter Property="Height" Value="27.5"></Setter>
+        <Setter Property="Width" Value="27.5"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Background" Value="#50FF0000"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="Foreground" Value="Red"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.InviteButton">
+        <Setter Property="Height" Value="27.5"></Setter>
+        <Setter Property="Width" Value="27.5"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Background" Value="Aquamarine"></Setter>
+        <Setter Property="Foreground" Value="DarkGreen"></Setter>
+        <Setter Property="Margin" Value="0 0 5 0"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.InviteText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="Margin" Value="0 0 5 0"></Setter>
+    </Style>
+    
+    <Style Selector="ItemsControl.AssigneeAvatarStack ContentPresenter">
+        <Setter Property="Margin" Value="-10 0 0 0"/>
+        <Setter Property="ZIndex" Value="0"/>
+    </Style>
+
+    <Style Selector="ItemsControl.AssigneeAvatarStack ContentPresenter:nth-child(1)">
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <Style Selector="Border.AssigneePicBorder">
+        <Setter Property="BorderBrush" Value="{DynamicResource ElementGeneralForeground}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="CornerRadius" Value="999"/>
+    </Style>
+
+    <Style Selector="Border.AssigneePicBorder > Panel">
+        <Setter Property="ClipToBounds" Value="True"/>
+    </Style>
+    
+    <Style Selector="Border.AssigneePicBorder Image">
+        <Setter Property="Stretch" Value="UniformToFill"></Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.PriorityFilter">
+        <Setter Property="Height" Value="37"></Setter>
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="0 0 7.5 0"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Padding" Value="15 5"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.PriorityFilter /template/ DataValidationErrors">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <Style Selector="ComboBox.PriorityFilter /template/ Grid">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+    
+    <Style Selector="ComboBox.PriorityFilter /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"/>
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <!-- Pointer over -->
+    <Style Selector="ComboBox.PriorityFilter:pointerover /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="{DynamicResource HoverShadow}"/>
+    </Style>
+
+    <!-- Focus-visible (this is the actual focus pseudo-class used in this template) -->
+    <Style Selector="ComboBox.PriorityFilter:focus-visible /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="{DynamicResource FocusShadow}"/>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.DeadlineFilter">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0"></Setter>
+        <Setter Property="Padding" Value="15 0"></Setter>
+        <Setter Property="Height" Value="37.5"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.DeadlineFilter /template/ DataValidationErrors">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+
+    <Style Selector="CalendarDatePicker.DeadlineFilter /template/ Panel#LayoutRoot">
+        <Setter Property="ClipToBounds" Value="False"/>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.DeadlineFilter /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="{DynamicResource SoftShadow}"/>
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.1" Easing="CubicEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.DeadlineFilter:pointerover /template/ Border#Background">
+        <Setter Property="BoxShadow" Value="{DynamicResource HoverShadow}"/>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.DeadlineFilter:focus-within /template/ Border#Background">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BoxShadow" Value="{DynamicResource FocusShadow}"/>
+    </Style>
+    
+    <Style Selector="CalendarDatePicker.DeadlineFilter /template/ Button#PART_Button">
+        <Setter Property="Margin" Value="0,0,10,0"/>
+        <Setter Property="Theme" Value="{StaticResource MyCalendarDatePickerButton}"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ShareProjectButton">
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Height" Value="37"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ShareProjectButton TextBlock.Icon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 5 0"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ElementGeneralForeground}"></Setter>
+        <Setter Property="FontSize" Value="17.5"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ShareProjectButton TextBlock.Text">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ElementGeneralForeground}"></Setter>
+        <Setter Property="Margin" Value="2.5 0 0 0"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ShareProjectButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+    </Style>
+    
+    <Style Selector="Border.SmallDivider">
+        <Setter Property="Width" Value="2"/>
+        <Setter Property="Height" Value="37"/>
+        <Setter Property="CornerRadius" Value="999"/>
+        <Setter Property="Background" Value="{DynamicResource NavButtonsHoverBackground}"></Setter>
+        <Setter Property="Margin" Value="10 0"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ViewsButton">
+        <Setter Property="Height" Value="37"></Setter>
+        <Setter Property="Width" Value="37"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Background">
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="100%, 100%">
+                <GradientStop Offset="0" Color="{DynamicResource PrimaryAccentColor}"/>
+                <GradientStop Offset="1" Color="{DynamicResource SecondaryAccentColor}"/>
+            </LinearGradientBrush>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ElementGeneralForeground}"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Fill}"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+    </Style>
+   
+    <Style Selector="Button.ViewsButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ButtonHoverBackground}"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ElementGeneralForeground}"></Setter>
+    </Style>
+    
+    <Style Selector="Border.TasksBorder">
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="CornerRadius" Value="10"></Setter>
+        <Setter Property="Background" Value="#F5F5F5"></Setter>
+        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Padding" Value="15"></Setter>
+    </Style>
+    
+    <Style Selector="Border.TasksBorder:nth-child(1)">
+        <Setter Property="Margin" Value="0 0 7.5 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.TasksBorder:nth-child(2)">
+        <Setter Property="Margin" Value="7.5 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.TasksBorder:nth-child(3)">
+        <Setter Property="Margin" Value="7.5 0 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.TasksBorder Border.Ellipse">
+        <Setter Property="Height" Value="10"></Setter>
+        <Setter Property="Width" Value="10"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.ToDo Border.Ellipse">
+        <Setter Property="Background" Value="#AAFF0000"></Setter>
+    </Style>
+    
+    <Style Selector="Border.InProgress Border.Ellipse">
+        <Setter Property="Background" Value="Orange"></Setter>
+    </Style>
+    
+    <Style Selector="Border.Done Border.Ellipse">
+        <Setter Property="Background" Value="LimeGreen"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.HeaderText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.CountBorder">
+        <Setter Property="Height" Value="17.5"></Setter>
+        <Setter Property="Width" Value="17.5"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="Background" Value="{DynamicResource NavButtonsHoverBackground}"></Setter>
+    </Style>
+    
+    <Style Selector="Border.CountBorder TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button.AddTaskButton">
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Height" Value="20"></Setter>
+        <Setter Property="Width" Value="20"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Background" Value="Aquamarine"></Setter>
+        <Setter Property="Foreground" Value="DarkGreen"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="Border.HeaderDivider">
+        <Setter Property="Height" Value="2"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="CornerRadius" Value="999"></Setter>
+        <Setter Property="Margin" Value="0 15 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="Border.ToDo Border.HeaderDivider">
+        <Setter Property="Background" Value="#AAFF0000"></Setter>
+    </Style>
+    
+    <Style Selector="Border.InProgress Border.HeaderDivider">
+        <Setter Property="Background" Value="Orange"></Setter>
+    </Style>
+    
+    <Style Selector="Border.Done Border.HeaderDivider">
+        <Setter Property="Background" Value="LimeGreen"></Setter>
+    </Style>
+</Styles>

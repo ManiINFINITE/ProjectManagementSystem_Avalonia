@@ -1,0 +1,175 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProjectManagementSystem.ViewModels"
+             xmlns:models="clr-namespace:ProjectManagementSystem.Models"
+             xmlns:converters="clr-namespace:ProjectManagementSystem.Converters"
+             mc:Ignorable="d" d:DesignWidth="1071" d:DesignHeight="738"
+             x:Class="ProjectManagementSystem.Views.ProjectDetailsView"
+             x:DataType="vm:ProjectDetailsViewModel">
+    
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/ProjectDetailsStyles.axaml"/>
+    </UserControl.Styles>
+    
+    <Border Padding="15">
+        
+        <Grid RowDefinitions="Auto, *">
+            <!-- Top section ( info and actions ) -->
+            <Grid Grid.Row="0" RowDefinitions="*, Auto">
+                <!-- Project info -->
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                    <!-- Name and edit -->
+                    <Grid Grid.Column="0" ColumnDefinitions="*, Auto, Auto">
+                        <TextBlock Grid.Column="0" Classes="ProjectNameText" Text="{Binding Project.Name}"/>
+                        <Button Classes="EditProjectButton" Grid.Column="1" Content="&#xE3B4;"/>
+                        <Button Grid.Column="2" Classes="DeleteProjectButton" Content="&#xE4A6;"/>
+                    </Grid>
+                    <!-- Assignees and invite -->
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto, Auto, Auto" HorizontalAlignment="Right">
+                        <Button Grid.Column="0" Classes="InviteButton" Content="&#xE4CA;"/>
+                        <TextBlock Grid.Column="1" Classes="InviteText" Text="Invite"/>
+                        <ItemsControl Classes="AssigneeAvatarStack" Grid.Column="2" ItemsSource="{Binding Assignees}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="models:UserProject">
+                                    <Border Classes="AssigneePicBorder" ToolTip.Tip="{Binding User.Username}">
+                                        <Border CornerRadius="999" ClipToBounds="True">
+                                            <Panel>
+                                                <Border CornerRadius="999"
+                                                        Background="{Binding User, Converter={x:Static converters:UserAvatarColorConverter.Instance}}"
+                                                        IsVisible="{Binding User.ProfilePicture, Converter={x:Static ObjectConverters.IsNull}}">
+                                                    <TextBlock Text="{Binding User.Initials}"
+                                                               FontFamily="{DynamicResource Nunito-Bold}"
+                                                               Foreground="White"
+                                                               FontSize="14"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"/>
+                                                </Border>
+                                                <Image Source="{Binding User.ProfilePicture?.PictureData, Converter={x:Static converters:ByteArrayToBitmapConverter.Instance}}"
+                                                       Stretch="UniformToFill"
+                                                       IsVisible="{Binding User.ProfilePicture, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                                            </Panel>
+                                        </Border>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </Grid>
+                <!-- View options -->
+                <Grid Grid.Row="1" ColumnDefinitions="Auto, *" Margin="0 20 0 0">
+                    <!-- Filters -->
+                    <Grid Grid.Column="0" ColumnDefinitions="Auto, Auto">
+                        <CalendarDatePicker Classes="DeadlineFilter"
+                                            Grid.Column="0"
+                                            PlaceholderText="Deadline"
+                                            SelectedDate="{Binding DeadlineFilter}"/>
+                        <ComboBox Classes="PriorityFilter" 
+                                  Grid.Column="1"
+                                  ItemsSource="{Binding PriorityOptions}"
+                                  SelectedItem="{Binding SelectedPriority}"
+                                  PlaceholderText="Priority"/>
+                    </Grid>
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto, Auto, Auto, Auto" HorizontalAlignment="Right">
+                        <!-- Share -->
+                        <Button Grid.Column="0" Classes="ShareProjectButton">
+                            <Grid ColumnDefinitions="Auto, *">
+                                <TextBlock Grid.Column="0" Classes="Icon" Text="&#xED52;"/>
+                                <TextBlock Grid.Column="1" Classes="Text" Text="Share"/>
+                            </Grid>
+                        </Button>
+                        <Border Grid.Column="1" Classes="SmallDivider"/>
+                        <!-- row view -->
+                        <Button Grid.Column="2" Classes="ViewsButton" Content="&#xE5A2;"/>
+                        <!-- grid view -->
+                        <Button Grid.Column="3" Classes="ViewsButton" Content="&#xE464;"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <!-- Bottom section ( tasks ) -->
+            <Grid Grid.Row="1" ColumnDefinitions="*, *, *" Margin="0 20 0 0">
+                <Border Classes="TasksBorder ToDo" Grid.Column="0">
+                    <Grid RowDefinitions="Auto, *">
+                        <!-- Header -->
+                        <Grid Grid.Row="0" RowDefinitions="Auto, Auto">
+                            <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, Auto, *">
+                                <Border Grid.Column="0" Classes="Ellipse"/>
+                                <TextBlock Grid.Column="1" Classes="HeaderText" Text="To Do"/>
+                                <Border Grid.Column="2" Classes="CountBorder">
+                                    <TextBlock/>
+                                </Border>
+                                <Button Grid.Column="3" Classes="AddTaskButton" Content="&#xE3D4;"/>
+                            </Grid>
+                            <Border Grid.Row="1" Classes="HeaderDivider"/>
+                        </Grid>
+                        <ScrollViewer Grid.Row="1">
+                            <ItemsControl ItemsSource="{Binding ToDoTasks}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="models:ProjectTask">
+                                        <!-- TODO: Card Visual -->
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+                <Border Classes="TasksBorder InProgress" Grid.Column="1">
+                    <Grid RowDefinitions="Auto, *">
+                        <!-- Header -->
+                        <Grid Grid.Row="0" RowDefinitions="Auto, Auto">
+                            <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, Auto, *">
+                                <Border Grid.Column="0" Classes="Ellipse"/>
+                                <TextBlock Grid.Column="1" Classes="HeaderText" Text="In Progress"/>
+                                <Border Grid.Column="2" Classes="CountBorder">
+                                    <TextBlock/>
+                                </Border>
+                            </Grid>
+                            <Border Grid.Row="1" Classes="HeaderDivider"/>
+                        </Grid>
+                        <ScrollViewer Grid.Row="1">
+                            <ItemsControl ItemsSource="{Binding InProgressTasks}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="models:ProjectTask">
+                                        <!-- TODO: Card Visual -->
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+                <Border Classes="TasksBorder Done" Grid.Column="2">
+                    <Grid RowDefinitions="Auto, *">
+                        <!-- Header -->
+                        <Grid Grid.Row="0" RowDefinitions="Auto, Auto">
+                            <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, Auto, *">
+                                <Border Grid.Column="0" Classes="Ellipse"/>
+                                <TextBlock Grid.Column="1" Classes="HeaderText" Text="Done"/>
+                                <Border Grid.Column="2" Classes="CountBorder">
+                                    <TextBlock/>
+                                </Border>
+                            </Grid>
+                            <Border Grid.Row="1" Classes="HeaderDivider"/>
+                        </Grid>
+                        <ScrollViewer Grid.Row="1">
+                            <ItemsControl ItemsSource="{Binding DoneTasks}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="models:ProjectTask">
+                                        <!-- TODO: Card Visual -->
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+        
+    </Border>
+    
+</UserControl>

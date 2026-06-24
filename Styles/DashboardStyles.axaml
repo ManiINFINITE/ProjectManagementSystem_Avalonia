@@ -93,7 +93,6 @@
     </Style>
     
     <Style Selector="Border.RightPanel">
-        <!--<Setter Property="Width" Value="1071"></Setter>-->
         <Setter Property="Background" Value="{DynamicResource ElementGeneralBackground}"></Setter>
         <Setter Property="CornerRadius" Value="10"></Setter>
         <Setter Property="BoxShadow" Value="0 0 20 0 #3d3d3d"></Setter>

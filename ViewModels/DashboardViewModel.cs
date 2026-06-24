@@ -77,9 +77,8 @@ public partial class DashboardViewModel : ViewModelBase {
 
     partial void OnSelectedProjectChanged(Project? value) {
         if (value is null) return;
-        
-        // TODO: replace with project view in right panel
-        Console.WriteLine($"{value.Name} is selected!");
+
+        CurrentRightPanelView = new ProjectDetailsViewModel(value);
     }
 
     [RelayCommand]

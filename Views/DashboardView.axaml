@@ -135,9 +135,16 @@
                 </Grid>
             </Border>
 
-            <Border Classes="RightPanel" Grid.Column="1">
-                <ContentControl Content="{Binding CurrentRightPanelView}"/>
-            </Border>
+            <Grid Grid.Column="1" RowDefinitions="Auto, *">
+                <Border Grid.Row="0">
+                    <Grid ColumnDefinitions="*, Auto, Auto">
+                        <!-- TODO: Top Bar -->
+                    </Grid>
+                </Border>
+                <Border Grid.Row="1" Classes="RightPanel">
+                    <ContentControl Content="{Binding CurrentRightPanelView}"/>
+                </Border>
+            </Grid>
         </Grid>
         
         <Border Background="#C8000000" IsVisible="{Binding IsCreateProjectOpen}" ClipToBounds="False">
