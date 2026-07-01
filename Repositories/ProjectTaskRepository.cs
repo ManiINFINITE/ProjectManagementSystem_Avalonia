@@ -23,6 +23,8 @@ public class ProjectTaskRepository {
     public async Task<List<ProjectTask>> GetByProjectIdAsync(int projectId) {
         await using var db = new AppDbContext();
         return await db.Tasks
+            .Include(t => t.Assignee)
+            .ThenInclude(u => u.ProfilePicture)
             .Where(t => t.ProjectId == projectId)
             .ToListAsync();
     }

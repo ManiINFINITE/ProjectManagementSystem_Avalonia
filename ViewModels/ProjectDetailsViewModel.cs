@@ -13,31 +13,37 @@ using ProjectManagementSystem.Repositories;
 namespace ProjectManagementSystem.ViewModels;
 
 public partial class ProjectDetailsViewModel : ViewModelBase {
-    
     private readonly UserProjectRepository _userProjectRepository = new();
     private readonly ProjectTaskRepository _projectTaskRepository = new();
 
     [ObservableProperty] private Project _project;
     [ObservableProperty] private ObservableCollection<UserProject> assignees = [];
-    
+
     // --- All tasks unfiltered ---
     private List<ProjectTask> _allTasks = [];
-    
+
     // --- Filtered columns ---
     [ObservableProperty] private ObservableCollection<ProjectTask> _toDoTasks = [];
     [ObservableProperty] private ObservableCollection<ProjectTask> _inProgressTasks = [];
     [ObservableProperty] private ObservableCollection<ProjectTask> _doneTasks = [];
-    
+
     // --- Priority filter ---
-    public Array PriorityOptions => Enum.GetValues(typeof(TaskPriority));
-    [ObservableProperty] private TaskPriority? _selectedPriority;
-    
+    public IReadOnlyList<PriorityFilterOption> PriorityOptions { get; } = [
+        new() { Name = "All", Value = null },
+        new() { Name = "Low", Value = TaskPriority.Low },
+        new() { Name = "Medium", Value = TaskPriority.Medium },
+        new() { Name = "High", Value = TaskPriority.High }
+    ];
+
+    [ObservableProperty] private PriorityFilterOption? _selectedPriorityOption;
+
     // --- Deadline Filter ---
     [ObservableProperty] private DateTimeOffset? _deadlineFilter;
 
     public ProjectDetailsViewModel(Project project) {
         _project = project;
-        
+        SelectedPriorityOption = PriorityOptions[0];
+
         if (Design.IsDesignMode) return;
 
         _ = LoadAssigneesAsync();
@@ -62,7 +68,7 @@ public partial class ProjectDetailsViewModel : ViewModelBase {
         }
     }
 
-    partial void OnSelectedPriorityChanged(TaskPriority? value) {
+    partial void OnSelectedPriorityOptionChanged(PriorityFilterOption? value) {
         ApplyFilters();
     }
 
@@ -71,12 +77,14 @@ public partial class ProjectDetailsViewModel : ViewModelBase {
     }
 
     private void ApplyFilters() {
-        DateOnly? deadlineCutoff = DeadlineFilter is {} d ?  DateOnly.FromDateTime(d.DateTime) : null;
-        
+        DateOnly? deadlineCutoff = DeadlineFilter is { } d ? DateOnly.FromDateTime(d.DateTime) : null;
+
+        var selectedPriority = SelectedPriorityOption?.Value;
+
         var filtered = _allTasks.Where(t =>
-            (SelectedPriority is null || t.Priority == SelectedPriority) &&
-            (deadlineCutoff is null || t.Deadline is null || t.Deadline <=  deadlineCutoff)
-            ).ToList();
+            (selectedPriority is null || t.Priority == selectedPriority) &&
+            (deadlineCutoff is null || t.Deadline is null || t.Deadline <= deadlineCutoff)
+        ).ToList();
 
         ToDoTasks = new ObservableCollection<ProjectTask>(
             filtered.Where(t => t.Status == ProjectTaskStatus.ToDo));
@@ -85,5 +93,4 @@ public partial class ProjectDetailsViewModel : ViewModelBase {
         DoneTasks = new ObservableCollection<ProjectTask>(
             filtered.Where(t => t.Status == ProjectTaskStatus.Done));
     }
-
 }

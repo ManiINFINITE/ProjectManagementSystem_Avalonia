@@ -4,22 +4,33 @@
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
             
-            <Border Classes="TasksBorder ToDo">
-                <Grid RowDefinitions="Auto, *">
-                    <!-- Header -->
-                    <Grid Grid.Row="0" RowDefinitions="Auto, Auto">
-                        <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, Auto, *">
-                            <Border Grid.Column="0" Classes="Ellipse"/>
-                            <TextBlock Grid.Column="1" Classes="HeaderText" Text="To Do"/>
-                            <Border Grid.Column="2" Classes="CountBorder">
-                                <TextBlock/>
-                            </Border>
-                            <Button Grid.Column="3" Classes="AddTaskButton" Content="&#xE3D4;"/>
-                        </Grid>
-                    </Grid>
-                    <!-- TODO: ToDo Tasks ListBox (Or ItemsControl) -->
-                </Grid>
-            </Border>
+            <Border Classes="TaskCardBorder">
+                                            <Grid RowDefinitions="Auto, Auto, Auto, Auto">
+                                                <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                                                    <Border Classes="PriorityBorder" Grid.Column="0">
+                                                        <TextBlock Text="Low"/>
+                                                    </Border>
+                                                    <Button Classes="TaskMoreButton" Grid.Column="1" Content="&#xE1FE;"/>
+                                                </Grid>
+                                                <TextBlock Classes="TaskTitle" Grid.Row="1" Text="Brainstorming"/>
+                                                <TextBlock Classes="TaskDescription" Grid.Row="2" Text="Brainstorming brings team members' diverse experience into play. "/>
+                                                <Grid Grid.Row="3" ColumnDefinitions="*, Auto, Auto">
+                                                    <Border Grid.Column="0" Classes="AssigneePicBorder">
+                                                        <Image Source="../Assets/Images/amber.jpeg"/>
+                                                    </Border>
+                                                    <Grid Grid.Column="1" ColumnDefinitions="Auto, Auto, Auto">
+                                                        <TextBlock Classes="AttachmentIcon" Grid.Column="0" Text="&#xE164;"/>
+                                                        <TextBlock Classes="AttachmentText" Grid.Column="1" Text="10"/>
+                                                        <TextBlock Classes="AttachmentText" Grid.Column="2" Text="comments"/>
+                                                    </Grid>
+                                                    <Grid Grid.Column="2" ColumnDefinitions="Auto, Auto, Auto">
+                                                        <TextBlock Classes="AttachmentIcon" Grid.Column="0" Text="&#xE24A;"/>
+                                                        <TextBlock Classes="AttachmentText" Grid.Column="1" Text="10"/>
+                                                        <TextBlock Classes="AttachmentText" Grid.Column="2" Text="files"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
             
         </Border>
     </Design.PreviewWith>
@@ -291,7 +302,7 @@
     <Style Selector="Border.TasksBorder">
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="CornerRadius" Value="10"></Setter>
-        <Setter Property="Background" Value="#F5F5F5"></Setter>
+        <Setter Property="Background" Value="#ECECEC"></Setter>
         <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
         <Setter Property="Padding" Value="15"></Setter>
     </Style>
@@ -364,7 +375,7 @@
         <Setter Property="Height" Value="2"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="CornerRadius" Value="999"></Setter>
-        <Setter Property="Margin" Value="0 15 0 0"></Setter>
+        <Setter Property="Margin" Value="0 15 0 7.5"></Setter>
     </Style>
     
     <Style Selector="Border.ToDo Border.HeaderDivider">
@@ -378,4 +389,67 @@
     <Style Selector="Border.Done Border.HeaderDivider">
         <Setter Property="Background" Value="LimeGreen"></Setter>
     </Style>
+    
+    <Style Selector="Border.TaskCardBorder">
+        <Setter Property="Background" Value="{DynamicResource ElementGeneralBackground}"></Setter>
+        <Setter Property="Padding" Value="15"></Setter>
+        <Setter Property="CornerRadius" Value="15"></Setter>
+        <Setter Property="Margin" Value="0 7.5"></Setter>
+    </Style>
+    
+    <Style Selector="Border.PriorityBorder">
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="Padding" Value="5 0"></Setter>
+        <Setter Property="CornerRadius" Value="5"></Setter>
+    </Style>
+    
+    <Style Selector="Border.PriorityBorder TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="FontSize" Value="12.5"></Setter>
+    </Style>
+    
+    <Style Selector="Button.TaskMoreButton">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+        <Setter Property="Foreground" Value="#AA000000"></Setter>
+        <Setter Property="Padding" Value="2"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.TaskTitle">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-Bold}"></Setter>
+        <Setter Property="Margin" Value="0 10 0 0"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.TaskDescription">
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="Foreground" Value="#80000000"></Setter>
+        <Setter Property="Margin" Value="0 7.5 0 0"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AttachmentIcon">
+        <Setter Property="FontFamily" Value="{DynamicResource Phosphor-Bold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="#50000000"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.AttachmentText">
+        <Setter Property="FontFamily" Value="{DynamicResource Nunito-SemiBold}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="#50000000"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+    
+    <Style Selector="Border.TaskAssigneeBorder">
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Width" Value="30"></Setter>
+    </Style>
+    
 </Styles>
