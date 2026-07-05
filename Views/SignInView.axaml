@@ -21,9 +21,12 @@
                     <TextBlock Tapped="ChangePasswordVisibility_Click"  Classes="PassVisibleIcon" Text="&#xE220;" IsVisible="{Binding PasswordField.PasswordVisible, Converter={x:Static BoolConverters.Not}}"/>
                     <TextBlock Tapped="ChangePasswordVisibility_Click" Classes="PassVisibleIcon" Text="&#xE224;" IsVisible="{Binding PasswordField.PasswordVisible}"/>
                 </Panel>
-                <CheckBox Classes="Custom" Content="Remember Me" IsChecked="{Binding RememberMe}"
-                          HorizontalAlignment="Center"
-                          Margin="-160 0 0 0"/>
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="-30" Margin="80 0 0 0">
+                    <CheckBox Grid.Column="0" Classes="Custom" Content="Quick Login" IsChecked="{Binding QuickLogin}"
+                              HorizontalAlignment="Center"/>
+                    <CheckBox Grid.Column="1" Classes="Custom" Content="Remember Me" IsChecked="{Binding RememberMe}"
+                              HorizontalAlignment="Center"/>
+                </Grid>
                 <Button Name="SignInButton" Classes="SignInButton" Content="Sign In" Command="{Binding SignInCommand}"></Button>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Classes="DontHaveAccountText" Text="Don't have an account?"></TextBlock>

@@ -8,9 +8,9 @@ using ProjectManagementSystem.Services;
 namespace ProjectManagementSystem.ViewModels;
 
 public partial class SignInViewModel : ViewModelBase {
-
-    [ObservableProperty] private string _username =  string.Empty;
-    [ObservableProperty] private string _password =  string.Empty;
+    [ObservableProperty] private string _username = string.Empty;
+    [ObservableProperty] private string _password = string.Empty;
+    [ObservableProperty] private bool _quickLogin;
     [ObservableProperty] private bool _rememberMe;
 
     public PasswordFieldViewModel PasswordField { get; } = new();
@@ -23,23 +23,34 @@ public partial class SignInViewModel : ViewModelBase {
         var user = await repository.GetByUsernameWithProfilePictureAsync(Username);
 
         if (user == null) {
-            NotificationService.Instance.Send("User Not Found!", "The Username you entered was not found! Please try again!",  NotificationType.Error);
+            NotificationService.Instance.Send("User Not Found!",
+                "The Username you entered was not found! Please try again!", NotificationType.Error);
             return;
         }
-        
+
         // Verify password
         bool passwordValid = BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash);
 
         if (!passwordValid) {
-            NotificationService.Instance.Send("Invalid Password!", "Password is incorrect. Please try again!", NotificationType.Error);
+            NotificationService.Instance.Send("Invalid Password!", "Password is incorrect. Please try again!",
+                NotificationType.Error);
             return;
         }
-        
+
         // Success
         SessionService.Instance.Login(user);
-        NotificationService.Instance.Send("Signed In", $"Welcome {user.FirstName}! Let's Get to work. There are a lot of projects and tasks waiting for you!", NotificationType.Success);
+        NotificationService.Instance.Send("Signed In",
+            $"Welcome {user.FirstName}! Let's Get to work. There are a lot of projects and tasks waiting for you!",
+            NotificationType.Success);
         AppSettingsService.Instance!.LoadForUser(user.Id);
-        if (RememberMe) AppSettingsService.Instance.AddRememberedUser(user.Id);
+        if (QuickLogin) AppSettingsService.Instance.AddQuickLoginUser(user.Id);
+        if (RememberMe) {
+            if (!AppSettingsService.Instance.AddRememberedUser(user.Id)) {
+                NotificationService.Instance.Send("Cannot Remember You!",
+                    "There is already a remembered user saved. cannot remember more than one!", NotificationType.Error);
+            }
+        }
+
         NavigationService.Instance.NavigateTo(new DashboardViewModel());
     }
 

@@ -12,15 +12,14 @@ using ProjectManagementSystem.ViewModels;
 namespace ProjectManagementSystem.Services;
 
 public class AppSettingsService {
-
     public static AppSettingsService? Instance { get; } = new();
-    
+
     private static readonly string GlobalSettingsPath = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
         "ProjectManagementSystem",
         "settings.json"
     );
-    
+
     public GlobalSettings GlobalSettings { get; private set; } = new();
     public UserSettings CurrentSettings { get; private set; } = new();
 
@@ -52,18 +51,20 @@ public class AppSettingsService {
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
             var json = JsonSerializer.Serialize(CurrentSettings, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(path, json);
-        } catch { /**/ }
+        } catch {
+            /**/
+        }
     }
 
     public void ApplyAccentColor(AccentColorOption option) {
         if (Application.Current == null) return;
-        
+
         Application.Current.Resources["PrimaryAccentColor"] = option.PrimaryColor.Color;
         Application.Current.Resources["SecondaryAccentColor"] = option.SecondaryColor.Color;
         Application.Current.Resources["ImageTextForeground"] = option.ImageTextForeground;
         Application.Current.Resources["ButtonHoverBackground"] = option.ButtonHoverBackground;
         AuthenticationViewModel.Instance?.UpdateImage(option.ImagePath);
-        
+
         // Apply login panel colors to the correct theme dictionaries
         if (Application.Current.Resources.ThemeDictionaries.TryGetValue(ThemeVariant.Light, out var lightDict)
             && lightDict is ResourceDictionary light) {
@@ -76,7 +77,7 @@ public class AppSettingsService {
             dark["PrimaryLoginPanelAccentColor"] = option.PrimaryLoginPanelAccentColor_DARK.Color;
             dark["SecondaryLoginPanelAccentColor"] = option.SecondaryLoginPanelAccentColor_DARK.Color;
         }
-        
+
         // Save to DB if user is logged in
         var currentUser = SessionService.Instance.CurrentUser;
         if (currentUser != null) {
@@ -106,7 +107,7 @@ public class AppSettingsService {
 
         var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == settings.AccentColorName)
                      ?? AccentColorsBase.AccentColors.First();
-        
+
         ApplyAccentColor(accent);
 
         Application.Current.RequestedThemeVariant = settings.Theme switch {
@@ -117,11 +118,11 @@ public class AppSettingsService {
 
         Application.Current.RequestedThemeVariant = settings.Theme switch {
             "Light" => ThemeVariant.Light,
-            "Dark"  => ThemeVariant.Dark,
-            _       => ThemeVariant.Default
+            "Dark" => ThemeVariant.Dark,
+            _ => ThemeVariant.Default
         };
     }
-    
+
     public void LoadForUser(int userId) {
         var path = GetUserSettingsPath(userId);
         try {
@@ -134,7 +135,7 @@ public class AppSettingsService {
         } catch {
             CurrentSettings = new UserSettings();
         }
-        
+
         // Override accent color from DB
         var user = SessionService.Instance.CurrentUser;
         if (user != null) {
@@ -143,16 +144,18 @@ public class AppSettingsService {
 
         Apply(CurrentSettings);
     }
-    
+
     private void SaveGlobal() {
         try {
             Directory.CreateDirectory(Path.GetDirectoryName(GlobalSettingsPath)!);
             var json = JsonSerializer.Serialize(GlobalSettings, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(GlobalSettingsPath, json);
-        } catch { /**/ }
+        } catch {
+            /**/
+        }
     }
 
-    public void AddRememberedUser(int userId) {
+    public void AddQuickLoginUser(int userId) {
         if (!GlobalSettings.QuickLoginUsers.Contains(userId)) {
             GlobalSettings.QuickLoginUsers.Insert(0, userId);
             if (GlobalSettings.QuickLoginUsers.Count > 6) {
@@ -163,7 +166,17 @@ public class AppSettingsService {
             GlobalSettings.QuickLoginUsers.Remove(userId);
             GlobalSettings.QuickLoginUsers.Insert(0, userId);
         }
+
         SaveGlobal();
+    }
+
+    public bool AddRememberedUser(int userId) {
+        // There is already a remembered user saved
+        if (GlobalSettings.RememberedUser != -1) return false;
+
+        GlobalSettings.RememberedUser = userId;
+        SaveGlobal();
+        return true;
     }
 
     public string? getThemeForUser(int userId) {
@@ -171,14 +184,17 @@ public class AppSettingsService {
 
         try {
             if (!File.Exists(path)) return null;
-            
+
             var json = File.ReadAllText(path);
             using var doc = JsonDocument.Parse(json);
 
             if (doc.RootElement.TryGetProperty("Theme", out var themeElement)) {
                 return themeElement.GetString();
             }
-        } catch {/**/}
+        } catch {
+            /**/
+        }
+
         return null;
     }
 }
