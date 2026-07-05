@@ -179,6 +179,16 @@ public class AppSettingsService {
         return true;
     }
 
+    public void RemoveRememberedUser(int userId) {
+        // There is no remembered user to remove
+        if (GlobalSettings.RememberedUser == -1) return;
+
+        if (GlobalSettings.RememberedUser == userId) {
+            GlobalSettings.RememberedUser = -1;
+            SaveGlobal();
+        }
+    }
+
     public string? getThemeForUser(int userId) {
         var path = GetUserSettingsPath(userId);
 

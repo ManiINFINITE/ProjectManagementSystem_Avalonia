@@ -103,6 +103,7 @@ public partial class DashboardViewModel : ViewModelBase {
     [RelayCommand]
     private void Logout() {
         SessionService.Instance.Logout();
+        AppSettingsService.Instance!.RemoveRememberedUser(_currentUser!.Id);
         NotificationService.Instance.Send("Logged Out!", "You've logged out successfully.", NotificationType.Success);
     }
 }
