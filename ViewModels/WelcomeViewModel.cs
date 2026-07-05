@@ -1,8 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProjectManagementSystem.Enums;
 using ProjectManagementSystem.Models;
 using ProjectManagementSystem.Repositories;
 using ProjectManagementSystem.Services;
@@ -16,8 +18,8 @@ public partial class WelcomeViewModel : ViewModelBase {
 
     private User? _rememberedUser;
 
-    public WelcomeViewModel() {
-        _ = InitializeAsync();
+    public WelcomeViewModel(bool initialize = true) {
+        if (initialize) _ = InitializeAsync();
     }
 
     private async Task InitializeAsync() {
@@ -91,14 +93,17 @@ public partial class WelcomeViewModel : ViewModelBase {
 
         var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == _rememberedUser.AccentColorName) ??
                      AccentColorsBase.AccentColors.First();
-        
+
         AppSettingsService.Instance.ApplyAccentColor(accent);
-        
+
         var theme = AppSettingsService.Instance.getThemeForUser(_rememberedUser.Id);
         AppSettingsService.Instance.ApplyTheme(theme!);
-        
+
         NavigationService.Instance.NavigateTo(new DashboardViewModel());
 
         await Task.CompletedTask;
+        
+        NotificationService.Instance.Send("Welcome Back!", $"Welcome back {_rememberedUser.Username}.",
+            NotificationType.Success);
     }
 }

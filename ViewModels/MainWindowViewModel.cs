@@ -31,7 +31,7 @@ public partial class MainWindowViewModel : ViewModelBase {
             MainWindowView.Instance?.FadeInSplash();
             await Task.Delay(650);
 
-            WarmupView = new WelcomeViewModel();
+            WarmupView = new WelcomeViewModel(false);
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
 
             WarmupView = new AuthenticationViewModel("Slate Violet");
