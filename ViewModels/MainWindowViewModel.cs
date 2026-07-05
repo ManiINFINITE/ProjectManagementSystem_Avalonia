@@ -34,10 +34,10 @@ public partial class MainWindowViewModel : ViewModelBase {
             WarmupView = new WelcomeViewModel(false);
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
 
-            WarmupView = new AuthenticationViewModel("Slate Violet");
+            WarmupView = new AuthenticationViewModel("Slate Violet", false);
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
 
-            WarmupView = new DashboardViewModel();
+            WarmupView = new DashboardViewModel(false);
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
 
             WarmupView = null;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -12,29 +13,32 @@ using ProjectManagementSystem.Services;
 namespace ProjectManagementSystem.ViewModels;
 
 public partial class DashboardViewModel : ViewModelBase {
-
     public static DashboardViewModel? Instance { get; private set; }
 
     private readonly UserProjectRepository _userProjectRepository = new();
     private readonly ProjectRepository _projectRepository = new();
-    
+
     private readonly User? _currentUser;
-    
+
     [ObservableProperty] private bool _isLeftPanelExpanded = true;
     [ObservableProperty] private ProjectCreationViewModel _projectCreationViewModel = new();
-    [ObservableProperty] private ViewModelBase _currentRightPanelView;
+    [ObservableProperty] private ViewModelBase? _currentRightPanelView;
     [ObservableProperty] private bool _isCreateProjectOpen;
     [ObservableProperty] private ObservableCollection<Project> _userProjects = [];
     [ObservableProperty] private Project? _selectedProject;
 
-    public DashboardViewModel() {
-        Instance = this;
+    public DashboardViewModel(bool initialize = true) {
+        if (!initialize) return;
         
+        Console.WriteLine("DashboardViewModel ctor");
+
+        Instance = this;
+
         if (Design.IsDesignMode) {
             _currentRightPanelView = new SettingsViewModel();
             return;
         }
-        
+
         _currentUser = SessionService.Instance.CurrentUser!;
         _currentRightPanelView = new SettingsViewModel();
 
@@ -42,27 +46,38 @@ public partial class DashboardViewModel : ViewModelBase {
     }
 
     private async Task LoadProjectsAsync() {
-        if (_currentUser == null) return;
-        var projects = await _userProjectRepository.GetProjectsByUserIdAsync(_currentUser.Id);
-        UserProjects = new ObservableCollection<Project>(projects);
+        Console.WriteLine("LoadProjectsAsync started");
+
+        try {
+            if (_currentUser == null)
+                return;
+
+            var projects = await _userProjectRepository.GetProjectsByUserIdAsync(_currentUser.Id);
+
+            Console.WriteLine($"Loaded {projects.Count} projects");
+
+            UserProjects = new ObservableCollection<Project>(projects);
+        } catch (Exception ex) {
+            Console.WriteLine(ex);
+        }
     }
 
     public async Task RefreshUserProjectsAsync() {
         await LoadProjectsAsync();
     }
-    
+
     [RelayCommand]
     private void NavigateToHome() => CurrentRightPanelView = new HomeViewModel();
-    
+
     [RelayCommand]
     private void NavigateToMessages() => CurrentRightPanelView = new MessagesViewModel();
-    
+
     [RelayCommand]
     private void NavigateToTasks() => CurrentRightPanelView = new TasksViewModel();
-    
+
     [RelayCommand]
     private void NavigateToMembers() => CurrentRightPanelView = new MembersViewModel();
-    
+
     [RelayCommand]
     private void NavigateToSettings() => CurrentRightPanelView = new SettingsViewModel();
 
@@ -83,21 +98,24 @@ public partial class DashboardViewModel : ViewModelBase {
 
     [RelayCommand]
     private void EditProject(Project project) {
-        //TODO: Open update project overlay
-        Console.WriteLine($"Editing {project.Name}...");
+        var vm = new ProjectCreationViewModel();
+        vm.LoadFromProject(project);
+        ProjectCreationViewModel = vm;
+        IsCreateProjectOpen = true;
     }
 
     [RelayCommand]
     private async Task DeleteProject(Project project) {
         var result = await _projectRepository.RemoveAsync(project.ProjectId);
         Console.WriteLine($"=== Remove result: {result}");
-    
+
         UserProjects.Remove(project);
-        
+
         if (SelectedProject == project)
             SelectedProject = null;
-        
-        NotificationService.Instance.Send("Project Deleted!", $"Project ({project.Name}) has been deleted successfully", NotificationType.Success);
+
+        NotificationService.Instance.Send("Project Deleted!", $"Project ({project.Name}) has been deleted successfully",
+            NotificationType.Success);
     }
 
     [RelayCommand]

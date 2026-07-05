@@ -56,4 +56,15 @@ public class ProjectTaskRepository {
         await db.SaveChangesAsync();
         return true;
     }
+    
+    public async Task RemoveAllByProjectIdAsync(int projectId) {
+        await using var db = new AppDbContext();
+        
+        var tasks = await db.Tasks
+            .Where(t => t.ProjectId == projectId)
+            .ToListAsync();
+        
+        db.Tasks.RemoveRange(tasks);
+        await db.SaveChangesAsync();
+    }
 }

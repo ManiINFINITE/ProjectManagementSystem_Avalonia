@@ -7,7 +7,6 @@ using ProjectManagementSystem.Models;
 namespace ProjectManagementSystem.Repositories;
 
 public class ProjectRepository {
-
     public async Task AddAsync(Project project) {
         await using var db = new AppDbContext();
         await db.Projects.AddAsync(project);

@@ -34,18 +34,40 @@ public class UserProjectRepository {
             .ToListAsync();
     }
 
-    public async Task<List<Project>> GetProjectsByUserIdAsync(int userId) {
+    public async Task<List<Project>> GetProjectsByUserIdAsync(int userId)
+    {
         await using var db = new AppDbContext();
-        return await db.UserProjects
-            .Include(up => up.Project)
+
+        var userProjects = await db.UserProjects
             .Where(up => up.UserId == userId)
-            .Select(up => up.Project)
+            .Include(up => up.Project)
+            .ThenInclude(p => p.Owner)
+            .Include(up => up.Project)
+            .ThenInclude(p => p.Members)
+            .ThenInclude(m => m.User)
+            .Include(up => up.Project)
+            .ThenInclude(p => p.Tasks)
+            .ThenInclude(t => t.Assignee)
             .ToListAsync();
+
+        return userProjects
+            .Select(up => up.Project)
+            .ToList();
     }
 
     public async Task<UserProject?> GetByIdsAsync(int userId, int projectId) {
         await using var db = new AppDbContext();
         return await db.UserProjects
             .FirstOrDefaultAsync(up => up.UserId == userId && up.ProjectId == projectId);
+    }
+    
+    public async Task RemoveAllByProjectIdAsync(int projectId) {
+        await using var db = new AppDbContext();
+        var members = await db.UserProjects
+            .Where(up => up.ProjectId == projectId)
+            .ToListAsync();
+        
+        db.UserProjects.RemoveRange(members);
+        await db.SaveChangesAsync();
     }
 }

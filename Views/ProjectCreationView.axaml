@@ -27,10 +27,10 @@
             </Grid>
             <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
                 <Button Classes="CancelProjectButton" Grid.Column="0" Content="Cancel" Command="{Binding DiscardCommand}"/>
-                <Button Classes="CreateProjectButton" Grid.Column="1" Command="{Binding CreateProjectCommand}">
+                <Button Classes="CreateProjectButton" Grid.Column="1" Command="{Binding SaveProjectCommand}">
                     <Grid ColumnDefinitions="*, *">
                         <TextBlock Classes="Icon" Grid.Column="0" Text="&#xE258;"/>
-                        <TextBlock Classes="Text" Grid.Column="1" Text="Create Project"/>
+                        <TextBlock Classes="Text" Grid.Column="1" Text="{Binding CreateOrEditButtonText}"/>
                     </Grid>
                 </Button>
             </Grid>

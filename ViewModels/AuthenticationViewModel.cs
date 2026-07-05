@@ -16,7 +16,9 @@ public partial class AuthenticationViewModel : ViewModelBase {
     [ObservableProperty] private Bitmap? _image;
     [ObservableProperty] private string _imageText = "Continue Your Business";
 
-    public AuthenticationViewModel(string accentColorName) {
+    public AuthenticationViewModel(string accentColorName, bool initialize = true) {
+        if (!initialize) return;
+        
         Instance = this;
         
         var accent = AccentColorsBase.AccentColors.FirstOrDefault(c => c.Name == accentColorName)
