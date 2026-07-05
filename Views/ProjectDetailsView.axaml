@@ -103,7 +103,7 @@
                                 <Border Grid.Column="0" Classes="Ellipse"/>
                                 <TextBlock Grid.Column="1" Classes="HeaderText" Text="To Do"/>
                                 <Border Grid.Column="2" Classes="CountBorder">
-                                    <TextBlock/>
+                                    <TextBlock Text="{Binding ToDoTasks.Count}"/>
                                 </Border>
                                 <Button Grid.Column="3" Classes="AddTaskButton" Content="&#xE3D4;"/>
                             </Grid>
@@ -175,7 +175,7 @@
                                 <Border Grid.Column="0" Classes="Ellipse"/>
                                 <TextBlock Grid.Column="1" Classes="HeaderText" Text="In Progress"/>
                                 <Border Grid.Column="2" Classes="CountBorder">
-                                    <TextBlock/>
+                                    <TextBlock Text="{Binding InProgressTasks.Count}"/>
                                 </Border>
                             </Grid>
                             <Border Grid.Row="1" Classes="HeaderDivider"/>
@@ -246,7 +246,7 @@
                                 <Border Grid.Column="0" Classes="Ellipse"/>
                                 <TextBlock Grid.Column="1" Classes="HeaderText" Text="Done"/>
                                 <Border Grid.Column="2" Classes="CountBorder">
-                                    <TextBlock/>
+                                    <TextBlock Text="{Binding DoneTasks.Count}"/>
                                 </Border>
                             </Grid>
                             <Border Grid.Row="1" Classes="HeaderDivider"/>

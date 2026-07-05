@@ -13,20 +13,20 @@ public partial class WelcomeViewModel : ViewModelBase {
     
     private readonly UserRepository _userRepository = new();
     
-    [ObservableProperty] private ObservableCollection<User> _rememberedUsers = [];
+    [ObservableProperty] private ObservableCollection<User> _quickLoginUsers = [];
 
     public WelcomeViewModel() {
         _ = LoadRememberedUserAsync();
     }
     
     private async Task LoadRememberedUserAsync() {
-        var ids = AppSettingsService.Instance!.GlobalSettings.RememberedUsers;
+        var ids = AppSettingsService.Instance!.GlobalSettings.QuickLoginUsers;
         var users = new ObservableCollection<User>();
         foreach (var id in ids) {
             var user = await _userRepository.GetByIdWithProfilePictureAsync(id);
             if (user != null) users.Add(user);
         }
-        RememberedUsers = users;
+        QuickLoginUsers = users;
     }
 
     [RelayCommand]

@@ -26,6 +26,7 @@ public class UserRepository {
         await using var db = new AppDbContext();
         
         return await db.Users.FindAsync(id);
+        
     }
 
     public async Task<User?> GetByUsernameAsync(string username) {

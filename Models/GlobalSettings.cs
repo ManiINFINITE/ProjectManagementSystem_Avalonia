@@ -4,5 +4,5 @@ namespace ProjectManagementSystem.Models;
 
 public class GlobalSettings {
 
-    public List<int> RememberedUsers { get; set; } = [];
+    public List<int> QuickLoginUsers { get; set; } = [];
 }

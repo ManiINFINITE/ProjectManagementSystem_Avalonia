@@ -17,7 +17,7 @@
         <Grid RowDefinitions="Auto, Auto, *, Auto, Auto">
             <TextBlock Classes="WelcomeText" x:Name="WelcomeTextBlock" Grid.Row="0" Text="Welcome to"/>
             <TextBlock Classes="AppName" x:Name="AppNameTextBlock" Grid.Row="1" Text="Project Management System"/>
-            <ItemsControl Classes="FadeInGroup" x:Name="UsersItemsControl" Grid.Row="2" ItemsSource="{Binding RememberedUsers}">
+            <ItemsControl Classes="FadeInGroup" x:Name="UsersItemsControl" Grid.Row="2" ItemsSource="{Binding QuickLoginUsers}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"

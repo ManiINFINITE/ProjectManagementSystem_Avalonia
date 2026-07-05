@@ -153,15 +153,15 @@ public class AppSettingsService {
     }
 
     public void AddRememberedUser(int userId) {
-        if (!GlobalSettings.RememberedUsers.Contains(userId)) {
-            GlobalSettings.RememberedUsers.Insert(0, userId);
-            if (GlobalSettings.RememberedUsers.Count > 6) {
-                GlobalSettings.RememberedUsers.RemoveAt(6);
+        if (!GlobalSettings.QuickLoginUsers.Contains(userId)) {
+            GlobalSettings.QuickLoginUsers.Insert(0, userId);
+            if (GlobalSettings.QuickLoginUsers.Count > 6) {
+                GlobalSettings.QuickLoginUsers.RemoveAt(6);
             }
         } else {
             // Move to front if already exists
-            GlobalSettings.RememberedUsers.Remove(userId);
-            GlobalSettings.RememberedUsers.Insert(0, userId);
+            GlobalSettings.QuickLoginUsers.Remove(userId);
+            GlobalSettings.QuickLoginUsers.Insert(0, userId);
         }
         SaveGlobal();
     }
